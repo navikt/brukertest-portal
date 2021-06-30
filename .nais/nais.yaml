@@ -4,7 +4,7 @@ metadata:
   name: "brukertest-portal"
   namespace: "sommerstudenter2021"
   labels:
-    "team": "team samtykkedigitalisering"
+    "team": "sommerstudenter2021"
 spec:
   image: {{image}}
   liveness:
