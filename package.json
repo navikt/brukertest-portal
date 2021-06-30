@@ -1,0 +1,29 @@
+{
+  "name": "brukertest-portal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/app.js",
+  "scripts": {
+    "start": "tsc && node dist/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/navikt/brukertest-portal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/navikt/brukertest-portal/issues"
+  },
+  "homepage": "https://github.com/navikt/brukertest-portal#readme",
+  "devDependencies": {
+    "@types/express": "^4.16.1",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3"
+  },
+  "dependencies": {
+    "@types/node": "^14.0.4",
+    "express": "^4.16.4"
+  }
+}
