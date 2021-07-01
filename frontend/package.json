@@ -52,9 +52,7 @@
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {
-      "ignore": [
-        "declaration-empty-line-before"
-      ]
+      "declaration-empty-line-before": "never"
     },
     "ignoreFiles": []
   },
