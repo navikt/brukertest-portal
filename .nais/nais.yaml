@@ -1,10 +1,10 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: "brukertest-portal"
-  namespace: "teamsamtykkedigitalisering"
+  name: brukertest-portal
+  namespace: teamsamtykkedigitalisering
   labels:
-    team: "teamsamtykkedigitalisering"
+    team: teamsamtykkedigitalisering
 spec:
   image: {{image}}
   liveness:
