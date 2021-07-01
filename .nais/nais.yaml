@@ -4,7 +4,7 @@ metadata:
   name: "brukertest-portal"
   namespace: "sommerstudenter2021"
   labels:
-    "team": "sommerstudenter2021"
+    team: "sommerstudenter2021"
 spec:
   image: {{image}}
   liveness:
@@ -36,8 +36,8 @@ spec:
     {{/each}}
   idPorten:
     enabled: true
-  # gcp:
-  #   sqlInstances: 
-  #     - type: "POSTGRES_12"
-  #       databases:
-  #         - name: "brukertest-portal-db"
+  gcp:
+    sqlInstances: 
+      - type: "POSTGRES_12"
+        databases:
+          - name: "brukertest-portal-db"
