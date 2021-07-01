@@ -1,3 +1,3 @@
-# SiF Inntektsmelding - frontend
+# Brukertest-portal - frontend
 
-Frontend-repo for SiF inntektsmelding, et sommerstudentprosjekt for sommeren 2021.
+Frontendmappen for brukertest-portalen, et sommerstudentprosjekt for sommeren 2021.
