@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@types/node": "^14.0.4",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "yarn": "^1.22.10"
   }
 }
