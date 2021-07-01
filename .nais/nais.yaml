@@ -34,8 +34,8 @@ spec:
     - https://brukertest-portal.dev.intern.nav.no
   idPorten:
     enabled: true
-  gcp:
-    sqlInstances: 
-      - type: "POSTGRES_12"
-        databases:
-          - name: "brukertest-portal-db"
+  # gcp:
+  #   sqlInstances: 
+  #     - type: "POSTGRES_12"
+  #       databases:
+  #         - name: "brukertest-portal-db"
