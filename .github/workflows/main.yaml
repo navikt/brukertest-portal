@@ -3,7 +3,7 @@ on:
   push:
     branches: [ main ]
 env:
-  IMAGE: "docker.pkg.github.com/navikt/brukertest-portal:${{ github.sha }}"
+  IMAGE: "docker.pkg.github.com/${{ github.repository }}/brukertest-portal:${{ github.sha }}"
 
 jobs:
   build:
