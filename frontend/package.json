@@ -52,7 +52,9 @@
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {},
-    "ignoreFiles": []
+    "ignoreFiles": [
+      "src/App.less"
+    ]
   },
   "prettier": {},
   "eslintConfig": {
