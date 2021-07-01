@@ -2,9 +2,9 @@ apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
   name: "brukertest-portal"
-  namespace: "sommerstudenter2021"
+  namespace: {{namespace}}
   labels:
-    team: "sommerstudenter2021"
+    team: {{team}}
 spec:
   image: {{image}}
   liveness:
