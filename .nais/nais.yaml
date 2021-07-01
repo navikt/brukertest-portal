@@ -2,7 +2,7 @@ apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
   name: brukertest-portal
-  namespace: default
+  namespace: teamsamtykkedigitalisering
   labels:
     team: teamsamtykkedigitalisering
 spec:
