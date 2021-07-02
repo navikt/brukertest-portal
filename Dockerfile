@@ -1,11 +1,12 @@
 FROM node
 
 # Create app directory
-WORKDIR /usr/src/app
-COPY backend /usr/src/app
+RUN mkdir -p /app
 
-RUN cd backend
-RUN yarn
+WORKDIR /app
+COPY backend /app
+
+RUN /bin/sh -c 'cd /app; npm install'
 
 # Use the port used by our server.js configuration
 EXPOSE 3000
