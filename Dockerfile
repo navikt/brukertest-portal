@@ -2,13 +2,14 @@ FROM node
 
 # Create app directory
 WORKDIR /usr/src/app
-
+COPY backend /usr/src/app
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
 COPY package*.json yarn.lock ./
 
 # Run yarn without generating a yarn.lock file
+RUN cd /usr/src/app/backend
 RUN yarn --pure-lockfile
 
 # Bundle app source
