@@ -2,7 +2,7 @@ name: "Build and deploy brukertest-portal"
 on:
   push:
     branches:
-    - "main"
+    - "main, organiser-prosjekt-repo"
 env:
   "IMAGE": "docker.pkg.github.com/${{ github.repository }}/brukertest-portal:${{ github.sha\
     \ }}"
