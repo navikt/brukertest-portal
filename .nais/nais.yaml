@@ -12,23 +12,23 @@ spec:
     min: 1
     max: 1
     cpuThresholdPercentage: 50
-  liveness:
-    path: /status.html
-    initialDelay: 5
-    periodSeconds: 5
-    failureThreshold: 30
-  readiness:
-    path: /status.html
-    initialDelay: 5
-    periodSeconds: 5
-    failureThreshold: 30
-  resources:
-    limits:
-      cpu: 500m
-      memory: 512Mi
-    requests:
-      cpu: 200m
-      memory: 256Mi
+  # liveness:
+  #   path: /status.html
+  #   initialDelay: 5
+  #   periodSeconds: 5
+  #   failureThreshold: 30
+  # readiness:
+  #   path: /status.html
+  #   initialDelay: 5
+  #   periodSeconds: 5
+  #   failureThreshold: 30
+  # resources:
+  #   limits:
+  #     cpu: 500m
+  #     memory: 512Mi
+  #   requests:
+  #     cpu: 200m
+  #     memory: 256Mi
   ingress:
     - https://brukertest-portal.dev.intern.nav.no
   
