@@ -31,8 +31,8 @@ app.get('/isready', (req, res) => {
     res.sendStatus(200)
 })
 router.use(express.static('public'))
-router.use('*', (req, res) => {
-    res.sendFile('index.html', { root: 'public' })
+app.get('/', (req, res) => {
+    res.sendfile('index.html', {root: 'public'})
 })
 
 app.listen(port, () => {
