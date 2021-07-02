@@ -9,12 +9,16 @@ spec:
   image: {{image}}
   port: 3000
   team: teamsamtykkedigitalisering
-  # liveness:
-  #   path: /internal/isAlive
-  #   initialDelay: 5
-  # readiness:
-  #   path: /internal/isReady
-  #   initialDelay: 5
+  liveness:
+    path: /isalive
+    port: 8080
+    initialDelay: 20
+    timeout: 60
+  readiness:
+    path: /isready
+    port: 8080
+    initialDelay: 20
+    timeout: 60
   replicas:
     min: 2
     max: 2
