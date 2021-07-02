@@ -18,6 +18,7 @@ jobs:
     #   run: "npm ci"
     # - name: "run tests"
     #   run: "npm test"
+    - run: ./build-frontend.sh
     - name: "Build and publish Docker image"
       run: "docker build --pull --tag ${IMAGE} . && echo $GITHUB_TOKEN | docker login\
         \ --username $GITHUB_REPOSITORY --password-stdin https://docker.pkg.github.com\
