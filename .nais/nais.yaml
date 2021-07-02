@@ -5,6 +5,8 @@ metadata:
   namespace: teamsamtykkedigitalisering
   labels:
     team: teamsamtykkedigitalisering
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   image: {{image}}
   liveness:
