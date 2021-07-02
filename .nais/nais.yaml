@@ -7,16 +7,14 @@ metadata:
     team: teamsamtykkedigitalisering
 spec:
   image: {{image}}
-  port: 3000
+  port: 80
   team: teamsamtykkedigitalisering
   liveness:
     path: /isalive
-    port: 3000
     initialDelay: 20
     timeout: 60
   readiness:
     path: /isready
-    port: 3000
     initialDelay: 20
     timeout: 60
   replicas:
