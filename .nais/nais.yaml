@@ -32,7 +32,7 @@ spec:
     memory: "256Mi"
   ingresses:
   {{#each ingresses as |url|}}
-    - {{url}}
+    - https://brukertest-portal.dev.intern.nav.no
   {{/each}}
   idPorten:
     enabled: true
