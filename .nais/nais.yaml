@@ -21,11 +21,12 @@ spec:
     cpuThresholdPercentage: 50
   resources:
     limits:
-      cpu: 2000m
-      memory: 1024Mi
-    requests:
+      cpu: 500m
       memory: 512Mi
-  ingress:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+  ingresses:
   {{#each ingresses as |url|}}
     - {{url}}
   {{/each}}
