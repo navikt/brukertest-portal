@@ -9,22 +9,28 @@ spec:
   image: {{image}}
   port: 3000
   liveness:
-    path: /isalive
+    path: "/isalive"
     port: 8080
     initialDelay: 20
     timeout: 60
   readiness:
-    path: /isready
+    path: "/isready"
     port: 8080
     initialDelay: 20
     timeout: 60
-  resources:
-    limits:
-      cpu: 200m
-      memory: 256Mi
-    requests:
-      cpu: 100m
-      memory: 128Mi
+  replicas:
+    min: 2
+    max: 2
+    cpuThresholdPercentage: 50
+  prometheus:
+    enabled: true
+    path: "/metrics"
+  limits:
+    cpu: "200m"
+    memory: "256Mi"
+  requests:
+    cpu: "200m"
+    memory: "256Mi"
   ingress:
     - https://brukertest-portal.dev.intern.nav.no
   
