@@ -5,8 +5,6 @@ metadata:
   namespace: teamsamtykkedigitalisering
   labels:
     team: teamsamtykkedigitalisering
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   image: {{image}}
   liveness:
@@ -34,7 +32,7 @@ spec:
     memory: "256Mi"
   ingresses:
   {{#each ingresses as |url|}}
-    - https://brukertest-portal.dev.intern.nav.no
+    - # Noenoe
   {{/each}}
   idPorten:
     enabled: true
