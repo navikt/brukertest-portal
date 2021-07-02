@@ -1,10 +1,11 @@
 import express from 'express';
+import cors from 'cors'
 
 const app = express();
 const port = 3000;
-app.get('/', (req, res) => {
-  res.send('The sedulous hyena ate the antelope!');
-});
+const router = express.Router()
+
+app.use(cors)
 
 app.get('/isalive', (req, res) => {
     res.sendStatus(200)
@@ -12,6 +13,10 @@ app.get('/isalive', (req, res) => {
 
 app.get('/isready', (req, res) => {
     res.sendStatus(200)
+})
+
+router.use('*', (req, res) => {
+    res.sendFile('index.html', { root: 'public' })
 })
 
 app.listen(port, () => {
