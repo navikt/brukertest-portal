@@ -12,13 +12,12 @@ jobs:
     name: "build"
     runs-on: "ubuntu-18.04"
     steps:
-    - uses: "actions/checkout@v2"
-    - uses: "actions/setup-node@v1"
+      - uses: "actions/checkout@v2"
+      - run: sudo ./build-frontend.sh
     # - name: "install dependencies"
     #   run: "npm ci"
     # - name: "run tests"
     #   run: "npm test"
-    - run: ./build-frontend.sh
     - name: "Build and publish Docker image"
       run: "docker build --pull --tag ${IMAGE} . && echo $GITHUB_TOKEN | docker login\
         \ --username $GITHUB_REPOSITORY --password-stdin https://docker.pkg.github.com\
