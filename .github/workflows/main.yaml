@@ -3,7 +3,7 @@ on:
   push:
     branches:
     - "main"
-
+    - "organiser-prosjekt-repo"
 env:
   "IMAGE": "docker.pkg.github.com/${{ github.repository }}/brukertest-portal:${{ github.sha\
     \ }}"
