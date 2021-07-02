@@ -1,9 +1,9 @@
-# FROM navikt/node-express:12.2.0-alpine
-FROM nginx
-# WORKDIR /usr/src/app
+FROM navikt/node-express:12.2.0-alpine
 
-# RUN /bin/sh -c 'cd /usr/src/app; npm install'
+WORKDIR /usr/src/app
 
-# EXPOSE 3000
+RUN /bin/sh -c 'cd /usr/src/app; npm install'
 
-# CMD ["yarn", "start"]
+EXPOSE 3000
+
+CMD ["yarn", "start"]
