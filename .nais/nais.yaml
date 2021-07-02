@@ -34,10 +34,10 @@ spec:
   {{#each ingresses as |url|}}
     - https://brukertest-portal.dev.intern.nav.no
   {{/each}}
-  idPorten:
-    enabled: true
-  gcp:
-    sqlInstances:
-    - type: "POSTGRES_12"
-      databases:
-        - name: "brukertest-portal-db"
+  # idPorten:
+  #   enabled: true
+  # gcp:
+  #   sqlInstances:
+  #   - type: "POSTGRES_12"
+  #     databases:
+  #       - name: "brukertest-portal-db"
