@@ -1,8 +1,9 @@
 #!/bin/bash
 cd frontend
-yarn
-yarn run build
+npm install
+npm run build
 cd ..
 rm -rf public
 mkdir public
+cp -R frontend/build/. public/
 cp -R frontend/build/. public/
