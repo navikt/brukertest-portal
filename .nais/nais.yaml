@@ -2,9 +2,9 @@ apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
   name: brukertest-portal
-  namespace: sommerstudenter2021
+  namespace: teamsamtykkedigitalisering
   labels:
-    team: sommerstudenter2021
+    team: teamsamtykkedigitalisering
 spec:
   image: {{image}}
   liveness:
@@ -32,9 +32,8 @@ spec:
     memory: "256Mi"
   ingresses:
   {{#each ingresses as |url|}}
-    - {{url}}
+    - https://brukertest-portal.dev.intern.nav.no
   {{/each}}
-    #- https://brukertest-portal.dev.intern.nav.no
   idPorten:
     enabled: true
   gcp:
