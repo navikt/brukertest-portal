@@ -1,0 +1,24 @@
+name: Backend CI
+
+on:
+    push:
+      branches: [ main, organiser-prosjekt-repo ]
+    pull_request:
+      branches: [ main ]
+
+jobs:
+  build:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: borales/actions-yarn@v2.3.0
+      - name: Install
+        run: yarn install
+        working-directory: ./backend
+      - name: Build
+        run: yarn run build # will run `yarn build` command
+        working-directory: ./backend
+      - name: Test
+        run: yarn test # will run `yarn test` command
+        working-directory: ./backend
