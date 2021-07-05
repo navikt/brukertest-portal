@@ -19,6 +19,6 @@ jobs:
       - name: Install, build and test
         working-directory: ./frontend
         run: |
-          npm ci
+          npm install
           npm run build --if-present
           npm test
