@@ -108,3 +108,5 @@ dist
 /public/
 
 venv
+
+.DS_Store
