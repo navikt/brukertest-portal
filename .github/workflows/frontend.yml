@@ -19,6 +19,7 @@ jobs:
       - uses: borales/actions-yarn@v2.3.0
       - name: Install, build and test
         working-directory: ./frontend
-        run: install
-        run: build
-        run: test
+        run: |
+          install
+          build
+          test
