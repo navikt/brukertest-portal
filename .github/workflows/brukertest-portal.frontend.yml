@@ -4,10 +4,6 @@
 
 name: Frontend CI
 
-inputs:
-    file-path:
-        default: "./frontend/"
-
 on:
   push:
     branches: [ main, organiser-prosjekt-repo ]
