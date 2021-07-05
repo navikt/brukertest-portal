@@ -51,12 +51,6 @@
     "lint:jsts": "npx eslint .",
     "lint:less": "npx stylelint --syntax less **/*.less"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged",
-      "pre-push": "yarn lint"
-    }
-  },
   "stylelint": {
     "extends": "stylelint-config-standard",
     "rules": {
