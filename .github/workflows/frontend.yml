@@ -1,0 +1,23 @@
+name: Frontend CI
+
+on:
+    push:
+        branches: [main, organiser-prosjekt-repo]
+    pull_request:
+        branches: [main]
+
+jobs:
+    build:
+        name: Test
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: borales/actions-yarn@v2.3.0
+              with:
+                cmd: install
+            - uses: borales/actions-yarn@v2.3.0
+              with:
+                cmd: build
+            - uses: borales/actions-yarn@v2.3.0
+              with:
+                cmd: test
