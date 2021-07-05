@@ -6,9 +6,9 @@ name: Frontend CI
 
 on:
   push:
-    branches: [ main, organiser-prosjekt-repo ]
+     # branches: [ main, organiser-prosjekt-repo ]
   pull_request:
-    branches: [ main ]
+     # branches: [ main ]
 
 jobs:
   build:
