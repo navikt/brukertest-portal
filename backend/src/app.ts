@@ -9,7 +9,7 @@ const serverConfig = {
     port: 8080
 }
 
-const corsConfig = (req, res, next) => {
+const corsConfig = (req: any, res: any, next: any) => {
     res.setHeader('Access-Control-Allow-Origin', serverConfig.host);
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
