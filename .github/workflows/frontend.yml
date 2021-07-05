@@ -17,14 +17,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: install # will run `yarn install` command
+        run: install
         working-directory: ./frontend
       - uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: build # will run `yarn build` command
+        run: build # will run `yarn build` command
         working-directory: ./frontend
       - uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: test # will run `yarn test` command
+        run: test # will run `yarn test` command
         working-directory: ./frontend
