@@ -1,40 +1,23 @@
-import express from 'express';
+import express from 'express'
+import miljøvariabler from './config/miljøvariabler'
+import { last } from './lastere/laster'
 
-const app = express();
-const port = 8080;
-const router = express.Router()
+console.log('\n========== ⚡ STARTER OPP ⚡ =========== \n')
 
-const serverConfig = {
-    host: 'localhost',
-    port: 8080
+async function start() {
+    try {
+        const server = express()
+
+        const app = await last({ server })
+
+        server.listen(miljøvariabler.http.port, () => {
+            console.log(`LYTTER PÅ ${miljøvariabler.http.port}`)
+            console.log('\n========== SERVEREN STARTET =========== \n')           
+        })
+    } catch (error) {
+        console.log('\n========== 💥 NOE GIKK VELDIG GALT 💥 =========== \n')
+        console.log(error)
+    }
 }
 
-const corsConfig = (req: any, res: any, next: any) => {
-    res.setHeader('Access-Control-Allow-Origin', serverConfig.host);
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-    res.setHeader(
-        'Access-Control-Allow-Headers',
-        'Origin, Content-Type, X-AUTHENTICATION, X-IP, Content-Type, Accept, Access-Control-Allow-Headers, Authorization, X-Requested-With'
-    );
-    res.setHeader('Access-Control-Expose-Headers', 'Location');
-    return next()
-}
-
-app.use(corsConfig)
-
-app.get('/isalive', (req, res) => {
-    res.sendStatus(200)
-})
-
-app.get('/isready', (req, res) => {
-    res.sendStatus(200)
-})
-router.use(express.static('public'))
-app.get('/', (req, res) => {
-    res.sendfile('index.html', {root: 'public'})
-})
-
-app.listen(port, () => {
-    return console.log(`server is listening on ${port}`)
-})
+void start()
