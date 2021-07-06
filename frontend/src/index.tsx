@@ -1,5 +1,5 @@
 import React from "react";
-import "./index.less";
+import "./style/less/main.less";
 import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";

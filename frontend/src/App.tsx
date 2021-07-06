@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.less";
+import "./style/less/main.less";
 import Tekstomrade from "nav-frontend-tekstomrade";
 import { Knapp } from "nav-frontend-knapper";
 
