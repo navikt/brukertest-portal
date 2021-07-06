@@ -1,14 +1,33 @@
 version: '3.9'
 services:
     app:
-        container_name: brukertest_portal_backend
+        container_name: 'brukertest_portal_backend'
         build: 
             context: .
             dockerfile: Dockerfile
             target: source
         volumes: 
             - './src:/app/src'
+        networks:
+            - brukertest_portal_backend
         ports:
             - '${HTTP_PORT}:${HTTP_PORT}'
+        depends_on: 
+            - 'db'
         env_file:
             - '.env'
+    db:
+        container_name: 'brukertest_portal_database'
+        image: postgres
+        volumes:
+            - brukertest_portal-data:/var/lib/postgresql/data
+        networks: 
+            - brukertest_portal_backend
+        ports:
+            - '${DB_PORT}:5432'
+        env_file: 
+            - '.env'
+volumes: 
+    brukertest_portal-data:
+networks:
+    brukertest_portal_backend:
