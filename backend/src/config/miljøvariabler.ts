@@ -30,7 +30,7 @@ export default {
         port: process.env.DB_PORT,
         db: process.env.POSTGRES_DB,
         user: process.env.POSTGRES_USER,
-        password: process.env.POSTGRESS_PASSWORD,
+        password: process.env.POSTGRES_PASSWORD,
         dropSchema: miljø === miljøer.test ? true : false
     },
     http: {
