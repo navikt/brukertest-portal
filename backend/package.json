@@ -4,8 +4,15 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "start": "tsc && node dist/app.js",
-    "test": "jest"
+    "dev": "ts-node-dev -r tsconfig-paths/register --respawn --inspect=0.0.0.0:9229 ./src/index.ts",
+    "dev:docker": "docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d db && ts-node-dev -r tsconfig-paths/register --respawn --inspect=0.0.0.0:9229 ./src/index.ts",
+    "build": "NODE_ENV=production tsc --project ./tsconfig.prod.json && tsc-alias",
+    "prod": "NODE_ENV=production node dist/index.js",
+    "test": "jest",
+    "test:locally": "docker-compose --env-file .env.test -f docker-compose.yml -f docker-compose-test.yml up -d testdb && jest --runInBand --watch",
+    "check-types": "tsc",
+    "lint": "eslint . --ext .ts --fix",
+    "prettier-format": "prettier --config .prettierrc 'src/**/*.ts' --write"
   },
   "repository": {
     "type": "git",
@@ -30,6 +37,9 @@
     "@types/mocha": "^8.2.2",
     "@types/node": "^14.0.4",
     "express": "^4.16.4",
+    "ts-node": "^10.0.0",
+    "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^3.9.0",
     "yarn": "^1.22.10"
   }
 }

@@ -1,7 +1,7 @@
 import express from 'express';
 
 const app = express();
-const port = 80;
+const port = 8080;
 const router = express.Router()
 
 const serverConfig = {
