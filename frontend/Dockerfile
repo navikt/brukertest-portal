@@ -1,3 +1,6 @@
-FROM nginx:alpine
+FROM navikt/node-express:12.2.0-alpine
+RUN apk --no-cache add curl
 
-COPY /build/ /usr/share/nginx/html 
+ADD ./ /var/server/
+
+CMD ["yarn", "start"]
