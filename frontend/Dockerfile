@@ -1,19 +1,16 @@
 FROM node
 # Create working directory and copy the app before running yarn install as the artifactory
 # credentials can be inside .npmrc
-WORKDIR /usr/src/app
-COPY . ./
+WORKDIR /app
 
-# Run yarn install
-RUN yarn install
+COPY package.json ./
 
-# Build the project
-RUN yarn run build
-# Install serve command for yarn package manager
-RUN yarn global add serve
+COPY yarn.lock ./
 
-# Navigate to build folder
-WORKDIR /usr/src/app/build
+RUN yarn install --frozen-lockfile
 
-# Start the application
-CMD serve -p 3000 -s . 
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
