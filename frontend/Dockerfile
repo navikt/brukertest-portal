@@ -1,29 +1,14 @@
+FROM navikt/node-express:14-alpine
 
-# Base on offical Node.js Alpine image
-FROM node:alpine
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+ENV TZ="Europe/Oslo"
 
-# Set working directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy package.json and package-lock.json before other files
-# Utilise Docker cache to save re-installing dependencies if unchanged
-COPY ./src/package*.json ./
+COPY server/node_modules/ node_modules/
+COPY /dist dist/
 
-# Install dependencies
-RUN npm install
-
-# Copy all files
-COPY ./src ./
-
-# Build app
-RUN npm run build
-
-# Expose the listening port
 EXPOSE 3000
 
-# Run container as non-root (unprivileged) user
-# The node user is provided in the Node.js Alpine base image
-USER node
-
-# Run npm start script when container starts
-CMD [ "npm", "start" ]
+ENTRYPOINT [ "/entrypoint.sh", "node --max-http-header-size=16000 /app/dist/server/server.js" ]
