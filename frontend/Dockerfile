@@ -1,21 +1,29 @@
-FROM node:15.8.0-alpine
-RUN apk update
-RUN apk add git
 
-# Required to build NODE-SASS
-RUN apk add --no-cache python2
-RUN apk add build-base
+# Base on offical Node.js Alpine image
+FROM node:alpine
 
-WORKDIR /app
-# add 'app/node_modules/.bin' to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-ENV PORT=3000
+# Set working directory
+WORKDIR /usr/src/app
 
-COPY package.json ./
-COPY yarn.lock ./
+# Copy package.json and package-lock.json before other files
+# Utilise Docker cache to save re-installing dependencies if unchanged
+COPY ./src/package*.json ./
 
-RUN yarn
+# Install dependencies
+RUN npm install
 
-COPY . ./
+# Copy all files
+COPY ./src ./
 
-CMD ["yarn", "start"]
+# Build app
+RUN npm run build
+
+# Expose the listening port
+EXPOSE 3000
+
+# Run container as non-root (unprivileged) user
+# The node user is provided in the Node.js Alpine base image
+USER node
+
+# Run npm start script when container starts
+CMD [ "npm", "start" ]
