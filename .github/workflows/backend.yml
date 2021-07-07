@@ -59,6 +59,3 @@ jobs:
           DB_HOST: ${{secrets.DB_TEST_HOST}}
         run: yarn run test
         working-directory: ./backend
-      - name: Build project
-        run: yarn run build
-        working-directory: ./backend
