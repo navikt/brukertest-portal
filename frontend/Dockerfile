@@ -1,6 +1,17 @@
-FROM navikt/node-express:12.2.0-alpine
-RUN apk --no-cache add curl
+FROM node:14
 
-ADD ./ /var/server/
 
-CMD ["yarn", "start"]
+COPY . .
+#COPY package.json .
+#COPY src ./src
+#OPY public ./public
+#COPY craco.config.js .
+#COPY tsconfig.json .
+
+
+RUN npm i
+RUN npm run-script build
+
+EXPOSE 8000
+CMD ["node", "server.js"]
+#CMD ["npm", "run", "start"]
