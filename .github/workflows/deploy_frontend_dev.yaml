@@ -1,6 +1,6 @@
 name: Deploy frontend to dev-gcp
 
-on
+on:
   push:
     branches: [main, organiser-prosjekt-repo]
 
