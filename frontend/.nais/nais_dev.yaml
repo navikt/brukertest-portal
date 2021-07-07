@@ -6,7 +6,7 @@ metadata:
   labels:
     team: teamsamtykkedigitalisering
 spec:
-  image: { { image } }
+  image: {{ image }}
   team: teamsamtykkedigitalisering
   replicas:
     min: 2
