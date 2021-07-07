@@ -1,4 +1,4 @@
-apiVersion: "nais.io/v1alpha1"
+apiVersion: "nais.io/v1/alpha1"
 kind: "Application"
 metadata:
   name: brukertest-portal
@@ -6,21 +6,13 @@ metadata:
   labels:
     team: teamsamtykkedigitalisering
 spec:
-  image: {{image}}
-  port: 80
+  image: { { image } }
   team: teamsamtykkedigitalisering
-  liveness:
-    path: /isalive
-    initialDelay: 20
-    timeout: 60
-  readiness:
-    path: /isready
-    initialDelay: 20
-    timeout: 60
   replicas:
     min: 2
     max: 2
     cpuThresholdPercentage: 50
+  port: 3000
   resources:
     limits:
       cpu: 500m
@@ -28,8 +20,11 @@ spec:
     requests:
       cpu: 200m
       memory: 256Mi
+  liveness:
+    path: /isAlive
+    initialDelay: 5
+  readiness:
+    path: /isReady
+    initialDelay: 5
   ingresses:
-  {{#each ingresses as |url|}}
-    - {{url}}
-  {{/each}}
-  
+    - https://brukertest-portal.intern.nav.no
