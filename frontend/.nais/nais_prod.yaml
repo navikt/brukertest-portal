@@ -12,7 +12,7 @@ spec:
     min: 2
     max: 2
     cpuThresholdPercentage: 50
-  port: 8000
+  port: 8080
   resources:
     limits:
       cpu: 500m
