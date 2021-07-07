@@ -1,17 +1,16 @@
-name: Deploy frontend to dev-gcp
+name: Deploy frontend to prod-gcp
 
 on:
   push:
-    branches: [main, organiser-prosjekt-repo]
+    branches: [main, organiser, prosjekt-repo]
 
 env:
-  IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-frontend:${{ github.sha }}
-  CLUSTER: dev-gcp
-  RESOURCE: frontend/.nais/nais_dev.yaml
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-frontend:{{ github.sha }}
+  IMAGE_LATEST: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-frontend:latest
 
 jobs:
   build:
-    name: Build and push Docker container
+    name: Build and Push Docker container
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -22,20 +21,21 @@ jobs:
           yarn
           yarn build
           yarn test
-          docker build . -t ${IMAGE}
+          docker build . -t ${IMAGE} -t ${IMAGE_LATEST}
           docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
           docker push ${IMAGE}
+          docker push ${IMAGE_LATEST}
         working-directory: ./frontend
   deploy:
-    name: Deploy to dev-gcp
+    name: Deploy to prod-gcp
     needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout branch
         uses: actions/checkout@v1
-      - name: Deploy to DEV
+      - name: Deploy to PROD
         uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: dev-gcp
-          RESOURCE: frontend/.nais/nais_dev.yaml
+          CLUSTER: prod-gcp
+          RESOURCE: frontend/.nais/nais_prod.yaml
