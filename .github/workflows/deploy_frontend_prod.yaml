@@ -14,14 +14,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - run: build.sh
+      - run: |
+          yarn
+          yarn run build
         working-directory: ./frontend
       - name: Build and publish Docker image
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           yarn
-          yarn build
           yarn test
           docker build . -t ${IMAGE} -t ${IMAGE_LATEST}
           docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
