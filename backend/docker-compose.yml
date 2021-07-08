@@ -4,8 +4,10 @@ services:
         container_name: 'brukertest_portal_backend'
         build: 
             context: .
-            dockerfile: Dockerfile.dev
+            dockerfile: Dockerfile
             target: source
+            args:
+                NODE_ENV: development
         volumes: 
             - './src:/app/src'
         networks:
