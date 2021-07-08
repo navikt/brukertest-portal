@@ -20,6 +20,8 @@ const src = miljø === miljøer.utvikling || miljø === miljøer.test ? 'src' : 
 
 if (miljø === miljøer.test) {
     dotenv.config({ path: cwd() + '/.env.test'})
+} else if (miljø === miljøer.produksjon) {
+    dotenv.config({path: cwd() + '/.env.prod'})
 } else {
     dotenv.config()
 }
