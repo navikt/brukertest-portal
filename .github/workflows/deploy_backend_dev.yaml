@@ -21,7 +21,7 @@ jobs:
         run: |
           yarn
           yarn test
-          docker build --build-arg NODE_ENV=production . -t ${IMAGE}
+          docker build . -t ${IMAGE} --build-arg NODE_ENV=production
           docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
           docker push ${IMAGE}
         working-directory: ./backend
