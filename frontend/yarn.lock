@@ -1472,6 +1472,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@navikt/ds-icons@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@navikt/ds-icons/-/ds-icons-0.3.3.tgz#19432cc0b711f4643cba611c5b593ff2b7b67626"
+  integrity sha512-851CJ6GJu4u1iLLhqhGW+jeEB4NpOsoN8Guhy6KZUPSGI1mbN1fGkUcu7p2BC7VF3Rcad/EdHGwTmPPAYZ4vDg==
+
 "@navikt/textparser@^2.0.0":
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/@navikt/textparser/-/textparser-2.2.0.tgz#c4a3b1e12e722e10666920c1d5df5752f8d25f2b"

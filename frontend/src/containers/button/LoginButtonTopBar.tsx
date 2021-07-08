@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as PersonIkon } from "../../style/assets/PersonIkon.svg";
+import { People } from "@navikt/ds-icons";
 import "../../style/less/containers/loginButtonTopBar.less";
 import { Flatknapp } from "nav-frontend-knapper";
 
@@ -8,7 +8,7 @@ export default function LoginButtonTopBar() {
     <div className="loginBtnTopBar">
       <Flatknapp id="loginBtn1">
         <span>Logg inn</span>
-        <PersonIkon id="personIkon" />
+        <People id="personIkon" />
       </Flatknapp>
     </div>
   );
