@@ -6,8 +6,6 @@ services:
             context: .
             dockerfile: Dockerfile
             target: source
-            args:
-                NODE_ENV: development
         volumes: 
             - './src:/app/src'
         networks:
