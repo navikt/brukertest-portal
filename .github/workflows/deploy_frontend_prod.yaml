@@ -2,7 +2,7 @@ name: Deploy frontend to prod-gcp
 
 on:
   push:
-    branches: [main, organiser-prosjekt-repo]
+    branches: [main]
 
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-frontend:${{ github.sha }}
