@@ -1,6 +1,6 @@
 import React from "react";
 import { Sidetittel } from "nav-frontend-typografi";
-import "../../style/less/components/topBar.less";
+import "../../style/less/components/navigation/topBar.less";
 import LoginButtonTopBar from "../../containers/button/LoginButtonTopBar";
 
 export default function TopBar() {

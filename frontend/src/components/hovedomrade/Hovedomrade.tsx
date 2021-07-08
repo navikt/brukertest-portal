@@ -1,13 +1,11 @@
 import React from "react";
-import { Innholdstittel } from "nav-frontend-typografi";
-import "../../style/less/components/hovedomrade.less";
+import "../../style/less/components/hovedomrade/hovedomrade.less";
+import HovedomradeTopp from "./HovedomradeTopp";
 
 export default function Hovedomrade() {
   return (
     <div className="hovedomrade">
-      <Innholdstittel id="infotekst">
-        {"Velkommen til NAVs innbyggerpanel"}
-      </Innholdstittel>
+      <HovedomradeTopp />
     </div>
   );
 }
