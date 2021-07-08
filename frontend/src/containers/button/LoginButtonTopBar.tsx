@@ -1,6 +1,6 @@
 import React from "react";
 import { ReactComponent as PersonIkon } from "../../style/assets/PersonIkon.svg";
-import "../../style/less/containers/LoginButtonTopBar.less";
+import "../../style/less/containers/loginButtonTopBar.less";
 import { Flatknapp } from "nav-frontend-knapper";
 
 export default function LoginButtonTopBar() {
