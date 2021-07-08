@@ -20,12 +20,12 @@ spec:
     requests:
       cpu: 200m
       memory: 256Mi
-  liveness:
-    path: /isAlive
-    initialDelay: 5
-  readiness:
-    path: /isReady
-    initialDelay: 5
+#   liveness:
+#     path: /isAlive
+#     initialDelay: 5
+#   readiness:
+#     path: /isReady
+#     initialDelay: 5
   ingresses:
     - https://brukertest-portal-api.dev.intern.nav.no
   gcp:

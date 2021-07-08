@@ -2,6 +2,8 @@ FROM node:15.8.0 as runtime
 
 FROM runtime as source
 
+ARG NODE_ENV
+
 WORKDIR /app
 
 COPY package.json .
