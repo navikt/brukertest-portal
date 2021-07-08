@@ -5,7 +5,7 @@ on:
     branches: [main, organiser-prosjekt-repo]
 
 env:
-  IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:{{ github.sha }}
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:${{ github.sha }}
   CLUSTER: dev-gcp
   RESOURCE: backend/.nais/nais_dev.yaml
 
