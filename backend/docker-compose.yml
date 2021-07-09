@@ -5,7 +5,6 @@ services:
         build: 
             context: .
             dockerfile: Dockerfile
-            target: source
         volumes: 
             - './src:/app/src'
         networks:
@@ -24,7 +23,7 @@ services:
         networks: 
             - brukertest_portal_backend
         ports:
-            - '${DB_PORT}:5432'
+            - '${NAIS_DATABASE_MYAPP_MYDB_PORT}:5432'
         env_file: 
             - '.env'
 volumes: 

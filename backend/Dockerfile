@@ -9,6 +9,8 @@ RUN yarn
 
 COPY . .
 
+RUN echo $NAIS_DATABASE_MYAPP_MYDB_USERNAME
+
 CMD ["yarn", "dev"]
 
 # FROM source as build
