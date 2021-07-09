@@ -1,9 +1,4 @@
-FROM node:15.8.0 as runtime
-
-FROM runtime as source
-
-ARG STATE="default"
-ENV NODE_ENV=development
+FROM node:15.8.0
 
 WORKDIR /app
 
@@ -13,14 +8,6 @@ COPY yarn.lock .
 RUN yarn
 
 COPY . .
-
-RUN if [ "$STATE" = "production" ]; \
-    then NODE_ENV=production; \
-    fi
-
-RUN if [ NODE_ENV = "production" ]; \ 
-    then printf ´HTTP_PORT=8080\n DB_HOST="$NAIS_DATABASE_brukertest-portal-api_brukertest-portal-db_HOST"\n DB_PORT="$NAIS_DATABASE_brukertest-portal-api_brukertest-portal-db_PORT"\n POSTGRES_DB="$NAIS_DATABASE_brukertest-portal-api_brukertest-portal-db_DATABASE"\n POSRGRES_USER="$NAIS_DATABASE_brukertest-portal-api_brukertest-portal-db_USERNAME"\n POSTGRES_PASSWORD="$NAIS_DATABASE_brukertest-portal-api_brukertest-portal-db_PASSWORD"´ .env.prod; \
-    fi
 
 CMD ["yarn", "dev"]
 

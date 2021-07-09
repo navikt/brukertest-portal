@@ -19,20 +19,18 @@ if (!Object.values(miljøer).find((val) => miljø === val)) {
 const src = miljø === miljøer.utvikling || miljø === miljøer.test ? 'src' : 'dist'
 
 if (miljø === miljøer.test) {
-    dotenv.config({ path: cwd() + '/.env.test'})
-} else if (miljø === miljøer.produksjon) {
-    dotenv.config({path: cwd() + '/.env.prod'})
+    dotenv.config({ path: cwd() + '/.env.test'})    
 } else {
     dotenv.config()
 }
 
 export default {
     database: {
-        host: process.env.DB_HOST,
-        port: process.env.DB_PORT,
-        db: process.env.POSTGRES_DB,
-        user: process.env.POSTGRES_USER,
-        password: process.env.POSTGRES_PASSWORD,
+        host: process.env.NAIS_DATABASE_MYAPP_MYDB_HOST,
+        port: process.env.NAIS_DATABASE_MYAPP_MYDB_PORT,
+        db: process.env.NAIS_DATABASE_MYAPP_MYDB_DATABASE,
+        user: process.env.NAIS_DATABASE_MYAPP_MYDB_USERNAME,
+        password: process.env.NAIS_DATABASE_MYAPP_MYDB_PASSWORD,
         dropSchema: miljø === miljøer.test ? true : false
     },
     http: {
