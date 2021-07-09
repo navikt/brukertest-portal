@@ -10,7 +10,7 @@ export default async () => {
             socketPath: miljøvariabler.database.host
         },
         port: Number.parseInt(miljøvariabler.database.port!),
-        username: miljøvariabler.database.user,
+        username: 'postgres',
         password: miljøvariabler.database.password,
         database: miljøvariabler.database.db,
         dropSchema: miljøvariabler.database.dropSchema,
