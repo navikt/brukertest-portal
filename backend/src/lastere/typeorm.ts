@@ -5,15 +5,7 @@ import miljøvariabler from './../config/miljøvariabler'
 export default async () => {
     const typeormConfig: ConnectionOptions = {
         type: 'postgres',
-        host: miljøvariabler.database.host,
-        extra: {
-            socketPath: miljøvariabler.database.host
-        },
-        port: Number.parseInt(miljøvariabler.database.port!),
-        username: 'postgres',
-        password: miljøvariabler.database.password,
-        database: miljøvariabler.database.db,
-        dropSchema: miljøvariabler.database.dropSchema,
+        url: miljøvariabler.database.url,
         synchronize: true,
         logging: false,
         entities: [`${miljøvariabler.src}/modeller/**/*.{ts,js}`],

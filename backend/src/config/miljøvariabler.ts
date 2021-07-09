@@ -31,6 +31,7 @@ export default {
         db: process.env.NAIS_DATABASE_MYAPP_MYDB_DATABASE,
         user: process.env.NAIS_DATABASE_MYAPP_MYDB_USERNAME,
         password: process.env.NAIS_DATABASE_MYAPP_MYDB_PASSWORD,
+        url: process.env.NAIS_DATABASE_MYAPP_MYDB_URL,
         dropSchema: miljø === miljøer.test ? true : false
     },
     http: {
