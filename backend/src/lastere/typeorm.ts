@@ -6,6 +6,9 @@ export default async () => {
     const typeormConfig: ConnectionOptions = {
         type: 'postgres',
         host: miljøvariabler.database.host,
+        extra: {
+            socketPath: miljøvariabler.database.host
+        },
         port: Number.parseInt(miljøvariabler.database.port!),
         username: miljøvariabler.database.user,
         password: miljøvariabler.database.password,
