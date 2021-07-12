@@ -1,0 +1,30 @@
+apiVersion: nais.io/v1alpha1
+kind: Application
+metadata:
+  name: brukertest-portal
+  namespace: teamsamtykkedigitalisering
+  labels:
+    team: teamsamtykkedigitalisering
+spec:
+  image: {{ image }}
+  team: teamsamtykkedigitalisering
+  replicas:
+    min: 2
+    max: 2
+    cpuThresholdPercentage: 50
+  port: 8080
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
+  liveness:
+    path: /isAlive
+    initialDelay: 5
+  readiness:
+    path: /isReady
+    initialDelay: 5
+  ingresses:
+    - https://brukertest-portal.dev.intern.nav.no
