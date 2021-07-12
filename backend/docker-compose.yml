@@ -10,7 +10,7 @@ services:
         networks:
             - brukertest_portal_backend
         ports:
-            - '${HTTP_PORT}:${HTTP_PORT}'
+            - '8080:8080'
         depends_on: 
             - 'db'
         env_file:
@@ -23,7 +23,7 @@ services:
         networks: 
             - brukertest_portal_backend
         ports:
-            - '${NAIS_DATABASE_MYAPP_MYDB_PORT}:5432'
+            - '5432:5432'
         env_file: 
             - '.env'
 volumes: 

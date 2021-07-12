@@ -1,4 +1,3 @@
-import dotenv from 'dotenv'
 import process from 'process'
 
 const miljøer = {
@@ -25,8 +24,4 @@ export default {
     },
     miljø,
     src
-}
-
-export function lastMiljøVariabler(): void {
-    dotenv.config()
 }
