@@ -5,11 +5,11 @@ import miljøvariabler from './../config/miljøvariabler'
 export default async () => {
     const typeormConfig: ConnectionOptions = {
         type: 'postgres',
-        host: miljøvariabler.database.host,
-        port: Number.parseInt(miljøvariabler.database.port!),
-        database: miljøvariabler.database.db,
-        username: miljøvariabler.database.user,
-        password: miljøvariabler.database.password,
+        host: process.env.NAIS_DATABASE_MYAPP_MYDB_HOST,
+        port: Number.parseInt(process.env.NAIS_DATABASE_MYAPP_MYDB_PORT!),
+        database: process.env.NAIS_DATABASE_MYAPP_MYDB_DATABASE,
+        username: process.env.NAIS_DATABASE_MYAPP_MYDB_USERNAME,
+        password: process.env.NAIS_DATABASE_MYAPP_MYDB_PASSWORD,
         synchronize: true,
         logging: false,
         entities: [`${miljøvariabler.src}/modeller/**/*.{ts,js}`],
