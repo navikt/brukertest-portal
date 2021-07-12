@@ -4,37 +4,37 @@ on:
   push:
     branches: [main, organiser-prosjekt-repo]
   
-  env:
-    IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:${{ github.sha }}
-    CLUSTER: prod-gcp
-    RESOURCE: backend/.nais/nais_prod.yaml
+env:
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:${{ github.sha }}
+  CLUSTER: prod-gcp
+  RESOURCE: backend/.nais/nais_prod.yaml
   
-  jobs:
-    build:
-      name: Build and push Docker container
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v1
-        - name: Build and publish Docker image
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          run: |
-            yarn
-            yarn test
-            docker build . -t ${IMAGE}
-            docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
-            docker push ${IMAGE}
-          working-directory: ./backend
-    deploy:
-      name: Deploy to prod-gcp
-      needs: build
-      runs-on: ubuntu-latest
-      steps:
-        - name: Checkout branch
-          uses: actions/checkout@v1
-        - name: Deploy to DEV
-          uses: nais/deploy/actions/deploy@v1
-          env:
-            APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-            CLUSTER: prod-gcp
-            RESOURCE: backend/.nais/nais_prod.yaml
+jobs:
+  build:
+    name: Build and push Docker container
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build and publish Docker image
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          yarn
+          yarn test
+          docker build . -t ${IMAGE}
+          docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+          docker push ${IMAGE}
+        working-directory: ./backend
+  deploy:
+    name: Deploy to prod-gcp
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v1
+      - name: Deploy to DEV
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: prod-gcp
+          RESOURCE: backend/.nais/nais_prod.yaml
