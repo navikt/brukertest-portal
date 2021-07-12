@@ -27,6 +27,6 @@ export default {
     src
 }
 
-export async function lastMiljøVariabler(): Promise<void> {
+export function lastMiljøVariabler(): void {
     dotenv.config()
 }

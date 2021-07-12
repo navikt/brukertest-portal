@@ -6,7 +6,7 @@ console.log('\n========== ⚡ STARTER OPP ⚡ =========== \n')
 
 async function start() {
     try {
-        await lastMiljøVariabler()
+        lastMiljøVariabler()
         const server = express()
 
         const app = await last({ server })
