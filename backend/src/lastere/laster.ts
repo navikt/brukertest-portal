@@ -25,3 +25,5 @@ export const last = async ({ server }: { server: Application }) => {
 
     return { lastetExpress, lastetTypeORM }
 }
+
+export { database }
