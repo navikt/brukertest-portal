@@ -1,11 +1,12 @@
 import express from 'express'
-import miljøvariabler from './config/miljøvariabler'
+import miljøvariabler, { lastMiljøVariabler } from './config/miljøvariabler'
 import { last } from './lastere/laster'
 
 console.log('\n========== ⚡ STARTER OPP ⚡ =========== \n')
 
 async function start() {
     try {
+        lastMiljøVariabler()
         const server = express()
 
         const app = await last({ server })

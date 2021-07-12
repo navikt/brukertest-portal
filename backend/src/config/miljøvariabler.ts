@@ -8,21 +8,7 @@ const miljøer = {
 }
 const miljø = process.env.NODE_ENV ? process.env.NODE_ENV : miljøer.utvikling
 
-if (!Object.values(miljøer).find((val) => miljø === val)) {
-    throw new Error(
-        `${miljø} er ikke et gyldig kjøretidsmiljø\nVenligst sett NODE_ENV til en av disse: ${[
-            ...Object.values(miljøer)
-        ]}`
-    )
-}
-
 const src = miljø === miljøer.utvikling || miljø === miljøer.test ? 'src' : 'dist'
-
-if (miljø === miljøer.test) {
-    dotenv.config({ path: cwd() + '/.env.test'})    
-} else {
-    dotenv.config()
-}
 
 export default {
     database: {
@@ -39,4 +25,22 @@ export default {
     },
     miljø,
     src
+}
+
+export function lastMiljøVariabler(): void {
+    if (!Object.values(miljøer).find((val) => miljø === val)) {
+        throw new Error(
+            `${miljø} er ikke et gyldig kjøretidsmiljø\nVenligst sett NODE_ENV til en av disse: ${[
+                ...Object.values(miljøer)
+            ]}`
+        )
+    }
+    
+    
+    if (miljø === miljøer.test) {
+        dotenv.config({ path: cwd() + '/.env.test'})    
+    } else {
+        dotenv.config()
+    }
+    
 }
