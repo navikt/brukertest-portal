@@ -1,6 +1,13 @@
+import { TypeSamtykkeskjema } from './TypeSamtykkeskjema'
+
 export interface ISamtykkeskjema {
-    fornavn: string
-    etternavn: string
-    epost: string
-    gittSamtykke: boolean
+    tittel: string
+    bakgrunn: string
+    skalPubliseres: boolean
+    formål: string
+    startDato?: Date
+    sluttDato?: Date
+    spørreOm: string
+    harSamtykket: boolean
+    typeSamtykkeskjema: TypeSamtykkeskjema
 }
