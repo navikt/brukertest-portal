@@ -6,8 +6,8 @@ import LoginButtonTopBar from "../../containers/button/LoginButtonTopBar";
 export default function TopBar() {
   return (
     <div className="topBar">
-      <Sidetittel id="sidetittel">{"Innbyggerpanelet"}</Sidetittel>
-      <div id="loginBtn">
+      <Sidetittel className="sidetittel">{"Innbyggerpanelet"}</Sidetittel>
+      <div className="loginBtn">
         <LoginButtonTopBar />
       </div>
     </div>

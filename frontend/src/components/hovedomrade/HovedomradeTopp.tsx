@@ -6,11 +6,11 @@ import { HandsHeart } from "@navikt/ds-icons";
 export default function HovedomradeTopp() {
   return (
     <div className="hovedomradeTopp">
-      <HandsHeart id="toppIcon" />
-      <Innholdstittel id="infotekst">
+      <HandsHeart className="toppIcon" />
+      <Innholdstittel className="infotekst">
         {"Velkommen til NAVs innbyggerpanel"}
       </Innholdstittel>
-      <div id="divider"></div>
+      <div className="divider"></div>
     </div>
   );
 }

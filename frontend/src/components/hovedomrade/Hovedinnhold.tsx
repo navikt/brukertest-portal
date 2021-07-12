@@ -6,7 +6,7 @@ import LoginPrimer from "../../containers/button/LoginPrimer";
 export default function Hovedinnhold() {
   return (
     <div className="hovedinnhold">
-      <Systemtittel id="logininfo">
+      <Systemtittel className="logininfo">
         {"Logg inn for å registrere ditt samtykke"}
       </Systemtittel>
       <LoginPrimer />
