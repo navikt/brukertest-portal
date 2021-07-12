@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import { cwd } from 'process'
+import process from 'process'
 
 const miljøer = {
     utvikling: 'development',

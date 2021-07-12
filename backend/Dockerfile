@@ -2,7 +2,7 @@ FROM node:15.8.0
 
 WORKDIR /app
 
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 
 COPY package.json .
 COPY yarn.lock .
