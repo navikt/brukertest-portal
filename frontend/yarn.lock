@@ -1218,7 +1218,7 @@
     lodash "^4.17.15"
     webpack-merge "^4.2.2"
 
-"@craco/craco@^6.0.0":
+"@craco/craco@^6.2.0":
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/@craco/craco/-/craco-6.2.0.tgz#93847ae20899f5e810359443f2055bcf2b1a584e"
   integrity sha512-kLc4GSdgR9D5JiZmSxtzbvBKcUFSJqMXImRjjYf5pacwiyAs3XfQwai7T+pExfLQNUnytgkL8jRFUJeYrkVr7g==
@@ -1860,7 +1860,15 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@*", "@types/jest@^26.0.23":
+"@types/jest@*":
+  version "26.0.23"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-26.0.23.tgz#a1b7eab3c503b80451d019efb588ec63522ee4e7"
+  integrity sha512-ZHLmWMJ9jJ9PTiT58juykZpL7KjwJywFN3Rr2pTSkyQfydf/rk22yS7W8p5DaVUMQ2BQC7oYiU3FjbTM/mYrOA==
+  dependencies:
+    jest-diff "^26.0.0"
+    pretty-format "^26.0.0"
+
+"@types/jest@^26.0.24":
   version "26.0.24"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-26.0.24.tgz#943d11976b16739185913a1936e0de0c4a7d595a"
   integrity sha512-E/X5Vib8BWqZNRlDxj9vYXhsDwPYbPINqKF9BsnSoon4RQ0D9moEuLD8txgyypFLH7J4+Lho9Nr/c8H0Fi+17w==
@@ -1868,10 +1876,15 @@
     jest-diff "^26.0.0"
     pretty-format "^26.0.0"
 
-"@types/json-schema@*", "@types/json-schema@^7.0.3", "@types/json-schema@^7.0.5", "@types/json-schema@^7.0.7":
-  version "7.0.8"
-  resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.8.tgz#edf1bf1dbf4e04413ca8e5b17b3b7d7d54b59818"
-  integrity sha512-YSBPTLTVm2e2OoQIDYx8HaeWJ5tTToLH67kXR7zYNGupXMEHa2++G8k+DczX2cFVgalypqtyZIcU19AFcmOpmg==
+"@types/json-schema@*", "@types/json-schema@^7.0.3", "@types/json-schema@^7.0.5", "@types/json-schema@^7.0.6", "@types/json-schema@^7.0.7":
+  version "7.0.7"
+  resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.7.tgz#98a993516c859eb0d5c4c8f098317a9ea68db9ad"
+  integrity sha512-cxWFQVseBm6O9Gbw1IWb8r6OS4OhSt3hPZLkFApLjM8TEXROBuQGLAH2i2gZpcXdLBIrpXuTDhH7Vbm1iXmNGA==
+
+"@types/json5@^0.0.29":
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/@types/json5/-/json5-0.0.29.tgz#ee28707ae94e11d2b827bcbe5270bcea7f3e71ee"
+  integrity sha1-7ihweulOEdK4J7y+UnC86n8+ce4=
 
 "@types/mdast@^3.0.0":
   version "3.0.4"
@@ -7867,12 +7880,12 @@ nav-frontend-js-utils@^1.0.19:
   dependencies:
     lodash.throttle "^4.1.1"
 
-nav-frontend-knapper-style@^2.0.1:
+nav-frontend-knapper-style@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/nav-frontend-knapper-style/-/nav-frontend-knapper-style-2.0.2.tgz#dc50788e65d920b1aa4f147c038ce7adc4585884"
   integrity sha512-e9JYSvwj+EERMXDuFMKrzUeXbTP5V04ZlejZ2jxEceF43zs3myZynnl6Za9aUcnOKQm4/62fTMGteo+phMB6oA==
 
-nav-frontend-knapper@^3.0.1:
+nav-frontend-knapper@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/nav-frontend-knapper/-/nav-frontend-knapper-3.0.2.tgz#8774b1840ab54421afe22ba688a2e24daa0063e4"
   integrity sha512-t+Ii7SfpAdGDzNUBmqBSfEWKGCTv6GjLf2rk3A9CmEL1rUCwo2BXPHNtSevPIbU9SRvb9e4nUo+aQAasIvt+Wg==
