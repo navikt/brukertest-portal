@@ -104,10 +104,28 @@ dist
 # TernJS port file
 .tern-port
 
-.DS_Store
-
 /public/
 
 venv
 
+#FRONTEND
+
+# dependencies
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+
+# misc
 .DS_Store
+
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+package-lock.json
