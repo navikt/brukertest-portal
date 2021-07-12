@@ -1,8 +1,14 @@
+// NAV
 @import (reference) "~nav-frontend-typografi-style/src/index.less";
+@import "nav-frontend-core";
 
-.app {
+//VIEWS
+@import "./view/landingsside.less";
+
+.App {
   .typo-normal-mixin();
   color: @navMorkGra;
+  background: @navGronn;
   font-family: @font-family;
   line-height: @line-height-base;
 }
