@@ -27,20 +27,6 @@ export default {
     src
 }
 
-export function lastMiljøVariabler(): void {
-    if (!Object.values(miljøer).find((val) => miljø === val)) {
-        throw new Error(
-            `${miljø} er ikke et gyldig kjøretidsmiljø\nVenligst sett NODE_ENV til en av disse: ${[
-                ...Object.values(miljøer)
-            ]}`
-        )
-    }
-    
-    
-    if (miljø === miljøer.test) {
-        dotenv.config({ path: cwd() + '/.env.test'})    
-    } else {
-        dotenv.config()
-    }
-    
+export async function lastMiljøVariabler(): Promise<void> {
+    dotenv.config()
 }
