@@ -2,13 +2,13 @@ name: Deploy backend to prod-gcp
 
 on:
   push:
-    branches: [main, organiser-prosjekt-repo]
-  
+    branches: [main]
+
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:${{ github.sha }}
   CLUSTER: prod-gcp
   RESOURCE: backend/.nais/nais_prod.yaml
-  
+
 jobs:
   build:
     name: Build and push Docker container
