@@ -6,6 +6,7 @@
     "@craco/craco": "^6.0.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
+    "@navikt/ds-icons": "^0.3.3",
     "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^26.0.23",
     "@types/mocha": "^8.2.2",
