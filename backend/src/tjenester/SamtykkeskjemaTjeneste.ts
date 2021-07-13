@@ -17,7 +17,19 @@ export class SamtykkeskjemaTjeneste {
     }
 
     private async lagSamtykkeskjema(nyttSamtykkeskjema: ISamtykkeskjema): Promise<Samtykkeskjema | undefined> {
+        if (await this.erDuplikat(nyttSamtykkeskjema)) {
+            throw new Error('Samtykkeskjemaet finnes allerede!')
+        }
+
         const samtykkeskjemaEntitet = this.samtykkeskjemaOppbevaringssted.create(nyttSamtykkeskjema)
         return await this.samtykkeskjemaOppbevaringssted.save(samtykkeskjemaEntitet)
+    }
+
+    private async erDuplikat(samtykkeskjema: ISamtykkeskjema): Promise<boolean> {
+        const { tittel } = samtykkeskjema
+
+        const duplikat = await this.database.getRepository(Samtykkeskjema).find({ where: { tittel } })
+
+        return duplikat.length > 0
     }
 }
