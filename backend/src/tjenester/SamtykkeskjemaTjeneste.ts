@@ -16,6 +16,7 @@ export class SamtykkeskjemaTjeneste {
         return classToClass(await this.lagSamtykkeskjema(dto))
     }
 
+    // TODO: Legge inn sjekk for start og slutt dato
     private async lagSamtykkeskjema(nyttSamtykkeskjema: ISamtykkeskjema): Promise<Samtykkeskjema | undefined> {
         if (await this.erDuplikat(nyttSamtykkeskjema)) {
             throw new Error('Samtykkeskjemaet finnes allerede!')
