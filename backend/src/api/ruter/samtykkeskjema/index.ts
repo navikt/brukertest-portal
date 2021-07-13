@@ -14,7 +14,8 @@ ruter.post('/', async (request, response) => {
         return response.send(samtykkeskjema)
     } catch (error) {
         console.log(error)
-        response.send('500, something went wrong at the server...')
+        response.sendStatus(500)
+        response.send('Something went wrong at the server...')
     }
 })
 
