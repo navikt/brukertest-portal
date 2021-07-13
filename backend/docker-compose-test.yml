@@ -1,0 +1,11 @@
+version: '3.9'
+services:
+    testdb:
+        container_name: 'test_database'
+        image: postgres
+        networks:
+            - brukertest_portal_backend
+        env_file:
+            - '.env.test'
+        ports:
+            - '5432:5432'
