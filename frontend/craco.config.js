@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { ESLINT_MODES } = require("@craco/craco")
-const CracoLessPlugin = require("craco-less")
+const { ESLINT_MODES } = require('@craco/craco')
+const CracoLessPlugin = require('craco-less')
 
 module.exports = {
     plugins: [{ plugin: CracoLessPlugin }],
