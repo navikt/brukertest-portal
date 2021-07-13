@@ -2,7 +2,8 @@ import { Router } from 'express'
 import { SamtykkeskjemaTjeneste } from '../../../tjenester/SamtykkeskjemaTjeneste'
 import { database } from '../../../lastere/laster'
 import { ISamtykkeskjema } from '@/modeller/Samtykkeskjema/ISamtykkeskjema'
-import { BadRequestError } from '../../../lib/errors/rest/BadRequestError'
+import { DårligForespørselError } from '../../../lib/errors/rest/DårligForespørselError'
+import { StatusCodes } from 'http-status-codes'
 
 const ruter = Router()
 
@@ -14,13 +15,13 @@ ruter.post('/', async (request, response) => {
         const samtykkeskjema = await samtykkeskjemaTjeneste.lag(nyttSamtykkeskjema)
         return response.send(samtykkeskjema)
     } catch (error) {
-        if (error instanceof BadRequestError) {
+        if (error instanceof DårligForespørselError) {
             console.log(error)
-            response.status(400)
-            response.send('The request was bad')
+            response.status(StatusCodes.BAD_REQUEST)
+            response.send('Forespørselen var dårlig')
         } else {
-            response.status(500)
-            response.send('Something went wrong at the server...')
+            response.status(StatusCodes.INTERNAL_SERVER_ERROR)
+            response.send('Noe på serveren gikk gærnt...')
         }
     }
 })
