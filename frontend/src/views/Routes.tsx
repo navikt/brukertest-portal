@@ -1,5 +1,5 @@
-import React from "react";
+import React from 'react'
 
-export default function Routes() {
-  return <div></div>;
+export default function Routes(): React.ReactElement {
+    return <div></div>
 }
