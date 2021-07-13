@@ -27,9 +27,15 @@ export class SamtykkeskjemaTjeneste {
     }
 
     private async erDuplikat(samtykkeskjema: ISamtykkeskjema): Promise<boolean> {
-        const { tittel } = samtykkeskjema
+        const { tittel, typeSamtykkeskjema } = samtykkeskjema
 
-        const duplikat = await this.database.getRepository(Samtykkeskjema).find({ where: { tittel } })
+        const duplikat = await this.database.getRepository(Samtykkeskjema).find({
+            where: {
+                tittel,
+                typeSamtykkeskjema
+                // Legge inn sjekk for eieren av samtykkeskjemaet
+            }
+        })
 
         return duplikat.length > 0
     }
