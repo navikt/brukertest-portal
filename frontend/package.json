@@ -59,10 +59,6 @@
         "lint:jsts": "npx eslint .",
         "lint:less": "npx stylelint --syntax less **/*.less"
     },
-    "stylelint": {
-        "extends": "stylelint-config-standard",
-        "ignoreFiles": []
-    },
     "eslintConfig": {
         "extends": [
             "react-app",
