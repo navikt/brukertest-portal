@@ -1,3 +1,4 @@
+import { IkkeFunnetError } from '@/lib/errors/database/IkkeFunnetError'
 import { ISamtykkeskjema } from '@/modeller/Samtykkeskjema/ISamtykkeskjema'
 import { TypeSamtykkeskjema } from '@/modeller/Samtykkeskjema/TypeSamtykkeskjema'
 import { SamtykkeskjemaTjeneste } from '@/tjenester/SamtykkeskjemaTjeneste'
@@ -74,4 +75,14 @@ it('skal lage et samtykkeskjema uten start dato og slutt dato', async () => {
 it('skal kaste error når lager duplikat samtykkeskjema', async () => {
     await samtykkeskjemaTjeneste.lag(frøDOO)
     await expect(samtykkeskjemaTjeneste.lag(frøDOO)).rejects.toThrowError()
+})
+
+it('skal hente et lagret samtykkeskjema', async () => {
+    const samtykkeskjema = await samtykkeskjemaTjeneste.lag(frøDOO)
+    const hentetSamtykkeskjema = await samtykkeskjemaTjeneste.hent(samtykkeskjema!.id)
+    expect(hentetSamtykkeskjema).toBeInstanceOf(Samtykkeskjema)
+})
+
+it('skal kaste error når man prøver å hente et samtykkeskjema som ikke finnes', async () => {
+    expect(samtykkeskjemaTjeneste.hent(632035)).rejects.toThrowError(IkkeFunnetError)
 })
