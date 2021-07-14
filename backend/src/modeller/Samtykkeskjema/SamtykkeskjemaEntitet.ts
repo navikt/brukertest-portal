@@ -1,23 +1,49 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
-import { ISamtykkeskjema } from './ISamtykkeskjema';
-import { IsString } from 'class-validator'
+import { ISamtykkeskjema } from './ISamtykkeskjema'
+import { IsBoolean, IsDate, IsString, Length } from 'class-validator'
+import { TypeSamtykkeskjema } from './TypeSamtykkeskjema'
+
 @Entity()
 export class Samtykkeskjema implements ISamtykkeskjema {
     @PrimaryGeneratedColumn()
     id!: number
 
-    @Column({ type: 'varchar'})
+    @Column({ type: 'varchar' })
+    @Length(0, 40)
     @IsString()
-    fornavn!: string
+    tittel!: string
 
-    @Column({ type: 'varchar'})
+    @Column({ type: 'varchar' })
+    @Length(0, 1000)
     @IsString()
-    etternavn!: string
+    bakgrunn!: string
 
-    @Column({ type: 'varchar'})
+    @Column({ type: 'bool', default: false })
+    @IsBoolean()
+    skalPubliseres!: boolean
+
+    @Column({ type: 'varchar' })
+    @Length(0, 1000)
     @IsString()
-    epost!: string
+    formål!: string
 
-    @Column({type: 'bool'})
-    gittSamtykke!: boolean
+    @Column({ type: 'date', nullable: true })
+    @IsDate()
+    startDato?: Date
+
+    @Column({ type: 'date', nullable: true })
+    @IsDate()
+    sluttDato?: Date
+
+    @Column({ type: 'varchar' })
+    @Length(0, 1000)
+    @IsString()
+    spørreOm!: string
+
+    @Column({ type: 'bool', default: false })
+    @IsBoolean()
+    harSamtykket!: boolean
+
+    @Column({ type: 'enum', enum: TypeSamtykkeskjema })
+    typeSamtykkeskjema!: TypeSamtykkeskjema
 }

@@ -1,0 +1,77 @@
+import { ISamtykkeskjema } from '@/modeller/Samtykkeskjema/ISamtykkeskjema'
+import { TypeSamtykkeskjema } from '@/modeller/Samtykkeskjema/TypeSamtykkeskjema'
+import { SamtykkeskjemaTjeneste } from '@/tjenester/SamtykkeskjemaTjeneste'
+import { Connection } from 'typeorm'
+import { Samtykkeskjema } from '../../src/modeller/Samtykkeskjema/SamtykkeskjemaEntitet'
+import { hentTestDatabase } from '../hjelpere/database'
+import { renskDatabaseEntitetTabell } from '../Test.utils'
+
+let db: Connection
+let samtykkeskjemaTjeneste: SamtykkeskjemaTjeneste
+let frøSamtykkeskjema: Samtykkeskjema
+let frøDOO: ISamtykkeskjema
+
+beforeAll(async () => {
+    db = await hentTestDatabase()
+
+    frøDOO = {
+        tittel: 'Beste tittelen',
+        bakgrunn: 'Beste bakgrunnen',
+        skalPubliseres: false,
+        formål: 'Beste formålet',
+        spørreOm: 'Spørre om masse ting',
+        harSamtykket: false,
+        typeSamtykkeskjema: TypeSamtykkeskjema.Intervju
+    }
+
+    samtykkeskjemaTjeneste = new SamtykkeskjemaTjeneste(db)
+})
+
+beforeEach(async () => {
+    samtykkeskjemaTjeneste = new SamtykkeskjemaTjeneste(db)
+    const oppbevaringssted = db.getRepository(Samtykkeskjema)
+    await renskDatabaseEntitetTabell(oppbevaringssted)
+})
+
+afterAll(async () => {
+    try {
+        const oppbevaringssted = db.getRepository(Samtykkeskjema)
+        await renskDatabaseEntitetTabell(oppbevaringssted)
+        await db.close()
+    } catch (error) {
+        console.error(error)
+    }
+})
+
+it('skal lage et samtykkeskjema med alt av data fylt ut', async () => {
+    const samtykkeskjema = await samtykkeskjemaTjeneste.lag({
+        tittel: 'Veldig fin tittel',
+        bakgrunn: 'Bakgrunnen er slik...',
+        skalPubliseres: true,
+        formål: 'Formålet er veldig fint',
+        spørreOm: 'Spørre om alle tingene',
+        startDato: new Date(),
+        sluttDato: new Date(),
+        harSamtykket: false,
+        typeSamtykkeskjema: TypeSamtykkeskjema.Brukertest
+    })
+    expect(samtykkeskjema).toBeInstanceOf(Samtykkeskjema)
+})
+
+it('skal lage et samtykkeskjema uten start dato og slutt dato', async () => {
+    const samtykkeskjema = await samtykkeskjemaTjeneste.lag({
+        tittel: 'Veldig fin tittel',
+        bakgrunn: 'Bakgrunnen er slik...',
+        skalPubliseres: true,
+        formål: 'Formålet er veldig fint',
+        spørreOm: 'Spørre om alle tingene',
+        harSamtykket: false,
+        typeSamtykkeskjema: TypeSamtykkeskjema.Brukertest
+    })
+    expect(samtykkeskjema).toBeInstanceOf(Samtykkeskjema)
+})
+
+it('skal kaste error når lager duplikat samtykkeskjema', async () => {
+    await samtykkeskjemaTjeneste.lag(frøDOO)
+    await expect(samtykkeskjemaTjeneste.lag(frøDOO)).rejects.toThrowError()
+})
