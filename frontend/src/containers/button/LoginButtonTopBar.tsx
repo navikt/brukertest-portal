@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { People } from '@navikt/ds-icons'
 import '../../style/less/containers/loginButtonTopBar.less'
 import { Flatknapp } from 'nav-frontend-knapper'
