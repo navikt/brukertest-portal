@@ -1,4 +1,4 @@
-import { Router } from 'express'
+import { response, Router } from 'express'
 import { SamtykkeskjemaTjeneste } from '../../../tjenester/SamtykkeskjemaTjeneste'
 import { database } from '../../../lastere/laster'
 import { ISamtykkeskjema } from '@/modeller/Samtykkeskjema/ISamtykkeskjema'
@@ -13,10 +13,10 @@ ruter.post('/', async (request, response) => {
         const nyttSamtykkeskjema = request.body as ISamtykkeskjema
 
         const samtykkeskjema = await samtykkeskjemaTjeneste.lag(nyttSamtykkeskjema)
-        return response.send(samtykkeskjema)
+        response.status(StatusCodes.OK)
+        response.send(samtykkeskjema)
     } catch (error) {
         if (error instanceof DårligForespørselError) {
-            console.log(error)
             response.status(StatusCodes.BAD_REQUEST)
             response.send('Forespørselen var dårlig')
         } else {
