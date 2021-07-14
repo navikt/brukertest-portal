@@ -9,7 +9,6 @@ import { renskDatabaseEntitetTabell } from '../Test.utils'
 
 let db: Connection
 let samtykkeskjemaTjeneste: SamtykkeskjemaTjeneste
-let frøSamtykkeskjema: Samtykkeskjema
 let frøDOO: ISamtykkeskjema
 
 beforeAll(async () => {
@@ -84,5 +83,15 @@ it('skal hente et lagret samtykkeskjema', async () => {
 })
 
 it('skal kaste error når man prøver å hente et samtykkeskjema som ikke finnes', async () => {
-    expect(samtykkeskjemaTjeneste.hent(632035)).rejects.toThrowError(IkkeFunnetError)
+    await expect(samtykkeskjemaTjeneste.hent(632035)).rejects.toThrow(IkkeFunnetError)
+})
+
+it('skal slette et lagret samtykkeskjema', async () => {
+    const samtykkeskjema = await samtykkeskjemaTjeneste.lag(frøDOO)
+    await samtykkeskjemaTjeneste.slett(samtykkeskjema!.id)
+    await expect(samtykkeskjemaTjeneste.hent(samtykkeskjema!.id)).rejects.toThrow(IkkeFunnetError)
+})
+
+it('skal ikke kunne slette et samtykkeskjema som ikke finnes', async () => {
+    await expect(samtykkeskjemaTjeneste.slett(74820)).rejects.toThrow(IkkeFunnetError)
 })
