@@ -17,6 +17,10 @@ export class SamtykkeskjemaTjeneste {
         return classToClass(await this.lagSamtykkeskjema(dto))
     }
 
+    async hent(id: number): Promise<Samtykkeskjema> {
+        return classToClass(await this.hentSamtykkeskjemaEtterId(id))
+    }
+
     async slett(id: number): Promise<void> {
         return classToClass(await this.slettSamtykkeskjemaEtterId(id))
     }
@@ -31,6 +35,18 @@ export class SamtykkeskjemaTjeneste {
         return await this.samtykkeskjemaOppbevaringssted.save(samtykkeskjemaEntitet)
     }
 
+    // Legge inn sjekk for eieren av samtykkeskjemaet
+    private async hentSamtykkeskjemaEtterId(id: number): Promise<Samtykkeskjema> {
+        const samtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id)
+
+        if (!samtykkeskjema) {
+            throw new IkkeFunnetError('Fant ikke samtykkeskjemet du prøver å hente')
+        }
+
+        return samtykkeskjema
+    }
+
+    // Legge inn sjekk for eieren av samtykkeskjemaet
     private async slettSamtykkeskjemaEtterId(id: number): Promise<void> {
         const samtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id)
 
