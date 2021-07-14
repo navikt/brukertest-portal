@@ -1,6 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 import { ISamtykkeskjema } from './ISamtykkeskjema'
-import { IsBoolean, IsDate, IsString, Length } from 'class-validator'
+import { IsBoolean, IsDate, IsDateString, IsString, Length } from 'class-validator'
 import { TypeSamtykkeskjema } from './TypeSamtykkeskjema'
 
 @Entity()
@@ -28,11 +28,11 @@ export class Samtykkeskjema implements ISamtykkeskjema {
     formål!: string
 
     @Column({ type: 'date', nullable: true })
-    @IsDate()
+    @IsDateString()
     startDato?: Date
 
     @Column({ type: 'date', nullable: true })
-    @IsDate()
+    @IsDateString()
     sluttDato?: Date
 
     @Column({ type: 'varchar' })

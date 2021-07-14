@@ -66,13 +66,8 @@ export class SamtykkeskjemaTjeneste {
         const oppdatertSamtykkeskjema = this.samtykkeskjemaOppbevaringssted.create(samtykkeskjema)
         oppdatertSamtykkeskjema.id = eksisterendeSamtykkeskjema.id
 
-        // TODO: FJERNE DISSE NÅR VI HAR DATO RAMMEVERK PÅ PLASS
-        oppdatertSamtykkeskjema.startDato = new Date()
-        oppdatertSamtykkeskjema.sluttDato = new Date()
-
         await validate(oppdatertSamtykkeskjema).then((feil) => {
             if (feil.length > 0) {
-                console.log(feil)
                 throw new FeilIEntitetError('Entititen er ikke valid')
             }
         })
