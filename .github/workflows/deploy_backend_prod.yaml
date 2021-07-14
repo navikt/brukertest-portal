@@ -6,6 +6,7 @@ on:
 
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:${{ github.sha }}
+  IMAGE_LATEST: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-frontend:latest
   CLUSTER: prod-gcp
   RESOURCE: backend/.nais/nais_prod.yaml
 
@@ -21,9 +22,10 @@ jobs:
         run: |
           yarn
           yarn test
-          docker build . -t ${IMAGE}
+          docker build . -t ${IMAGE} -t ${IMAGE_LATEST}
           docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
           docker push ${IMAGE}
+          dokcer push ${IMAGE_LATEST}
         working-directory: ./backend
   deploy:
     name: Deploy to prod-gcp
