@@ -1,8 +1,10 @@
 import { classToClass } from 'class-transformer'
+import { validate } from 'class-validator'
 import { Connection, Repository } from 'typeorm'
 import { ISamtykkeskjema } from '../modeller/Samtykkeskjema/ISamtykkeskjema'
 import { Samtykkeskjema } from '../modeller/Samtykkeskjema/SamtykkeskjemaEntitet'
 import { IkkeFunnetError } from '../lib/errors/database/IkkeFunnetError'
+import { FeilIEntitetError } from '../lib/errors/validering/FeilIEntitetError'
 
 export class SamtykkeskjemaTjeneste {
     private database: Connection
@@ -17,8 +19,12 @@ export class SamtykkeskjemaTjeneste {
         return classToClass(await this.lagSamtykkeskjema(dto))
     }
 
-    async hent(id: number): Promise<Samtykkeskjema> {
+    async hent(id: number): Promise<Samtykkeskjema | undefined> {
         return classToClass(await this.hentSamtykkeskjemaEtterId(id))
+    }
+
+    async oppdater(id: number, dto: ISamtykkeskjema): Promise<Samtykkeskjema | undefined> {
+        return classToClass(await this.oppdaterSamtykkeskjemaEtterId(id, dto))
     }
 
     async slett(id: number): Promise<void> {
@@ -40,10 +46,38 @@ export class SamtykkeskjemaTjeneste {
         const samtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id)
 
         if (!samtykkeskjema) {
-            throw new IkkeFunnetError('Fant ikke samtykkeskjemet du prøver å hente')
+            throw new IkkeFunnetError('Fant ikke samtykkeskjemet')
         }
 
         return samtykkeskjema
+    }
+
+    // Legge inn sjekk for eieren av samtykkeskjemaet
+    private async oppdaterSamtykkeskjemaEtterId(
+        id: number,
+        samtykkeskjema: ISamtykkeskjema
+    ): Promise<Samtykkeskjema | undefined> {
+        const eksisterendeSamtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id)
+
+        if (!eksisterendeSamtykkeskjema) {
+            throw new IkkeFunnetError('Fant ikke samtykkeskjemaet')
+        }
+
+        const oppdatertSamtykkeskjema = this.samtykkeskjemaOppbevaringssted.create(samtykkeskjema)
+        oppdatertSamtykkeskjema.id = eksisterendeSamtykkeskjema.id
+
+        // TODO: FJERNE DISSE NÅR VI HAR DATO RAMMEVERK PÅ PLASS
+        oppdatertSamtykkeskjema.startDato = new Date()
+        oppdatertSamtykkeskjema.sluttDato = new Date()
+
+        await validate(oppdatertSamtykkeskjema).then((feil) => {
+            if (feil.length > 0) {
+                console.log(feil)
+                throw new FeilIEntitetError('Entititen er ikke valid')
+            }
+        })
+
+        return await this.samtykkeskjemaOppbevaringssted.save(oppdatertSamtykkeskjema)
     }
 
     // Legge inn sjekk for eieren av samtykkeskjemaet
@@ -51,7 +85,7 @@ export class SamtykkeskjemaTjeneste {
         const samtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id)
 
         if (!samtykkeskjema) {
-            throw new IkkeFunnetError('Fant ikke samtykkeskjemet som ville bli settet')
+            throw new IkkeFunnetError('Fant ikke samtykkeskjemet')
         }
 
         await this.samtykkeskjemaOppbevaringssted.remove(samtykkeskjema)
