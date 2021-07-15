@@ -1,25 +1,27 @@
 @import (reference) '~nav-frontend-core/less/_variabler';
+
 .footer {
+    background: @navGra20;
+    width: 100%;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0;
+}
+
+.logo_info {
+    display: flex;
+    align-items: center;
+    margin-left: 1.4375rem;
 }
 
 .logo {
     margin: 1.125rem;
     height: 2.5rem;
     width: 4rem;
-    margin-left: 2.5rem;
 }
 .lenkeBottom {
     color: @navMorkGra;
-    position: absolute;
-    right: 3rem;
-}
-
-.tilbakeBtn {
-    align-self: flex-start;
-}
-
-.nesteBtn {
-    align-self: flex-end;
+    margin-right: 3rem;
 }
