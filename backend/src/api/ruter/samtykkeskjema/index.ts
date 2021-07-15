@@ -8,6 +8,7 @@ import { StatusCodes } from 'http-status-codes'
 import { IkkeFunnetError } from '@/lib/errors/database/IkkeFunnetError'
 import { FeilIEntitetError } from '@/lib/errors/validering/FeilIEntitetError'
 import { DuplikatError } from '@/lib/errors/database/DuplikatError'
+import { IngenEierError } from '@/lib/errors/IngenEierError'
 
 const ruter = Router()
 
@@ -23,6 +24,9 @@ ruter.post('/', async (request, response) => {
         if (error instanceof DuplikatError) {
             response.status(StatusCodes.BAD_REQUEST)
             response.send('Dette samtykkeskjemaet finnes allerede')
+        } else if (error instanceof IkkeFunnetError) {
+            response.status(StatusCodes.BAD_REQUEST)
+            response.send('Ingen eier er tilkoblet dette samtykkeskjemaet')
         } else {
             response.status(StatusCodes.INTERNAL_SERVER_ERROR)
             response.send('Noe på serveren gikk gærnt...')

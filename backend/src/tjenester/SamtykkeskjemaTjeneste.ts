@@ -6,6 +6,8 @@ import { Samtykkeskjema } from '../modeller/Samtykkeskjema/SamtykkeskjemaEntitet
 import { IkkeFunnetError } from '../lib/errors/database/IkkeFunnetError'
 import { DuplikatError } from '../lib/errors/database/DuplikatError'
 import { FeilIEntitetError } from '../lib/errors/validering/FeilIEntitetError'
+import { AdministratorTjeneste } from './AdministratorTjeneste'
+import { IngenEierError } from 'lib/errors/IngenEierError'
 
 export class SamtykkeskjemaTjeneste {
     private database: Connection
@@ -34,6 +36,10 @@ export class SamtykkeskjemaTjeneste {
 
     // TODO: Legge inn sjekk for start og slutt dato
     private async lagSamtykkeskjema(nyttSamtykkeskjema: ISamtykkeskjema): Promise<Samtykkeskjema | undefined> {
+        const administratorTjeneste = new AdministratorTjeneste(this.database)
+
+        await administratorTjeneste.hent(nyttSamtykkeskjema.administrator.id)
+
         if (await this.erDuplikat(nyttSamtykkeskjema)) {
             throw new DuplikatError('Samtykkeskjemaet finnes allerede!')
         }
