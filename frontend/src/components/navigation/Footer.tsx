@@ -7,10 +7,12 @@ import Lenke from 'nav-frontend-lenker'
 export default function Footer(): React.ReactElement {
     return (
         <div className="footer">
-            <NavLogoSort className="logo" />
-            <Tekstomrade className="infotekst">
-                Innbyggerpanelet - en tjeneste fra NAV
-            </Tekstomrade>
+            <div className="logo_info">
+                <NavLogoSort className="logo" />
+                <Tekstomrade>
+                    Innbyggerpanelet - en tjeneste fra NAV
+                </Tekstomrade>
+            </div>
             <Lenke href="#" className="lenkeBottom">
                 Mer om personvern
             </Lenke>

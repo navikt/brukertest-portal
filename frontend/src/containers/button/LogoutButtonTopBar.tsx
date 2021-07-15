@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Link } from 'react-router-dom'
 export default function LogoutButtonTopBar(): React.ReactElement {
     return (
         <Router>
-            <Link to="/">
+            <Link to="/" style={{ textDecoration: 'none' }}>
                 <Flatknapp className="logoutBtn1">Logg ut</Flatknapp>
             </Link>
         </Router>
