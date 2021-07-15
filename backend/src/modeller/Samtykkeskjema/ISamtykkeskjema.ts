@@ -1,6 +1,8 @@
+import { Administrator } from '../Administrator/AdministratorEntitet'
 import { TypeSamtykkeskjema } from './TypeSamtykkeskjema'
 
 export interface ISamtykkeskjema {
+    administrator: Administrator
     tittel: string
     bakgrunn: string
     skalPubliseres: boolean

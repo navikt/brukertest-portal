@@ -1,12 +1,16 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { ISamtykkeskjema } from './ISamtykkeskjema'
 import { IsBoolean, IsDate, IsDateString, IsString, Length } from 'class-validator'
 import { TypeSamtykkeskjema } from './TypeSamtykkeskjema'
+import { Administrator } from '../Administrator/AdministratorEntitet'
 
 @Entity()
 export class Samtykkeskjema implements ISamtykkeskjema {
     @PrimaryGeneratedColumn()
     id!: number
+
+    @ManyToOne(() => Administrator, (administrator) => administrator.samtykkeskjemaer)
+    administrator!: Administrator
 
     @Column({ type: 'varchar' })
     @Length(1, 40)
