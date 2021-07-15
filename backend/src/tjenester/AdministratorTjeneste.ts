@@ -1,3 +1,4 @@
+import { IkkeFunnetError } from '@/lib/errors/database/IkkeFunnetError'
 import { Administrator } from '@/modeller/Administrator/AdministratorEntitet'
 import { IAdministrator } from '@/modeller/Administrator/IAdministrator'
 import { Samtykkeskjema } from '@/modeller/Samtykkeskjema/SamtykkeskjemaEntitet'
@@ -18,6 +19,10 @@ export class AdministratorTjeneste {
         return classToClass(await this.lagAdministrator(dto))
     }
 
+    async hent(id: number): Promise<Administrator | undefined> {
+        return classToClass(await this.hentAdministratorEtterId(id))
+    }
+
     private async lagAdministrator(nyAdministrator: IAdministrator): Promise<Administrator | undefined> {
         if (await this.erDuplikat(nyAdministrator)) {
             throw new DuplikatError('Administratoren er allerede registrert!')
@@ -25,6 +30,16 @@ export class AdministratorTjeneste {
 
         const administratorEntitet = this.administratorOppbevaringssted.create(nyAdministrator)
         return await this.administratorOppbevaringssted.save(administratorEntitet)
+    }
+
+    private async hentAdministratorEtterId(id: number): Promise<Administrator | undefined> {
+        const administrator = await this.administratorOppbevaringssted.findOne(id)
+
+        if (!administrator) {
+            throw new IkkeFunnetError('Fant ikke administratoren')
+        }
+
+        return administrator
     }
 
     private async erDuplikat(administrator: IAdministrator): Promise<boolean> {
