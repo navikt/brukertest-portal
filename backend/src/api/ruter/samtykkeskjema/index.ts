@@ -7,6 +7,7 @@ import { TomForespørselError } from 'lib/errors/rest/TomForespørselError'
 import { StatusCodes } from 'http-status-codes'
 import { IkkeFunnetError } from '@/lib/errors/database/IkkeFunnetError'
 import { FeilIEntitetError } from '@/lib/errors/validering/FeilIEntitetError'
+import { DuplikatError } from '@/lib/errors/database/DuplikatError'
 
 const ruter = Router()
 
@@ -16,12 +17,12 @@ ruter.post('/', async (request, response) => {
         const nyttSamtykkeskjema = request.body as ISamtykkeskjema
 
         const samtykkeskjema = await samtykkeskjemaTjeneste.lag(nyttSamtykkeskjema)
-        response.status(StatusCodes.OK)
+        response.status(StatusCodes.CREATED)
         response.send(samtykkeskjema)
     } catch (error) {
-        if (error instanceof DårligForespørselError) {
+        if (error instanceof DuplikatError) {
             response.status(StatusCodes.BAD_REQUEST)
-            response.send('Forespørselen var dårlig')
+            response.send('Dette samtykkeskjemaet finnes allerede')
         } else {
             response.status(StatusCodes.INTERNAL_SERVER_ERROR)
             response.send('Noe på serveren gikk gærnt...')

@@ -4,6 +4,7 @@ import { Connection, Repository } from 'typeorm'
 import { ISamtykkeskjema } from '../modeller/Samtykkeskjema/ISamtykkeskjema'
 import { Samtykkeskjema } from '../modeller/Samtykkeskjema/SamtykkeskjemaEntitet'
 import { IkkeFunnetError } from '../lib/errors/database/IkkeFunnetError'
+import { DuplikatError } from '../lib/errors/database/DuplikatError'
 import { FeilIEntitetError } from '../lib/errors/validering/FeilIEntitetError'
 
 export class SamtykkeskjemaTjeneste {
@@ -34,7 +35,7 @@ export class SamtykkeskjemaTjeneste {
     // TODO: Legge inn sjekk for start og slutt dato
     private async lagSamtykkeskjema(nyttSamtykkeskjema: ISamtykkeskjema): Promise<Samtykkeskjema | undefined> {
         if (await this.erDuplikat(nyttSamtykkeskjema)) {
-            throw new Error('Samtykkeskjemaet finnes allerede!')
+            throw new DuplikatError('Samtykkeskjemaet finnes allerede!')
         }
 
         const samtykkeskjemaEntitet = this.samtykkeskjemaOppbevaringssted.create(nyttSamtykkeskjema)

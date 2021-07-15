@@ -16,7 +16,7 @@ export class Administrator implements IAdministrator {
     @IsString()
     etternavn!: string
 
-    @Column()
+    @Column({ type: 'varchar' })
     @IsString()
     team!: string
 
