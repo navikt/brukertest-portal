@@ -37,7 +37,7 @@ beforeAll(async () => {
 })
 
 beforeEach(async () => {
-    samtykkeskjemaTjeneste = new SamtykkeskjemaTjeneste(db)
+    samtykkeskjemaTjeneste = new SamtykkeskjemaTjeneste(db, administrator)
     const oppbevaringssted = db.getRepository(Samtykkeskjema)
     await renskDatabaseEntitetTabell(oppbevaringssted)
 })

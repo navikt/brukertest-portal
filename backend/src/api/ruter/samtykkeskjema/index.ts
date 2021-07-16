@@ -17,6 +17,8 @@ ruter.post('/', async (request, response) => {
         const samtykkeskjemaTjeneste = new SamtykkeskjemaTjeneste(database)
         const nyttSamtykkeskjema = request.body as ISamtykkeskjema
 
+        // TODO: legge inn administrator fra evt. Token
+
         const samtykkeskjema = await samtykkeskjemaTjeneste.lag(nyttSamtykkeskjema)
         response.status(StatusCodes.CREATED)
         response.send(samtykkeskjema)

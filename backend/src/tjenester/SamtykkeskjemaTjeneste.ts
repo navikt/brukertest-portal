@@ -7,13 +7,18 @@ import { IkkeFunnetError } from '../lib/errors/database/IkkeFunnetError'
 import { DuplikatError } from '../lib/errors/database/DuplikatError'
 import { FeilIEntitetError } from '../lib/errors/validering/FeilIEntitetError'
 import { AdministratorTjeneste } from './AdministratorTjeneste'
-import { IngenEierError } from 'lib/errors/IngenEierError'
+import { IngenEierError } from '../lib/errors/IngenEierError'
+import { IHarEier } from '../interfaces/IHarEier'
+import { FeilEierError } from '../lib/errors/FeilEierError'
+import { Administrator } from '@/modeller/Administrator/AdministratorEntitet'
 
-export class SamtykkeskjemaTjeneste {
+export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
+    eier: Administrator | undefined
     private database: Connection
     private samtykkeskjemaOppbevaringssted: Repository<Samtykkeskjema>
 
-    constructor(database: Connection) {
+    constructor(database: Connection, eier?: Administrator) {
+        this.eier = eier
         this.database = database
         this.samtykkeskjemaOppbevaringssted = this.database.getRepository(Samtykkeskjema)
     }
@@ -38,7 +43,9 @@ export class SamtykkeskjemaTjeneste {
     private async lagSamtykkeskjema(nyttSamtykkeskjema: ISamtykkeskjema): Promise<Samtykkeskjema | undefined> {
         const administratorTjeneste = new AdministratorTjeneste(this.database)
 
-        await administratorTjeneste.hent(nyttSamtykkeskjema.administrator.id)
+        if (!this.eier) {
+            throw new IngenEierError('Ingen eier er lagt ved')
+        }
 
         if (await this.erDuplikat(nyttSamtykkeskjema)) {
             throw new DuplikatError('Samtykkeskjemaet finnes allerede!')
@@ -49,11 +56,20 @@ export class SamtykkeskjemaTjeneste {
     }
 
     // Legge inn sjekk for eieren av samtykkeskjemaet
-    private async hentSamtykkeskjemaEtterId(id: number): Promise<Samtykkeskjema> {
-        const samtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id)
+    private async hentSamtykkeskjemaEtterId(id: number): Promise<Samtykkeskjema | undefined> {
+        let samtykkeskjema: Samtykkeskjema | undefined
+
+        if (this.eier) {
+            samtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id, {
+                relations: ['administrator'],
+                where: {
+                    administrator: this.eier
+                }
+            })
+        }
 
         if (!samtykkeskjema) {
-            throw new IkkeFunnetError('Fant ikke samtykkeskjemet')
+            throw new IkkeFunnetError('Fant ikke samtykkeskjemaet')
         }
 
         return samtykkeskjema
@@ -105,5 +121,19 @@ export class SamtykkeskjemaTjeneste {
         })
 
         return duplikat.length > 0
+    }
+
+    verifiserEier(entitet: ISamtykkeskjema): void {
+        if (entitet.administrator !== this.eier) {
+            throw new FeilEierError('Ingen eier')
+        }
+    }
+
+    private verifiserSamtykkeskjema(samtykkeskjema: ISamtykkeskjema) {
+        // 1. administratoren lagt med må være i databasen
+        // 2. ikke duplisert -> tittel og type samtykkeskjema
+        // 3. deltakerne i samtykkeskjemaet må eksistere
+        // 4. deltakerne er ikke duplikate
+        // 5. start dato er før slutt dato
     }
 }
