@@ -35,8 +35,6 @@ export class AdministratorTjeneste {
     private async hentAdministratorEtterId(id: number): Promise<Administrator | undefined> {
         const administrator = await this.administratorOppbevaringssted.findOne(id)
 
-        console.log(administrator)
-
         if (!administrator) {
             throw new IkkeFunnetError('Fant ikke administratoren')
         }

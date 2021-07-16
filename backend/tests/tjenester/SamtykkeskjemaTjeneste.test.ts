@@ -1,21 +1,27 @@
 import { IkkeFunnetError } from '@/lib/errors/database/IkkeFunnetError'
 import { FeilIEntitetError } from '@/lib/errors/validering/FeilIEntitetError'
+import { Administrator } from '@/modeller/Administrator/AdministratorEntitet'
 import { ISamtykkeskjema } from '@/modeller/Samtykkeskjema/ISamtykkeskjema'
 import { TypeSamtykkeskjema } from '@/modeller/Samtykkeskjema/TypeSamtykkeskjema'
+import { AdministratorTjeneste } from '@/tjenester/AdministratorTjeneste'
 import { SamtykkeskjemaTjeneste } from '@/tjenester/SamtykkeskjemaTjeneste'
 import { Connection } from 'typeorm'
 import { Samtykkeskjema } from '../../src/modeller/Samtykkeskjema/SamtykkeskjemaEntitet'
 import { hentTestDatabase } from '../hjelpere/database'
 import { renskDatabaseEntitetTabell } from '../Test.utils'
+import { lagDummyAdministrator } from '../hjelpere/dummy/administrator'
 
 let db: Connection
 let samtykkeskjemaTjeneste: SamtykkeskjemaTjeneste
+let administrator: Administrator
 let frøDOO: ISamtykkeskjema
 
 beforeAll(async () => {
     db = await hentTestDatabase()
+    administrator = await lagDummyAdministrator(db)
 
     frøDOO = {
+        administrator: administrator,
         tittel: 'Beste tittelen',
         bakgrunn: 'Beste bakgrunnen',
         skalPubliseres: false,
@@ -48,6 +54,7 @@ afterAll(async () => {
 
 it('skal lage et samtykkeskjema med alt av data fylt ut', async () => {
     const samtykkeskjema = await samtykkeskjemaTjeneste.lag({
+        administrator: administrator,
         tittel: 'Veldig fin tittel',
         bakgrunn: 'Bakgrunnen er slik...',
         skalPubliseres: true,
@@ -63,6 +70,7 @@ it('skal lage et samtykkeskjema med alt av data fylt ut', async () => {
 
 it('skal lage et samtykkeskjema uten start dato og slutt dato', async () => {
     const samtykkeskjema = await samtykkeskjemaTjeneste.lag({
+        administrator: administrator,
         tittel: 'Veldig fin tittel',
         bakgrunn: 'Bakgrunnen er slik...',
         skalPubliseres: true,
@@ -103,6 +111,7 @@ it('skal kunne oppdatere et eksisterende samtykkeskjema', async () => {
     const samtykkeskjema = await samtykkeskjemaTjeneste.lag(frøDOO)
     const gammelTittel = samtykkeskjema!.tittel
     const oppdatertSamtykkeskjema = await samtykkeskjemaTjeneste.oppdater(samtykkeskjema!.id, {
+        administrator: administrator,
         tittel: 'Ny fin tittel joho!',
         bakgrunn: 'Lalalalala',
         skalPubliseres: false,
@@ -120,6 +129,7 @@ it('skal ikke kunne oppdatere samtykkeskjema til tomme felt', async () => {
     const samtykkeskjema = await samtykkeskjemaTjeneste.lag(frøDOO)
     await expect(
         samtykkeskjemaTjeneste.oppdater(samtykkeskjema!.id, {
+            administrator: administrator,
             tittel: '',
             bakgrunn: 'Lalalalala',
             skalPubliseres: false,
