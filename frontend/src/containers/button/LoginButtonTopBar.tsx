@@ -9,7 +9,7 @@ export default function LoginButtonTopBar(): React.ReactElement {
         <Router>
             <Link to="/samtykkeskjema" style={{ textDecoration: 'none' }}>
                 <Flatknapp className="loginBtn1">
-                    <span>Logg inn</span>
+                    <span>Ola Nordmann</span>
                     <People className="personIkon" />
                 </Flatknapp>
             </Link>
