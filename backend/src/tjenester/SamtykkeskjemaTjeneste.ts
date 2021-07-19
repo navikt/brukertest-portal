@@ -126,7 +126,7 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
     }
 
     /**
-     * Opddaterer et spesifikt samtykkeskjema utifra gitt ID. Samtykkeskjemaet som prøves å hentes må
+     * Opddaterer et spesifikt samtykkeskjema utifra gitt ID. Samtykkeskjemaet som prøves å oppdateres må
      * også ha relasjon til eieren av tjenesteklassen.
      *
      * @param id ID'en til samtykkeskjemaet man vil oppdatere
@@ -159,9 +159,23 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         return await this.samtykkeskjemaOppbevaringssted.save(oppdatertSamtykkeskjema)
     }
 
-    // Legge inn sjekk for eieren av samtykkeskjemaet
+    /**
+     * Sletter et spesifikt samtykkeskjema utifra gitt ID. Samtykkeskjemaet som prøves å slettes må
+     * også ha relasjon til eieren av tjenesteklassen.
+     *
+     * @param id ID'en til samtykkeskjemaet man vil slette
+     */
     private async slettSamtykkeskjemaEtterId(id: number): Promise<void> {
-        const samtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id)
+        let samtykkeskjema: Samtykkeskjema | undefined
+
+        if (this.eier) {
+            samtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id, {
+                relations: ['administrator'],
+                where: {
+                    administrator: this.eier
+                }
+            })
+        }
 
         if (!samtykkeskjema) {
             throw new IkkeFunnetError('Fant ikke samtykkeskjemet')

@@ -105,7 +105,7 @@ ruter.put('/:id', async (request, response) => {
 
 ruter.delete('/:id', async (request, response) => {
     try {
-        const samtykkeskjemaTjeneste = new SamtykkeskjemaTjeneste(database)
+        const samtykkeskjemaTjeneste = new SamtykkeskjemaTjeneste(database, request.body.administrator)
         const id: number = Number.parseInt(request.params.id)
         const resultat = await samtykkeskjemaTjeneste.slett(id)
         response.status(StatusCodes.OK).json(resultat)
