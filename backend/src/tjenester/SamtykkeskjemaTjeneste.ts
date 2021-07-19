@@ -30,7 +30,11 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         return classToClass(await this.lagSamtykkeskjema(dto))
     }
 
-    async hent(id: number): Promise<Samtykkeskjema | undefined> {
+    async hent(): Promise<Samtykkeskjema[] | undefined> {
+        return classToClass(await this.hentAlleSamtykkeskjemaer())
+    }
+
+    async hentEtterId(id: number): Promise<Samtykkeskjema | undefined> {
         return classToClass(await this.hentSamtykkeskjemaEtterId(id))
     }
 
