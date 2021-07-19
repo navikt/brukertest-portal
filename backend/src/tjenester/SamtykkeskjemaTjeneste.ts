@@ -59,8 +59,6 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
     private async lagSamtykkeskjema(nyttSamtykkeskjema: ISamtykkeskjema): Promise<Samtykkeskjema | undefined> {
         const administratorTjeneste = new AdministratorTjeneste(this.database)
 
-        await administratorTjeneste.hent(nyttSamtykkeskjema.administrator.id)
-
         // Vi må serialisere datoene til dato objekter, siden de kommer inn som strings
         this.serialisereDatoer(nyttSamtykkeskjema)
 
@@ -127,12 +125,27 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         return samtykkeskjema
     }
 
-    // Legge inn sjekk for eieren av samtykkeskjemaet
+    /**
+     * Opddaterer et spesifikt samtykkeskjema utifra gitt ID. Samtykkeskjemaet som prøves å hentes må
+     * også ha relasjon til eieren av tjenesteklassen.
+     *
+     * @param id ID'en til samtykkeskjemaet man vil oppdatere
+     * @param samtykkeskjema Opddaterte samtykkeskjema entiteten
+     */
     private async oppdaterSamtykkeskjemaEtterId(
         id: number,
         samtykkeskjema: ISamtykkeskjema
     ): Promise<Samtykkeskjema | undefined> {
-        const eksisterendeSamtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id)
+        let eksisterendeSamtykkeskjema: Samtykkeskjema | undefined
+
+        if (this.eier) {
+            eksisterendeSamtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id, {
+                relations: ['administrator'],
+                where: {
+                    administrator: this.eier
+                }
+            })
+        }
 
         if (!eksisterendeSamtykkeskjema) {
             throw new IkkeFunnetError('Fant ikke samtykkeskjemaet')
@@ -141,11 +154,7 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         const oppdatertSamtykkeskjema = this.samtykkeskjemaOppbevaringssted.create(samtykkeskjema)
         oppdatertSamtykkeskjema.id = eksisterendeSamtykkeskjema.id
 
-        await validate(oppdatertSamtykkeskjema).then((feil) => {
-            if (feil.length > 0) {
-                throw new FeilIEntitetError('Entititen er ikke valid')
-            }
-        })
+        await validerEntitet(oppdatertSamtykkeskjema, { strictGroups: true })
 
         return await this.samtykkeskjemaOppbevaringssted.save(oppdatertSamtykkeskjema)
     }

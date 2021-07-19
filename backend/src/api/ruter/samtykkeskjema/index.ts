@@ -76,7 +76,7 @@ ruter.get('/:id', async (request, response) => {
 
 ruter.put('/:id', async (request, response) => {
     try {
-        const samtykkeskjemaTjeneste = new SamtykkeskjemaTjeneste(database)
+        const samtykkeskjemaTjeneste = new SamtykkeskjemaTjeneste(database, request.body.administrator)
         const id: number = Number.parseInt(request.params.id)
         const samtykkeskjema = request.body as ISamtykkeskjema
 
@@ -93,6 +93,9 @@ ruter.put('/:id', async (request, response) => {
         } else if (error instanceof TomForespørselError) {
             response.status(StatusCodes.BAD_REQUEST)
             response.send('Forespørselen er tom')
+        } else if (error instanceof IkkeFunnetError) {
+            response.status(StatusCodes.NOT_FOUND)
+            response.send('Fant ikke samtykkeskjemaet du prøvde å oppdatere')
         } else {
             response.status(StatusCodes.INTERNAL_SERVER_ERROR)
             response.send('Noe på serveren gikk gærnt...')
