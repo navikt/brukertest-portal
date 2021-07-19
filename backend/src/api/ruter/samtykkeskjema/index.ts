@@ -58,7 +58,7 @@ ruter.get('/', async (request, response) => {
 
 ruter.get('/:id', async (request, response) => {
     try {
-        const samtykkeskjemaTjeneste = new SamtykkeskjemaTjeneste(database)
+        const samtykkeskjemaTjeneste = new SamtykkeskjemaTjeneste(database, request.body.administrator)
         const id: number = Number.parseInt(request.params.id)
         const samtykkeskjema = await samtykkeskjemaTjeneste.hentEtterId(id)
         response.status(StatusCodes.OK)
@@ -66,7 +66,7 @@ ruter.get('/:id', async (request, response) => {
     } catch (error) {
         if (error instanceof IkkeFunnetError) {
             response.status(StatusCodes.NOT_FOUND)
-            response.send('Vi fant ikke samtykkeskjemaet du prøver å hente')
+            response.send('Fant ikke samtykkeskjemaet')
         } else {
             response.status(StatusCodes.INTERNAL_SERVER_ERROR)
             response.send('Noe på serveren gikk gærnt...')

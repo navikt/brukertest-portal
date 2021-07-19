@@ -47,13 +47,14 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
     }
 
     /**
-     * Lager et samtykkyskjemma entitet fra et samtykkeskjema interface. Diverse sjekker blir gjort som:
+     * Lager et samtykkyskjemma entitet fra et samtykkeskjema interface. Diverse valideringer blir gjort som:
      *  - En eier av samtykkeskjemaet må legges ved.
      *  - Eier av samtykkeskjemaet må eksistere
      *  - Startdato må være før sluttdato i samtykkeskjemaet
      *  - Samtykkeskjemaet må være gyldig i forhold til entitet reglene
      *
      * @param nyttSamtykkeskjema Samtykkeskjemaet man har lyst til å lage entitet fra
+     * @returns Samtykkeskjemaet som ble lagret i databasen
      */
     private async lagSamtykkeskjema(nyttSamtykkeskjema: ISamtykkeskjema): Promise<Samtykkeskjema | undefined> {
         const administratorTjeneste = new AdministratorTjeneste(this.database)
@@ -79,6 +80,11 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         return await this.samtykkeskjemaOppbevaringssted.save(samtykkeskjemaEntitet)
     }
 
+    /**
+     * Henter alle samtykkeskjemaer som har en relasjon til eieren av tjeneste klassen.
+     *
+     * @returns En liste av samtykkeskjema entiter hvis funnet.
+     */
     private async hentAlleSamtykkeskjemaer(): Promise<Samtykkeskjema[] | undefined> {
         let samtykkeskjemaer: Samtykkeskjema[]
 
@@ -95,6 +101,13 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         return samtykkeskjemaer
     }
 
+    /**
+     * Henter et spesifikt samtykkeskjema utifra gitt ID. Samtykkeskjemaet som prøves å hentes må
+     * også ha en relasjon til eieren av tjenesteklassen.
+     *
+     * @param id ID'en til samtykkeskjemaet man vil hente
+     * @returns Et samtykkeskjema entitet
+     */
     private async hentSamtykkeskjemaEtterId(id: number): Promise<Samtykkeskjema | undefined> {
         let samtykkeskjema: Samtykkeskjema | undefined
 
