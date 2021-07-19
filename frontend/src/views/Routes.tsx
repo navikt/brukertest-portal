@@ -8,12 +8,12 @@ export default function Routes(): React.ReactElement {
     return (
         <Router>
             <Switch>
-                <Route path="/" exact component={Landingsside} />
-                <Route
-                    path="/samtykkeskjema"
-                    exact
-                    component={Samtykkeskjema}
-                />
+                <Route>
+                    <Landingsside />
+                </Route>
+                <Route>
+                    <Samtykkeskjema />
+                </Route>
             </Switch>
         </Router>
     )
