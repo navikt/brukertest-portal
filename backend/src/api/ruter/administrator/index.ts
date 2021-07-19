@@ -1,6 +1,7 @@
 import { database } from '@/lastere/laster'
 import { DuplikatError } from '@/lib/errors/database/DuplikatError'
 import { IkkeFunnetError } from '@/lib/errors/database/IkkeFunnetError'
+import { FeilIEntitetError } from '@/lib/errors/validering/FeilIEntitetError'
 import { IAdministrator } from '@/modeller/Administrator/IAdministrator'
 import { response, Router } from 'express'
 import { StatusCodes } from 'http-status-codes'
@@ -20,6 +21,9 @@ ruter.post('/', async (request, response) => {
         if (error instanceof DuplikatError) {
             response.status(StatusCodes.BAD_REQUEST)
             response.send('Denne administratoren er allerede registrert')
+        } else if (error instanceof FeilIEntitetError) {
+            response.status(StatusCodes.BAD_REQUEST)
+            response.send('Noe er feil i administratoren du prøver å registrere')
         } else {
             response.status(StatusCodes.INTERNAL_SERVER_ERROR)
             response.send('Noe på serveren gikk gærnt...')

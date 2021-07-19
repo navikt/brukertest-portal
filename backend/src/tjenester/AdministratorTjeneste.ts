@@ -1,3 +1,4 @@
+import { validerEntitet } from '@/hjelpere/validerEntitet'
 import { IkkeFunnetError } from '@/lib/errors/database/IkkeFunnetError'
 import { Administrator } from '@/modeller/Administrator/AdministratorEntitet'
 import { IAdministrator } from '@/modeller/Administrator/IAdministrator'
@@ -28,6 +29,9 @@ export class AdministratorTjeneste {
         }
 
         const administratorEntitet = this.administratorOppbevaringssted.create(nyAdministrator)
+
+        await validerEntitet(administratorEntitet, { groups: ['creation'] })
+
         return await this.administratorOppbevaringssted.save(administratorEntitet)
     }
 

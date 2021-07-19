@@ -1,6 +1,6 @@
 import { IAdministrator } from './IAdministrator'
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
-import { IsString } from 'class-validator'
+import { IsEmail, IsPhoneNumber, IsString } from 'class-validator'
 import { Samtykkeskjema } from '../Samtykkeskjema/SamtykkeskjemaEntitet'
 
 @Entity()
@@ -29,11 +29,11 @@ export class Administrator implements IAdministrator {
     avdeling!: string
 
     @Column({ type: 'varchar' })
-    @IsString()
+    @IsPhoneNumber()
     telefon!: string
 
     @Column({ type: 'varchar' })
-    @IsString()
+    @IsEmail()
     epost!: string
 
     @OneToMany(() => Samtykkeskjema, (samtykkeskjema) => samtykkeskjema.administrator)
