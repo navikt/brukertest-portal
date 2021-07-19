@@ -14,8 +14,8 @@ const ruter = Router()
 
 ruter.post('/', async (request, response) => {
     try {
-        const samtykkeskjemaTjeneste = new SamtykkeskjemaTjeneste(database)
         const nyttSamtykkeskjema = request.body as ISamtykkeskjema
+        const samtykkeskjemaTjeneste = new SamtykkeskjemaTjeneste(database, nyttSamtykkeskjema.administrator)
 
         // TODO: legge inn administrator fra evt. Token
 
@@ -29,6 +29,9 @@ ruter.post('/', async (request, response) => {
         } else if (error instanceof IkkeFunnetError) {
             response.status(StatusCodes.BAD_REQUEST)
             response.send('Ingen eier er tilkoblet dette samtykkeskjemaet')
+        } else if (error instanceof DårligForespørselError) {
+            response.status(StatusCodes.BAD_REQUEST)
+            response.send('Noe i forespørselen din er ikke riktig')
         } else {
             response.status(StatusCodes.INTERNAL_SERVER_ERROR)
             response.send('Noe på serveren gikk gærnt...')

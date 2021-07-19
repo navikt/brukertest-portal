@@ -7,8 +7,8 @@ export interface ISamtykkeskjema {
     bakgrunn: string
     skalPubliseres: boolean
     formål: string
-    startDato?: Date
-    sluttDato?: Date
+    startDato: Date
+    sluttDato: Date
     spørreOm: string
     harSamtykket: boolean
     typeSamtykkeskjema: TypeSamtykkeskjema

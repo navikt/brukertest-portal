@@ -32,10 +32,10 @@ export class Samtykkeskjema implements ISamtykkeskjema {
     formål!: string
 
     @Column({ type: 'date', nullable: true })
-    startDato?: Date
+    startDato!: Date
 
     @Column({ type: 'date', nullable: true })
-    sluttDato?: Date
+    sluttDato!: Date
 
     @Column({ type: 'varchar' })
     @Length(1, 1000)

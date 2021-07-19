@@ -11,6 +11,8 @@ import { IngenEierError } from '../lib/errors/IngenEierError'
 import { IHarEier } from '../interfaces/IHarEier'
 import { FeilEierError } from '../lib/errors/FeilEierError'
 import { Administrator } from '@/modeller/Administrator/AdministratorEntitet'
+import { isBefore } from 'date-fns'
+import { DårligForespørselError } from '@/lib/errors/rest/DårligForespørselError'
 
 export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
     eier: Administrator | undefined
@@ -21,6 +23,10 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         this.eier = eier
         this.database = database
         this.samtykkeskjemaOppbevaringssted = this.database.getRepository(Samtykkeskjema)
+    }
+
+    verifiserEier(entitet: Samtykkeskjema): void {
+        throw new Error('Method not implemented.')
     }
 
     async lag(dto: ISamtykkeskjema): Promise<Samtykkeskjema | undefined> {
@@ -39,16 +45,20 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         return classToClass(await this.slettSamtykkeskjemaEtterId(id))
     }
 
-    // TODO: Legge inn sjekk for start og slutt dato
     private async lagSamtykkeskjema(nyttSamtykkeskjema: ISamtykkeskjema): Promise<Samtykkeskjema | undefined> {
         const administratorTjeneste = new AdministratorTjeneste(this.database)
 
-        if (!this.eier) {
-            throw new IngenEierError('Ingen eier er lagt ved')
+        await administratorTjeneste.hent(nyttSamtykkeskjema.administrator.id)
+
+        // Vi må serialisere datoene, siden class-validator forventer et date objekt, ikke string.
+        this.serialisereDatoer(nyttSamtykkeskjema)
+
+        if (nyttSamtykkeskjema.administrator !== this.eier) {
+            throw new IkkeFunnetError('Ingen eier')
         }
 
-        if (await this.erDuplikat(nyttSamtykkeskjema)) {
-            throw new DuplikatError('Samtykkeskjemaet finnes allerede!')
+        if (!isBefore(nyttSamtykkeskjema.startDato, nyttSamtykkeskjema.sluttDato)) {
+            throw new DårligForespørselError('Sluttdato er før startdato')
         }
 
         const samtykkeskjemaEntitet = this.samtykkeskjemaOppbevaringssted.create(nyttSamtykkeskjema)
@@ -123,17 +133,8 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         return duplikat.length > 0
     }
 
-    verifiserEier(entitet: ISamtykkeskjema): void {
-        if (entitet.administrator !== this.eier) {
-            throw new FeilEierError('Ingen eier')
-        }
-    }
-
-    private verifiserSamtykkeskjema(samtykkeskjema: ISamtykkeskjema) {
-        // 1. administratoren lagt med må være i databasen
-        // 2. ikke duplisert -> tittel og type samtykkeskjema
-        // 3. deltakerne i samtykkeskjemaet må eksistere
-        // 4. deltakerne er ikke duplikate
-        // 5. start dato er før slutt dato
+    private serialisereDatoer(samtykkeskjema: ISamtykkeskjema) {
+        samtykkeskjema.startDato = new Date(samtykkeskjema.startDato)
+        samtykkeskjema.sluttDato = new Date(samtykkeskjema.sluttDato)
     }
 }
