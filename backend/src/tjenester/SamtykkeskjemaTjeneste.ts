@@ -13,6 +13,7 @@ import { FeilEierError } from '../lib/errors/FeilEierError'
 import { Administrator } from '@/modeller/Administrator/AdministratorEntitet'
 import { isBefore } from 'date-fns'
 import { DårligForespørselError } from '@/lib/errors/rest/DårligForespørselError'
+import { validerEntitet } from '../hjelpere/validerEntitet'
 
 export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
     eier: Administrator | undefined
@@ -23,10 +24,6 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         this.eier = eier
         this.database = database
         this.samtykkeskjemaOppbevaringssted = this.database.getRepository(Samtykkeskjema)
-    }
-
-    verifiserEier(entitet: Samtykkeskjema): void {
-        throw new Error('Method not implemented.')
     }
 
     async lag(dto: ISamtykkeskjema): Promise<Samtykkeskjema | undefined> {
@@ -45,12 +42,21 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         return classToClass(await this.slettSamtykkeskjemaEtterId(id))
     }
 
+    /**
+     * Lager et samtykkyskjemma entitet fra et samtykkeskjema interface. Diverse sjekker blir gjort som:
+     *  - En eier av samtykkeskjemaet må legges ved.
+     *  - Eier av samtykkeskjemaet må eksistere
+     *  - Startdato må være før sluttdato i samtykkeskjemaet
+     *  - Samtykkeskjemaet må være gyldig i forhold til entitet reglene
+     *
+     * @param nyttSamtykkeskjema Samtykkeskjemaet man har lyst til å lage entitet fra
+     */
     private async lagSamtykkeskjema(nyttSamtykkeskjema: ISamtykkeskjema): Promise<Samtykkeskjema | undefined> {
         const administratorTjeneste = new AdministratorTjeneste(this.database)
 
         await administratorTjeneste.hent(nyttSamtykkeskjema.administrator.id)
 
-        // Vi må serialisere datoene, siden class-validator forventer et date objekt, ikke string.
+        // Vi må serialisere datoene til dato objekter, siden de kommer inn som strings
         this.serialisereDatoer(nyttSamtykkeskjema)
 
         if (nyttSamtykkeskjema.administrator !== this.eier) {
@@ -62,6 +68,10 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         }
 
         const samtykkeskjemaEntitet = this.samtykkeskjemaOppbevaringssted.create(nyttSamtykkeskjema)
+
+        await validerEntitet(samtykkeskjemaEntitet, { groups: ['creation'] })
+        samtykkeskjemaEntitet.id = -1
+
         return await this.samtykkeskjemaOppbevaringssted.save(samtykkeskjemaEntitet)
     }
 
@@ -117,20 +127,6 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         }
 
         await this.samtykkeskjemaOppbevaringssted.remove(samtykkeskjema)
-    }
-
-    private async erDuplikat(samtykkeskjema: ISamtykkeskjema): Promise<boolean> {
-        const { tittel, typeSamtykkeskjema } = samtykkeskjema
-
-        const duplikat = await this.database.getRepository(Samtykkeskjema).find({
-            where: {
-                tittel,
-                typeSamtykkeskjema
-                // Legge inn sjekk for eieren av samtykkeskjemaet
-            }
-        })
-
-        return duplikat.length > 0
     }
 
     private serialisereDatoer(samtykkeskjema: ISamtykkeskjema) {
