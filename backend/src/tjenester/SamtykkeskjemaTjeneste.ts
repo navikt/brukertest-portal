@@ -75,7 +75,22 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         return await this.samtykkeskjemaOppbevaringssted.save(samtykkeskjemaEntitet)
     }
 
-    // Legge inn sjekk for eieren av samtykkeskjemaet
+    private async hentAlleSamtykkeskjemaer(): Promise<Samtykkeskjema[] | undefined> {
+        let samtykkeskjemaer: Samtykkeskjema[]
+
+        samtykkeskjemaer = await this.samtykkeskjemaOppbevaringssted.find({
+            where: {
+                administrator: this.eier
+            }
+        })
+
+        if (samtykkeskjemaer.length === 0) {
+            throw new IkkeFunnetError('Fant ingen samtykkeskjemaer')
+        }
+
+        return samtykkeskjemaer
+    }
+
     private async hentSamtykkeskjemaEtterId(id: number): Promise<Samtykkeskjema | undefined> {
         let samtykkeskjema: Samtykkeskjema | undefined
 
