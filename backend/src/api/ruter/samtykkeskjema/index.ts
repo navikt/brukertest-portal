@@ -1,15 +1,14 @@
-import { request, response, Router } from 'express'
-import { SamtykkeskjemaTjeneste } from '../../../tjenester/SamtykkeskjemaTjeneste'
-import { database } from '../../../lastere/laster'
-import { ISamtykkeskjema } from '@/modeller/Samtykkeskjema/ISamtykkeskjema'
-import { DårligForespørselError } from '../../../lib/errors/rest/DårligForespørselError'
-import { TomForespørselError } from 'lib/errors/rest/TomForespørselError'
-import { StatusCodes } from 'http-status-codes'
+import { DuplikatError } from '@/lib/errors/database/DuplikatError'
 import { IkkeFunnetError } from '@/lib/errors/database/IkkeFunnetError'
 import { FeilIEntitetError } from '@/lib/errors/validering/FeilIEntitetError'
-import { DuplikatError } from '@/lib/errors/database/DuplikatError'
-import { IngenEierError } from '@/lib/errors/IngenEierError'
+import { ISamtykkeskjema } from '@/modeller/Samtykkeskjema/ISamtykkeskjema'
 import { Samtykkeskjema } from '@/modeller/Samtykkeskjema/SamtykkeskjemaEntitet'
+import { Router } from 'express'
+import { StatusCodes } from 'http-status-codes'
+import { TomForespørselError } from 'lib/errors/rest/TomForespørselError'
+import { database } from '../../../lastere/laster'
+import { DårligForespørselError } from '../../../lib/errors/rest/DårligForespørselError'
+import { SamtykkeskjemaTjeneste } from '../../../tjenester/SamtykkeskjemaTjeneste'
 
 const ruter = Router()
 

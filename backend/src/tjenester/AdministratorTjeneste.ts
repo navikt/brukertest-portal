@@ -1,7 +1,6 @@
 import { IkkeFunnetError } from '@/lib/errors/database/IkkeFunnetError'
 import { Administrator } from '@/modeller/Administrator/AdministratorEntitet'
 import { IAdministrator } from '@/modeller/Administrator/IAdministrator'
-import { Samtykkeskjema } from '@/modeller/Samtykkeskjema/SamtykkeskjemaEntitet'
 import { classToClass } from 'class-transformer'
 import { Connection, Repository } from 'typeorm'
 import { DuplikatError } from '../lib/errors/database/DuplikatError'
