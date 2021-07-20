@@ -6,6 +6,7 @@ import { Administrator } from '@/modeller/Administrator/AdministratorEntitet'
 import { renskDatabaseEntitetTabell } from '../Test.utils'
 import { FeilIEntitetError } from '@/lib/errors/validering/FeilIEntitetError'
 import { IkkeFunnetError } from '@/lib/errors/database/IkkeFunnetError'
+import { DuplikatError } from '@/lib/errors/database/DuplikatError'
 
 let db: Connection
 let administratorTjeneste: AdministratorTjeneste
@@ -60,6 +61,11 @@ it('skal ikke kune lage en administrator med feil i feltene', async () => {
             epost: 'Er det slikt man skriver epost?'
         })
     ).rejects.toThrow(FeilIEntitetError)
+})
+
+it('skal ikke kunne lage en duplikat administrator', async () => {
+    await administratorTjeneste.lag(frøDOO)
+    await expect(administratorTjeneste.lag(frøDOO)).rejects.toThrow(DuplikatError)
 })
 
 it('skal hente en lagret administrator', async () => {

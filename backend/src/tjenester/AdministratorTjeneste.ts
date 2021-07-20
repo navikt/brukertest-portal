@@ -25,12 +25,14 @@ export class AdministratorTjeneste {
         return classToClass(await this.hentAdministratorEtterId(id))
     }
 
+    async oppdater(id: number, dto: IAdministrator): Promise<Administrator | undefined> {
+        return classToClass(await this.oppdaterAdministratorEtterId(id, dto))
+    }
+
     private async lagAdministrator(nyAdministrator: IAdministrator): Promise<Administrator | undefined> {
         if (await this.erDuplikat(nyAdministrator)) {
             throw new DuplikatError('Administratoren er allerede registrert!')
         }
-
-        this.validerTelefonnummer(nyAdministrator.telefon)
 
         const administratorEntitet = this.administratorOppbevaringssted.create(nyAdministrator)
 
@@ -49,19 +51,31 @@ export class AdministratorTjeneste {
         return administrator
     }
 
+    private async oppdaterAdministratorEtterId(
+        id: number,
+        administrator: IAdministrator
+    ): Promise<Administrator | undefined> {
+        let eksisterendeAdministrator: Administrator | undefined
+
+        eksisterendeAdministrator = await this.administratorOppbevaringssted.findOne(id)
+
+        if (!eksisterendeAdministrator) {
+            throw new IkkeFunnetError('Fant ikke administratoren')
+        }
+
+        const oppdatertAdministrator = this.administratorOppbevaringssted.create(administrator)
+        oppdatertAdministrator.id = eksisterendeAdministrator.id
+
+        await validerEntitet(oppdatertAdministrator, { strictGroups: true })
+
+        return await this.administratorOppbevaringssted.save(oppdatertAdministrator)
+    }
+
     private async erDuplikat(administrator: IAdministrator): Promise<boolean> {
         const { epost } = administrator
 
         const duplikat = await this.administratorOppbevaringssted.find({ where: { epost } })
 
         return duplikat.length > 0
-    }
-
-    private validerTelefonnummer(telefonnummer: string): void {
-        const analysertTelefonnummer = parsePhoneNumberFromString(telefonnummer)
-
-        if (!analysertTelefonnummer) {
-            throw new FeilIEntitetError('Telefonnummeret er ikke på riktig format')
-        }
     }
 }
