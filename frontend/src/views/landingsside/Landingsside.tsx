@@ -1,5 +1,4 @@
 import React from 'react'
-import '../../style/less/views/landingsside.less'
 import Hovedomrade from '../../components/hovedomrade/Hovedomrade'
 
 export default function Landingsside(): React.ReactElement {

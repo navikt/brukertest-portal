@@ -1,6 +1,5 @@
 import React from 'react'
 import { Sidetittel } from 'nav-frontend-typografi'
-import '../../style/less/components/navigation/topBar.less'
 import LoginButtonTopBar from '../../containers/button/LoginButtonTopBar'
 import LogoutButtonTopBar from '../../containers/button/LogoutButtonTopBar'
 import { useAppState } from '../../core/state/AppStateContext'
