@@ -2,6 +2,7 @@ import { IAdministrator } from './IAdministrator'
 import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
 import { IsEmail, IsPhoneNumber, IsString } from 'class-validator'
 import { Samtykkeskjema } from '../Samtykkeskjema/SamtykkeskjemaEntitet'
+import { ErTelefonnummer } from './begrensninger/ErTelefonNummer'
 
 @Entity()
 export class Administrator implements IAdministrator {
@@ -29,7 +30,7 @@ export class Administrator implements IAdministrator {
     avdeling!: string
 
     @Column({ type: 'varchar' })
-    @IsPhoneNumber()
+    @ErTelefonnummer('id')
     telefon!: string
 
     @Column({ type: 'varchar' })

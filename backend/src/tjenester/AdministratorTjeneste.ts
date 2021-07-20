@@ -5,6 +5,8 @@ import { IAdministrator } from '@/modeller/Administrator/IAdministrator'
 import { classToClass } from 'class-transformer'
 import { Connection, Repository } from 'typeorm'
 import { DuplikatError } from '../lib/errors/database/DuplikatError'
+import { parsePhoneNumberFromString } from 'libphonenumber-js'
+import { FeilIEntitetError } from '@/lib/errors/validering/FeilIEntitetError'
 
 export class AdministratorTjeneste {
     private database: Connection
@@ -27,6 +29,8 @@ export class AdministratorTjeneste {
         if (await this.erDuplikat(nyAdministrator)) {
             throw new DuplikatError('Administratoren er allerede registrert!')
         }
+
+        this.validerTelefonnummer(nyAdministrator.telefon)
 
         const administratorEntitet = this.administratorOppbevaringssted.create(nyAdministrator)
 
@@ -51,5 +55,13 @@ export class AdministratorTjeneste {
         const duplikat = await this.administratorOppbevaringssted.find({ where: { epost } })
 
         return duplikat.length > 0
+    }
+
+    private validerTelefonnummer(telefonnummer: string): void {
+        const analysertTelefonnummer = parsePhoneNumberFromString(telefonnummer)
+
+        if (!analysertTelefonnummer) {
+            throw new FeilIEntitetError('Telefonnummeret er ikke på riktig format')
+        }
     }
 }
