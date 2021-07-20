@@ -5,7 +5,7 @@ import '../../style/less/views/samtykkeskjema.less'
 export default function Samtykkeskjema(): React.ReactElement {
     return (
         <div className="samtykkeskjema">
-            <Hovedomrade />
+            <Hovedomrade visFremgangsknapper={true} tittel={'Samtykke til intervju'} />
         </div>
     )
 }
