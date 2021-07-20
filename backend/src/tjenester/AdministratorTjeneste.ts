@@ -21,7 +21,7 @@ export class AdministratorTjeneste {
         return classToClass(await this.lagAdministrator(dto))
     }
 
-    async hent(id: number): Promise<Administrator | undefined> {
+    async hentEtterId(id: number): Promise<Administrator | undefined> {
         return classToClass(await this.hentAdministratorEtterId(id))
     }
 
