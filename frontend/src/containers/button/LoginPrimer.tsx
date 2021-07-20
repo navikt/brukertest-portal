@@ -1,5 +1,4 @@
 import React from 'react'
-import '../../style/less/containers/loginPrimer.less'
 import { Hovedknapp } from 'nav-frontend-knapper'
 import { Link } from 'react-router-dom'
 import { AuthLevel, useAppStateDispatcher } from '../../core/state/AppStateContext'
