@@ -1,23 +1,20 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import '../../style/less/containers/logoutButtonTopBar.less'
 import { Flatknapp } from 'nav-frontend-knapper'
-import { BrowserRouter as Router, Link } from 'react-router-dom'
-import { AppStateContext } from '../../core/state/AppStateContext'
+import { Link } from 'react-router-dom'
+import { useAppStateDispatcher } from '../../core/state/AppStateContext'
 
 export default function LogoutButtonTopBar(): React.ReactElement {
-    const [, setHarLoggetInn] = useContext(AppStateContext)
-
+    const appDispatcher = useAppStateDispatcher()
     function updateLogin() {
-        setHarLoggetInn(false)
+        appDispatcher.setLogoutState()
     }
 
     return (
-        <Router>
-            <Link to="/" style={{ textDecoration: 'none' }}>
-                <Flatknapp className="logoutBtn1" onClick={updateLogin}>
-                    Logg ut
-                </Flatknapp>
-            </Link>
-        </Router>
+        <Link to="/" style={{ textDecoration: 'none' }}>
+            <Flatknapp className="logoutBtn1" onClick={updateLogin}>
+                Logg ut
+            </Flatknapp>
+        </Link>
     )
 }

@@ -2,14 +2,13 @@ import React from 'react'
 import { Innholdstittel } from 'nav-frontend-typografi'
 import '../../style/less/components/hovedomrade/hovedomradeTopp.less'
 import { HandsHeart } from '@navikt/ds-icons'
+import { HovedomradeProps } from './Hovedomrade'
 
-export default function HovedomradeTopp(): React.ReactElement {
+export default function HovedomradeTopp(props: HovedomradeProps): React.ReactElement {
     return (
         <div className="hovedomradeTopp">
             <HandsHeart className="toppIcon" />
-            <Innholdstittel className="infotekst">
-                {'Velkommen til NAVs innbyggerpanel'}
-            </Innholdstittel>
+            <Innholdstittel className="infotekst">{props.tittel}</Innholdstittel>
             <div className="divider"></div>
         </div>
     )

@@ -1,15 +1,15 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Sidetittel } from 'nav-frontend-typografi'
 import '../../style/less/components/navigation/topBar.less'
 import LoginButtonTopBar from '../../containers/button/LoginButtonTopBar'
 import LogoutButtonTopBar from '../../containers/button/LogoutButtonTopBar'
-import { AppStateContext } from '../../core/state/AppStateContext'
+import { useAppState } from '../../core/state/AppStateContext'
 
 export default function TopBar(): React.ReactElement {
-    const [harLoggetInn] = useContext(AppStateContext)
+    const { isLoggedIn } = useAppState()
 
     function renderItems() {
-        if (harLoggetInn) {
+        if (isLoggedIn) {
             return (
                 <>
                     <LogoutButtonTopBar />

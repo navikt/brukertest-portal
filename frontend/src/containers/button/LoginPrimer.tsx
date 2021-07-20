@@ -1,23 +1,21 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import '../../style/less/containers/loginPrimer.less'
 import { Hovedknapp } from 'nav-frontend-knapper'
-import { BrowserRouter as Router, Link } from 'react-router-dom'
-import { AppStateContext } from '../../core/state/AppStateContext'
+import { Link } from 'react-router-dom'
+import { AuthLevel, useAppStateDispatcher } from '../../core/state/AppStateContext'
 
 export default function LoginPrimer(): React.ReactElement {
-    const [, setHarLoggetInn] = useContext(AppStateContext)
+    const appDispatcher = useAppStateDispatcher()
 
-    function updateLogin() {
-        setHarLoggetInn(true)
+    const updateLogin = () => {
+        appDispatcher.setLoginState(AuthLevel.administrator)
     }
 
     return (
-        <Router>
-            <Link to="/samtykkeskjema" style={{ textDecoration: 'none' }}>
-                <Hovedknapp className="hovedknapp" onClick={updateLogin}>
-                    Logg inn
-                </Hovedknapp>
-            </Link>
-        </Router>
+        <Link to="/samtykkeskjema" style={{ textDecoration: 'none' }}>
+            <Hovedknapp className="hovedknapp" onClick={updateLogin}>
+                Logg inn
+            </Hovedknapp>
+        </Link>
     )
 }

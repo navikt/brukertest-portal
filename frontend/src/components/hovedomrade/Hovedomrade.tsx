@@ -3,11 +3,16 @@ import '../../style/less/components/hovedomrade/hovedomrade.less'
 import HovedomradeTopp from './HovedomradeTopp'
 import Hovedinnhold from './Hovedinnhold'
 
-export default function Hovedomrade(): React.ReactElement {
+export interface HovedomradeProps {
+    tittel?: string
+    visFremgangsknapper?: boolean
+}
+
+export default function Hovedomrade(props: HovedomradeProps): React.ReactElement {
     return (
         <div className="hovedomrade">
-            <HovedomradeTopp />
-            <Hovedinnhold />
+            <HovedomradeTopp tittel={props.tittel} />
+            <Hovedinnhold visFremgangsknapper={props.visFremgangsknapper} />
         </div>
     )
 }
