@@ -72,10 +72,28 @@ ruter.put('/:id', async (request, response) => {
         } else if (error instanceof IkkeFunnetError) {
             response.status(StatusCodes.NOT_FOUND)
             response.send('Fant ikke administratoren du prøvde å oppdatere')
+        } else {
+            response.status(StatusCodes.INTERNAL_SERVER_ERROR)
+            response.send('Noe på serveren gikk gærnt...')
         }
     }
 })
 
-ruter.delete('/:id', async (request, response) => {})
+ruter.delete('/:id', async (request, response) => {
+    try {
+        const administratorTjeneste = new AdministratorTjeneste(database)
+        const id: number = Number.parseInt(request.params.id)
+        const resultat = await administratorTjeneste.slett(id)
+        response.status(StatusCodes.OK).json(resultat)
+    } catch (error) {
+        if (error instanceof IkkeFunnetError) {
+            response.status(StatusCodes.NOT_FOUND)
+            response.send('Vi fant ikke administratoren som du prøver å slette')
+        } else {
+            response.status(StatusCodes.INTERNAL_SERVER_ERROR)
+            response.send('Noe på serveren gikk gærnt...')
+        }
+    }
+})
 
 export default ruter

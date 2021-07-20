@@ -29,6 +29,10 @@ export class AdministratorTjeneste {
         return classToClass(await this.oppdaterAdministratorEtterId(id, dto))
     }
 
+    async slett(id: number): Promise<void> {
+        return classToClass(await this.slettAdministratorEtterId(id))
+    }
+
     private async lagAdministrator(nyAdministrator: IAdministrator): Promise<Administrator | undefined> {
         if (await this.erDuplikat(nyAdministrator)) {
             throw new DuplikatError('Administratoren er allerede registrert!')
@@ -69,6 +73,18 @@ export class AdministratorTjeneste {
         await validerEntitet(oppdatertAdministrator, { strictGroups: true })
 
         return await this.administratorOppbevaringssted.save(oppdatertAdministrator)
+    }
+
+    private async slettAdministratorEtterId(id: number): Promise<void> {
+        let administrator: Administrator | undefined
+
+        administrator = await this.administratorOppbevaringssted.findOne(id)
+
+        if (!administrator) {
+            throw new IkkeFunnetError('Fant ikke administratoren')
+        }
+
+        await this.administratorOppbevaringssted.remove(administrator)
     }
 
     private async erDuplikat(administrator: IAdministrator): Promise<boolean> {
