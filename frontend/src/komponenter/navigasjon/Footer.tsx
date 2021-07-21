@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReactComponent as NavLogoSort } from '../../style/assets/Sort.svg'
+import { ReactComponent as NavLogoSort } from '../../style/ressurser/Sort.svg'
 import Tekstomrade from 'nav-frontend-tekstomrade'
 import Lenke from 'nav-frontend-lenker'
 
