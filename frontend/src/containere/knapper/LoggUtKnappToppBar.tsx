@@ -5,13 +5,14 @@ import { useAppStateDispatcher } from '../../kjerne/state/AppStateContext'
 
 export default function LoggUtKnappToppBar(): React.ReactElement {
     const appDispatcher = useAppStateDispatcher()
-    function updateLogin() {
+
+    function oppdaterLoggInnState() {
         appDispatcher.settLoggUtState()
     }
 
     return (
         <Link to="/" style={{ textDecoration: 'none' }}>
-            <Flatknapp className="loggUtKnapp" onClick={updateLogin}>
+            <Flatknapp className="loggUtKnapp" onClick={oppdaterLoggInnState}>
                 Logg ut
             </Flatknapp>
         </Link>

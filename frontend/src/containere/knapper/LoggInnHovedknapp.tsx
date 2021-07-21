@@ -6,15 +6,13 @@ import { AuthLevel, useAppStateDispatcher } from '../../kjerne/state/AppStateCon
 export default function LoggInnHovedknapp(): React.ReactElement {
     const appDispatcher = useAppStateDispatcher()
 
-    const updateLogin = () => {
+    const oppdaterLoggInnState = () => {
         appDispatcher.settLoggInnState(AuthLevel.administrator)
     }
 
     return (
         <Link to="/samtykkeskjema" style={{ textDecoration: 'none' }}>
-            <Hovedknapp className="hovedknapp" onClick={updateLogin}>
-                Logg inn
-            </Hovedknapp>
+            <Hovedknapp onClick={oppdaterLoggInnState}>Logg inn</Hovedknapp>
         </Link>
     )
 }
