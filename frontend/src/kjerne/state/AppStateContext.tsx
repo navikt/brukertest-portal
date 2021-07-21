@@ -39,7 +39,7 @@ export interface IAppStateDispatcher {
 function settOppInitiellState() {
     const state = { ...appState }
 
-    state.erLoggetInn = true
+    state.erLoggetInn = false
     state.authLevel = AuthLevel.deltaker
 
     return state

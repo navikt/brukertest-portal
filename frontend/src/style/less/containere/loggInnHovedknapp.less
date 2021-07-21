@@ -1,24 +1,36 @@
 //Hovedknapp (Logg Inn)
-button.knapp.knapp--hoved {
+.knapp.knapp--hoved {
     color: black;
     background: @navOransjeLighten40;
     border-color: @navOransjeLighten40;
 }
 
-button.knapp.knapp--hoved:hover {
+.knapp.knapp--hoved:hover {
     color: black;
-    background: #ffd193;
+    background-color: #ffd193;
     border-color: #ffd193;
 }
 
-button.knapp.knapp--hoved:focus {
+.knapp.knapp--hoved:focus {
     box-shadow: 0 0 0 3px @navOransjeDarken60;
     border-color: @navOransjeLighten40;
 }
 
-button.knapp.knapp--hoved:active {
-    background: @navOransje;
+.knapp.knapp--hoved:active {
+    background-color: @navOransje;
     border-color: @navOransje;
     color: white;
     box-shadow: 0 0 0 3px @navOransjeDarken60;
+}
+
+.knapp.knapp--hoved:hover.knapp.knapp--hoved:focus {
+    color: black;
+    background-color: #ffd193;
+    border-color: #ffd193;
+}
+
+.knapp.knapp--hoved:hover.knapp.knapp--hoved:focus.knapp.knapp--hoved:active {
+    background-color: @navOransje;
+    border-color: @navOransje;
+    color: white;
 }
