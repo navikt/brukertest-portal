@@ -1,11 +1,16 @@
 import React from 'react'
+import Footer from './komponenter/navigasjon/Footer'
 import './style/less/main.less'
-import Landingsside from './views/landingsside/Landingsside'
+import Routes from './visninger/Routes'
+import { ProvideAppContext } from './kjerne/state/AppStateContext'
 
-const App = (): JSX.Element => (
-    <div className="App">
-        <Landingsside />
-    </div>
-)
-
-export default App
+export default function App(): React.ReactElement {
+    return (
+        <ProvideAppContext>
+            <div className="App">
+                <Routes />
+                <Footer />
+            </div>
+        </ProvideAppContext>
+    )
+}
