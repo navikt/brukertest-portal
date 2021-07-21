@@ -1,8 +1,8 @@
 import React from 'react'
-import Footer from './components/navigation/Footer'
+import Footer from './komponenter/navigasjon/Footer'
 import './style/less/main.less'
-import Routes from './views/Routes'
-import { ProvideAppContext } from './core/state/AppStateContext'
+import Routes from './visninger/Routes'
+import { ProvideAppContext } from './kjerne/state/AppStateContext'
 
 export default function App(): React.ReactElement {
     return (

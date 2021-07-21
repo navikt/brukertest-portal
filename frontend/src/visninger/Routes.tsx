@@ -1,0 +1,24 @@
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import ToppBar from '../komponenter/navigasjon/ToppBar'
+
+import Landingsside from './landingsside/Landingsside'
+import Samtykkeskjema from './samtykkeskjema/Samtykkeskjema'
+
+export default function Routes(): React.ReactElement {
+    return (
+        <Router>
+            <ToppBar />
+            <Switch>
+                <Route path="/" exact>
+                    <Landingsside />
+                </Route>
+                <Route path="/samtykkeskjema" exact>
+                    <Samtykkeskjema />
+                </Route>
+            </Switch>
+        </Router>
+    )
+}
+
+// Kan det være at den ikke rendrer de individuelle sidene? Må jeg kanskje linke dem til / og /samtykkeskjema?
