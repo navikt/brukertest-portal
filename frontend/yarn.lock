@@ -7851,12 +7851,12 @@ nav-frontend-js-utils@^1.0.19:
 
 nav-frontend-knapper-style@^2.0.2:
   version "2.0.2"
-  resolved "https://registry.npmjs.org/nav-frontend-knapper-style/-/nav-frontend-knapper-style-2.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/nav-frontend-knapper-style/-/nav-frontend-knapper-style-2.0.2.tgz#dc50788e65d920b1aa4f147c038ce7adc4585884"
   integrity sha512-e9JYSvwj+EERMXDuFMKrzUeXbTP5V04ZlejZ2jxEceF43zs3myZynnl6Za9aUcnOKQm4/62fTMGteo+phMB6oA==
 
 nav-frontend-knapper@^3.0.2:
   version "3.0.2"
-  resolved "https://registry.npmjs.org/nav-frontend-knapper/-/nav-frontend-knapper-3.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/nav-frontend-knapper/-/nav-frontend-knapper-3.0.2.tgz#8774b1840ab54421afe22ba688a2e24daa0063e4"
   integrity sha512-t+Ii7SfpAdGDzNUBmqBSfEWKGCTv6GjLf2rk3A9CmEL1rUCwo2BXPHNtSevPIbU9SRvb9e4nUo+aQAasIvt+Wg==
 
 nav-frontend-lenker-style@^2.0.1:
@@ -7886,7 +7886,7 @@ nav-frontend-skjema@^4.0.1:
 
 nav-frontend-tekstomrade@^3.0.1:
   version "3.0.1"
-  resolved "https://registry.npmjs.org/nav-frontend-tekstomrade/-/nav-frontend-tekstomrade-3.0.1.tgz"
+  resolved "https://registry.yarnpkg.com/nav-frontend-tekstomrade/-/nav-frontend-tekstomrade-3.0.1.tgz#0d8bbe1c3dc6ad734c6f01bead2726eb697979ae"
   integrity sha512-clT2aVHDG+5ReiBFWl1ftuuGxGSWqdtSp/6eKxiKEglYsPnkyo+unoFyZaCfoxg5j+cuSTGKSvuxMCLVSOQqeg==
   dependencies:
     "@navikt/textparser" "^2.0.0"
