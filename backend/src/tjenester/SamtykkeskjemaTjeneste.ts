@@ -1,16 +1,22 @@
+import { DårligForespørselError } from '@/lib/errors/rest/DårligForespørselError'
+import { Administrator } from '@/modeller/Administrator/AdministratorEntitet'
 import { classToClass } from 'class-transformer'
-import { validate } from 'class-validator'
+import { isBefore } from 'date-fns'
 import { Connection, Repository } from 'typeorm'
+import { validerEntitet } from '../hjelpere/validerEntitet'
+import { IHarEier } from '../interfaces/IHarEier'
+import { IkkeFunnetError } from '../lib/errors/database/IkkeFunnetError'
 import { ISamtykkeskjema } from '../modeller/Samtykkeskjema/ISamtykkeskjema'
 import { Samtykkeskjema } from '../modeller/Samtykkeskjema/SamtykkeskjemaEntitet'
-import { IkkeFunnetError } from '../lib/errors/database/IkkeFunnetError'
-import { FeilIEntitetError } from '../lib/errors/validering/FeilIEntitetError'
+import { AdministratorTjeneste } from './AdministratorTjeneste'
 
-export class SamtykkeskjemaTjeneste {
+export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
+    eier: Administrator | undefined
     private database: Connection
     private samtykkeskjemaOppbevaringssted: Repository<Samtykkeskjema>
 
-    constructor(database: Connection) {
+    constructor(database: Connection, eier?: Administrator) {
+        this.eier = eier
         this.database = database
         this.samtykkeskjemaOppbevaringssted = this.database.getRepository(Samtykkeskjema)
     }
@@ -19,7 +25,11 @@ export class SamtykkeskjemaTjeneste {
         return classToClass(await this.lagSamtykkeskjema(dto))
     }
 
-    async hent(id: number): Promise<Samtykkeskjema | undefined> {
+    async hent(): Promise<Samtykkeskjema[] | undefined> {
+        return classToClass(await this.hentAlleSamtykkeskjemaer())
+    }
+
+    async hentEtterId(id: number): Promise<Samtykkeskjema | undefined> {
         return classToClass(await this.hentSamtykkeskjemaEtterId(id))
     }
 
@@ -31,33 +41,106 @@ export class SamtykkeskjemaTjeneste {
         return classToClass(await this.slettSamtykkeskjemaEtterId(id))
     }
 
-    // TODO: Legge inn sjekk for start og slutt dato
+    /**
+     * Lager et samtykkyskjemma entitet fra et samtykkeskjema interface. Diverse valideringer blir gjort som:
+     *  - En eier av samtykkeskjemaet må legges ved.
+     *  - Eier av samtykkeskjemaet må eksistere
+     *  - Startdato må være før sluttdato i samtykkeskjemaet
+     *  - Samtykkeskjemaet må være gyldig i forhold til entitet reglene
+     *
+     * @param nyttSamtykkeskjema Samtykkeskjemaet man har lyst til å lage entitet fra
+     * @returns Samtykkeskjemaet som ble lagret i databasen
+     */
     private async lagSamtykkeskjema(nyttSamtykkeskjema: ISamtykkeskjema): Promise<Samtykkeskjema | undefined> {
-        if (await this.erDuplikat(nyttSamtykkeskjema)) {
-            throw new Error('Samtykkeskjemaet finnes allerede!')
+        const administratorTjeneste = new AdministratorTjeneste(this.database)
+
+        // Vi må serialisere datoene til dato objekter, siden de kommer inn som strings
+        this.serialisereDatoer(nyttSamtykkeskjema)
+
+        if (nyttSamtykkeskjema.administrator !== this.eier) {
+            throw new IkkeFunnetError('Ingen eier')
+        }
+
+        if (!isBefore(nyttSamtykkeskjema.startDato, nyttSamtykkeskjema.sluttDato)) {
+            throw new DårligForespørselError('Sluttdato er før startdato')
         }
 
         const samtykkeskjemaEntitet = this.samtykkeskjemaOppbevaringssted.create(nyttSamtykkeskjema)
+
+        await validerEntitet(samtykkeskjemaEntitet, { groups: ['creation'] })
+        samtykkeskjemaEntitet.id = -1
+
         return await this.samtykkeskjemaOppbevaringssted.save(samtykkeskjemaEntitet)
     }
 
-    // Legge inn sjekk for eieren av samtykkeskjemaet
-    private async hentSamtykkeskjemaEtterId(id: number): Promise<Samtykkeskjema> {
-        const samtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id)
+    /**
+     * Henter alle samtykkeskjemaer som har en relasjon til eieren av tjeneste klassen.
+     *
+     * @returns En liste av samtykkeskjema entiter hvis funnet.
+     */
+    private async hentAlleSamtykkeskjemaer(): Promise<Samtykkeskjema[] | undefined> {
+        let samtykkeskjemaer: Samtykkeskjema[]
+
+        samtykkeskjemaer = await this.samtykkeskjemaOppbevaringssted.find({
+            where: {
+                administrator: this.eier
+            }
+        })
+
+        if (samtykkeskjemaer.length === 0) {
+            throw new IkkeFunnetError('Fant ingen samtykkeskjemaer')
+        }
+
+        return samtykkeskjemaer
+    }
+
+    /**
+     * Henter et spesifikt samtykkeskjema utifra gitt ID. Samtykkeskjemaet som prøves å hentes må
+     * også ha en relasjon til eieren av tjenesteklassen.
+     *
+     * @param id ID'en til samtykkeskjemaet man vil hente
+     * @returns Et samtykkeskjema entitet
+     */
+    private async hentSamtykkeskjemaEtterId(id: number): Promise<Samtykkeskjema | undefined> {
+        let samtykkeskjema: Samtykkeskjema | undefined
+
+        if (this.eier) {
+            samtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id, {
+                relations: ['administrator'],
+                where: {
+                    administrator: this.eier
+                }
+            })
+        }
 
         if (!samtykkeskjema) {
-            throw new IkkeFunnetError('Fant ikke samtykkeskjemet')
+            throw new IkkeFunnetError('Fant ikke samtykkeskjemaet')
         }
 
         return samtykkeskjema
     }
 
-    // Legge inn sjekk for eieren av samtykkeskjemaet
+    /**
+     * Opddaterer et spesifikt samtykkeskjema utifra gitt ID. Samtykkeskjemaet som prøves å oppdateres må
+     * også ha relasjon til eieren av tjenesteklassen.
+     *
+     * @param id ID'en til samtykkeskjemaet man vil oppdatere
+     * @param samtykkeskjema Samtykkeskjemaet man vil oppdatere til
+     */
     private async oppdaterSamtykkeskjemaEtterId(
         id: number,
         samtykkeskjema: ISamtykkeskjema
     ): Promise<Samtykkeskjema | undefined> {
-        const eksisterendeSamtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id)
+        let eksisterendeSamtykkeskjema: Samtykkeskjema | undefined
+
+        if (this.eier) {
+            eksisterendeSamtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id, {
+                relations: ['administrator'],
+                where: {
+                    administrator: this.eier
+                }
+            })
+        }
 
         if (!eksisterendeSamtykkeskjema) {
             throw new IkkeFunnetError('Fant ikke samtykkeskjemaet')
@@ -66,18 +149,28 @@ export class SamtykkeskjemaTjeneste {
         const oppdatertSamtykkeskjema = this.samtykkeskjemaOppbevaringssted.create(samtykkeskjema)
         oppdatertSamtykkeskjema.id = eksisterendeSamtykkeskjema.id
 
-        await validate(oppdatertSamtykkeskjema).then((feil) => {
-            if (feil.length > 0) {
-                throw new FeilIEntitetError('Entititen er ikke valid')
-            }
-        })
+        await validerEntitet(oppdatertSamtykkeskjema, { strictGroups: true })
 
         return await this.samtykkeskjemaOppbevaringssted.save(oppdatertSamtykkeskjema)
     }
 
-    // Legge inn sjekk for eieren av samtykkeskjemaet
+    /**
+     * Sletter et spesifikt samtykkeskjema utifra gitt ID. Samtykkeskjemaet som prøves å slettes må
+     * også ha relasjon til eieren av tjenesteklassen.
+     *
+     * @param id ID'en til samtykkeskjemaet man vil slette
+     */
     private async slettSamtykkeskjemaEtterId(id: number): Promise<void> {
-        const samtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id)
+        let samtykkeskjema: Samtykkeskjema | undefined
+
+        if (this.eier) {
+            samtykkeskjema = await this.samtykkeskjemaOppbevaringssted.findOne(id, {
+                relations: ['administrator'],
+                where: {
+                    administrator: this.eier
+                }
+            })
+        }
 
         if (!samtykkeskjema) {
             throw new IkkeFunnetError('Fant ikke samtykkeskjemet')
@@ -86,17 +179,8 @@ export class SamtykkeskjemaTjeneste {
         await this.samtykkeskjemaOppbevaringssted.remove(samtykkeskjema)
     }
 
-    private async erDuplikat(samtykkeskjema: ISamtykkeskjema): Promise<boolean> {
-        const { tittel, typeSamtykkeskjema } = samtykkeskjema
-
-        const duplikat = await this.database.getRepository(Samtykkeskjema).find({
-            where: {
-                tittel,
-                typeSamtykkeskjema
-                // Legge inn sjekk for eieren av samtykkeskjemaet
-            }
-        })
-
-        return duplikat.length > 0
+    private serialisereDatoer(samtykkeskjema: ISamtykkeskjema) {
+        samtykkeskjema.startDato = new Date(samtykkeskjema.startDato)
+        samtykkeskjema.sluttDato = new Date(samtykkeskjema.sluttDato)
     }
 }
