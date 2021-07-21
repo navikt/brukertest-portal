@@ -9,11 +9,7 @@ export class Samtykkeskjema implements ISamtykkeskjema {
     @PrimaryGeneratedColumn()
     id!: number
 
-    @ManyToOne(() => Administrator, (administrator) => administrator.samtykkeskjemaer, {
-        cascade: true,
-        onDelete: 'CASCADE',
-        eager: true
-    })
+    @ManyToOne(() => Administrator, (administrator) => administrator.samtykkeskjemaer)
     administrator!: Administrator
 
     @Column({ type: 'varchar' })

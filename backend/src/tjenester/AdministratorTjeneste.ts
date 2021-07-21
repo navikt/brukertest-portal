@@ -40,7 +40,7 @@ export class AdministratorTjeneste {
 
         const administratorEntitet = this.administratorOppbevaringssted.create(nyAdministrator)
 
-        await validerEntitet(administratorEntitet, { groups: ['creation'] })
+        await validerEntitet(administratorEntitet, { strictGroups: true })
 
         return await this.administratorOppbevaringssted.save(administratorEntitet)
     }

@@ -77,3 +77,43 @@ it('skal hente en lagret administrator', async () => {
 it('skal kaste error når man prøver å hente en administrator som ikke finnes', async () => {
     await expect(administratorTjeneste.hentEtterId(345345)).rejects.toThrow(IkkeFunnetError)
 })
+
+it('skal slette en lagret administrator', async () => {
+    const administrator = await administratorTjeneste.lag(frøDOO)
+    await administratorTjeneste.slett(administrator!.id)
+    await expect(administratorTjeneste.hentEtterId(administrator!.id)).rejects.toThrow(IkkeFunnetError)
+})
+
+it('skal ikke slette en administrator som ikke finnes', async () => {
+    await expect(administratorTjeneste.slett(325235)).rejects.toThrow(IkkeFunnetError)
+})
+
+it('skal kunne oppdatere en eksisterende administrator', async () => {
+    const administrator = await administratorTjeneste.lag(frøDOO)
+    const gammelEpost = administrator!.epost
+    const oppdatertAdministrator = await administratorTjeneste.oppdater(administrator!.id, {
+        fornavn: 'Heltoni',
+        etternavn: 'Heroni',
+        team: 'Naviloni',
+        produktområde: 'Salitoni',
+        avdeling: 'NAVIT',
+        telefon: '+47 123 45 678',
+        epost: 'heltoni.heroni@nav.no'
+    })
+    expect(oppdatertAdministrator!.epost).not.toBe(gammelEpost)
+})
+
+it('skal ikke kunne oppdatere en eksisterende administrator med feil i feltene', async () => {
+    const administrator = await administratorTjeneste.lag(frøDOO)
+    await expect(
+        administratorTjeneste.oppdater(administrator!.id, {
+            fornavn: '',
+            etternavn: 'nordmann',
+            team: 'Teamet',
+            produktområde: 'Produktområdet',
+            avdeling: 'Avdelignen',
+            telefon: 'sidhgsoigs',
+            epost: 'Er det slikt man skriver epost?'
+        })
+    ).rejects.toThrow(FeilIEntitetError)
+})
