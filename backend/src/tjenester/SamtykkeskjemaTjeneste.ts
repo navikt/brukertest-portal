@@ -125,7 +125,7 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
      * også ha relasjon til eieren av tjenesteklassen.
      *
      * @param id ID'en til samtykkeskjemaet man vil oppdatere
-     * @param samtykkeskjema Opddaterte samtykkeskjema entiteten
+     * @param samtykkeskjema Samtykkeskjemaet man vil oppdatere til
      */
     private async oppdaterSamtykkeskjemaEtterId(
         id: number,

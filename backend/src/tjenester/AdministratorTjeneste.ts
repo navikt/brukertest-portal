@@ -33,6 +33,14 @@ export class AdministratorTjeneste {
         return classToClass(await this.slettAdministratorEtterId(id))
     }
 
+    /**
+     * Lager en administrator entitet fra en administrator interface. Diverse valideringer blir gjort som:
+     *  - Om administratoren er duplikat => epost er lik
+     *  - Alle feltene er gyldige => epost er på riktig format, telefon er på riktig format
+     *
+     * @param nyAdministrator Administratoren man har lyst til å lage en entitet fra
+     * @returns Administratoren som ble lagret i databasen
+     */
     private async lagAdministrator(nyAdministrator: IAdministrator): Promise<Administrator | undefined> {
         if (await this.erDuplikat(nyAdministrator)) {
             throw new DuplikatError('Administratoren er allerede registrert!')
@@ -45,6 +53,12 @@ export class AdministratorTjeneste {
         return await this.administratorOppbevaringssted.save(administratorEntitet)
     }
 
+    /**
+     * Henter en spesifik administrator utifra gitt ID.
+     *
+     * @param id ID'en til administratoren man vil hente
+     * @returns En administrator entitet
+     */
     private async hentAdministratorEtterId(id: number): Promise<Administrator | undefined> {
         const administrator = await this.administratorOppbevaringssted.findOne(id)
 
@@ -55,6 +69,12 @@ export class AdministratorTjeneste {
         return administrator
     }
 
+    /**
+     * Oppdaterer en spesifik administrator utifra gitt ID.
+     *
+     * @param id ID'en til administratoren man vil oppdatere
+     * @param administrator Administratoren man vil oppdatere til
+     */
     private async oppdaterAdministratorEtterId(
         id: number,
         administrator: IAdministrator
@@ -75,6 +95,11 @@ export class AdministratorTjeneste {
         return await this.administratorOppbevaringssted.save(oppdatertAdministrator)
     }
 
+    /**
+     * Sletter en spesifik administrator utifra gitt ID
+     *
+     * @param id ID'en til administratoren man vil slette.
+     */
     private async slettAdministratorEtterId(id: number): Promise<void> {
         let administrator: Administrator | undefined
 
