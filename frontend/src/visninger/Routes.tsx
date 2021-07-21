@@ -20,5 +20,3 @@ export default function Routes(): React.ReactElement {
         </Router>
     )
 }
-
-// Kan det være at den ikke rendrer de individuelle sidene? Må jeg kanskje linke dem til / og /samtykkeskjema?
