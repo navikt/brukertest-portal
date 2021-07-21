@@ -21,8 +21,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           yarn
-          yarn test
-          docker build . -t ${IMAGE} - ${IMAGE_LATEST}
+          docker build . -t ${IMAGE} -t ${IMAGE_LATEST}
           docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
           docker push ${IMAGE}
           docker push ${IMAGE_LATEST}
