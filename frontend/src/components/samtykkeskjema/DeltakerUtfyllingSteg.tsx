@@ -2,7 +2,6 @@ import React, { ReactElement } from 'react'
 import { Input } from 'nav-frontend-skjema'
 import Tekstomrade, {BoldRule} from 'nav-frontend-tekstomrade'
 import { CheckboksPanelGruppe } from 'nav-frontend-skjema'
-import { Hovedknapp } from 'nav-frontend-knapper'
 
 export default function DeltakerUtfyllingSteg(): ReactElement {
     return (
@@ -11,8 +10,9 @@ export default function DeltakerUtfyllingSteg(): ReactElement {
                 <Input label="Fornavn" className="navn-input" />
                 <Input label="Etternavn" className="navn-input" />
             </div>
-            <Input label="E-postadresse"/>
-            
+            <div className="epost-input">
+                <Input label="E-postadresse"/>
+            </div>
             <CheckboksPanelGruppe 
                 legend={
                     <Tekstomrade rules={[BoldRule]} className="type-samtykke-infotekst">
@@ -28,7 +28,6 @@ export default function DeltakerUtfyllingSteg(): ReactElement {
                     //Veldig fin tom funskjon
                 }}
             />
-            <Hovedknapp>Jeg samtykker</Hovedknapp>
         </>
     )
 }
