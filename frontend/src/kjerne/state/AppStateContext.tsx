@@ -1,5 +1,11 @@
-import React, { useState, createContext, SetStateAction, Dispatch, useEffect } from 'react'
-import { useContext } from 'react'
+import React, {
+    useState,
+    createContext,
+    SetStateAction,
+    Dispatch,
+    useEffect,
+    useContext,
+} from 'react'
 
 export const AppStateContext = createContext<(boolean | Dispatch<SetStateAction<boolean>>)[]>([])
 
