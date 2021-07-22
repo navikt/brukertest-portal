@@ -2,6 +2,7 @@ import { CheckboksPanelGruppe } from 'nav-frontend-skjema'
 import Tekstomrade, { BoldRule } from 'nav-frontend-tekstomrade'
 import React, { ReactElement } from 'react'
 
+//TODO Finne et mer passende navn for komponentet
 export default function JegForstårSteg(): ReactElement {
     return (
         <>
