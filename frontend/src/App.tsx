@@ -1,4 +1,3 @@
-import React from 'react'
 import Footer from './komponenter/navigasjon/Footer'
 import './style/less/main.less'
 import Routes from './visninger/Routes'
