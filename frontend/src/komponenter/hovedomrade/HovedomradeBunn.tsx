@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Tilbakeknapp, Nesteknapp } from 'nav-frontend-ikonknapper'
 import { HovedomradeProps } from './Hovedomrade'
 import { SamtykkeContext } from '../../kjerne/state/SamtykkeskjemaContext'
@@ -9,12 +9,20 @@ export default function HovedomradeBunn(props: HovedomradeProps): React.ReactEle
 
     const { samtykkeskjemaStegStates, dispatchSamtykkeskjemaSteg } = useSamtykkeskjemaSteg()
 
+    const [steg, settSteg] = useState<number>(0)
+
     const hoppTilNesteSteg = () => {
-        dispatchSamtykkeskjemaSteg({ index: 1 })
+        if (steg >= 0 && steg <= 6) {
+            settSteg(steg + 1)
+            dispatchSamtykkeskjemaSteg({ index: steg })
+        }
     }
 
     const hoppTilForrigeSteg = () => {
-        dispatchSamtykkeskjemaSteg({ index: 0 })
+        if (steg >= 0 && steg <= 6) {
+            settSteg(steg - 1)
+            dispatchSamtykkeskjemaSteg({ index: steg })
+        }
     }
 
     const Knapper = () => (

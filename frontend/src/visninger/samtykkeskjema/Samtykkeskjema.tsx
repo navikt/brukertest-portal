@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext } from 'react'
+import React, { ReactElement, ReactNode, useContext } from 'react'
 import Hovedomrade from '../../komponenter/hovedomrade/Hovedomrade'
 import Stegindikator from 'nav-frontend-stegindikator'
 import { SamtykkeContext, SamtykkeProvider } from '../../kjerne/state/SamtykkeskjemaContext'
@@ -39,28 +39,25 @@ type UseSamtykkeskjemaStegReturn = {
 
 export type SamtykkeskjemaAction = {
     index: number
-    //data: any | ReactNode
 }
 
 export interface SamtykkeskjemaStegState {
-    komponentData: any
+    komponent: ReactElement
 }
 
 function samtykkeskjemaReducer(
     state: SamtykkeskjemaStegState,
     action: SamtykkeskjemaAction,
 ): SamtykkeskjemaStegState {
-    const MAX_STEG = 7
-
     switch (action.index) {
         case 0:
-            console.log('Back to the start babyyyyyyy')
             break
         case 1:
             // gjøre klar data, og returnere den til komponentet
             console.log('kom seg videre til steg 1')
             break
     }
+    //returnere komponent til slutt
     return state
 }
 
