@@ -2,9 +2,10 @@ import React, { useContext } from 'react'
 import { Tilbakeknapp, Nesteknapp } from 'nav-frontend-ikonknapper'
 import { HovedomradeProps } from './Hovedomrade'
 import { StegContext } from '../../kjerne/state/StegContext'
+import { useAppState } from '../../kjerne/state/AppStateContext'
 
 export default function HovedomradeBunn(props: HovedomradeProps): React.ReactElement {
-    //const [hoppTilForrigeSteg, hoppTilNesteSteg] = useContext(SamtykkeContext)
+    const { erLoggetInn } = useAppState()
 
     const [steg, settSteg] = useContext(StegContext)
 
@@ -23,5 +24,5 @@ export default function HovedomradeBunn(props: HovedomradeProps): React.ReactEle
         </div>
     )
 
-    return <div>{props.visFremgangsknapper ? <Knapper /> : null}</div>
+    return <div>{erLoggetInn ? <Knapper /> : null}</div>
 }

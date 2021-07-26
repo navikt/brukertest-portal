@@ -7,9 +7,8 @@ export default function Samtykkeskjema(): React.ReactElement {
     const [steg] = useContext(StegContext)
 
     return (
-        
         <div className="samtykkeskjema">
-            <Hovedomrade visFremgangsknapper={true} tittel={'Samtykke til intervju'} />
+            <Hovedomrade tittel={'Samtykke til intervju'} />
             <div className="steg">
                 <Stegindikator
                     steg={[
@@ -25,7 +24,5 @@ export default function Samtykkeskjema(): React.ReactElement {
                 />
             </div>
         </div>
-
     )
 }
-

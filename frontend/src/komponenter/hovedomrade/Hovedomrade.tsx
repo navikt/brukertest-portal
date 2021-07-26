@@ -13,7 +13,7 @@ export default function Hovedomrade(props: HovedomradeProps): React.ReactElement
         <div className="hovedomrade">
             <HovedomradeTopp tittel={props.tittel} />
             <Hovedinnhold />
-            <HovedomradeBunn visFremgangsknapper={props.visFremgangsknapper} />
+            <HovedomradeBunn />
         </div>
     )
 }
