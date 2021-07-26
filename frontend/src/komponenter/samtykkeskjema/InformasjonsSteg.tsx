@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { Element, Normaltekst } from 'nav-frontend-typografi'
+import { Undertittel, Normaltekst } from 'nav-frontend-typografi'
 
 export interface IInformasjonsStegInnhold {
     førsteTittel: string
@@ -14,9 +14,9 @@ export default function InformasjonsSteg(
 ): ReactElement {
     return (
         <div className="informasjon-steg-container">
-            <Element>{informasjonsInnhold.førsteTittel}</Element>
+            <Undertittel>{informasjonsInnhold.førsteTittel}</Undertittel>
             <Normaltekst>{informasjonsInnhold.førsteAvsnitt}</Normaltekst>
-            <Element>{informasjonsInnhold.andreTittel}</Element>
+            <Undertittel>{informasjonsInnhold.andreTittel}</Undertittel>
             <Normaltekst>{informasjonsInnhold.andreAvsnitt}</Normaltekst>
             <Normaltekst>{informasjonsInnhold.ekstraAvsnitt}</Normaltekst>
         </div>
