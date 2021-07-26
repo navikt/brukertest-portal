@@ -9,6 +9,8 @@ import { ISamtykkeskjema } from '../modeller/Samtykkeskjema/ISamtykkeskjema'
 import { Samtykkeskjema } from '../modeller/Samtykkeskjema/SamtykkeskjemaEntitet'
 import { AdministratorTjeneste } from './AdministratorTjeneste'
 import { DårligForespørselError } from '@/lib/errors/http/DårligForespørselError'
+import { IkkeFunnetError } from '@/lib/errors/http/IkkeFunnetError'
+import { ServerErrorMeldinger } from '@/lib/errors/meldinger/ServerErrorMeldinger'
 
 export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
     eier: Administrator | undefined
@@ -88,7 +90,7 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         })
 
         if (samtykkeskjemaer.length === 0) {
-            throw new IkkeFunnetError('Fant ingen samtykkeskjemaer')
+            throw new IkkeFunnetError({ melding: ServerErrorMeldinger.ikkeFunnet('Samtykkeskjema') })
         }
 
         return samtykkeskjemaer
@@ -114,7 +116,7 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         }
 
         if (!samtykkeskjema) {
-            throw new IkkeFunnetError('Fant ikke samtykkeskjemaet')
+            throw new IkkeFunnetError({ melding: ServerErrorMeldinger.ikkeFunnet('Samtykkeskjema') })
         }
 
         return samtykkeskjema
@@ -143,7 +145,7 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         }
 
         if (!eksisterendeSamtykkeskjema) {
-            throw new IkkeFunnetError('Fant ikke samtykkeskjemaet')
+            throw new IkkeFunnetError({ melding: ServerErrorMeldinger.ikkeFunnet('Samtykkeskjema') })
         }
 
         const oppdatertSamtykkeskjema = this.samtykkeskjemaOppbevaringssted.create(samtykkeskjema)
@@ -173,7 +175,7 @@ export class SamtykkeskjemaTjeneste implements IHarEier<Samtykkeskjema> {
         }
 
         if (!samtykkeskjema) {
-            throw new IkkeFunnetError('Fant ikke samtykkeskjemet')
+            throw new IkkeFunnetError({ melding: ServerErrorMeldinger.ikkeFunnet('Samtykkeskjema') })
         }
 
         await this.samtykkeskjemaOppbevaringssted.remove(samtykkeskjema)
