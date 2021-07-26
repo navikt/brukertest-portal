@@ -36,7 +36,7 @@ export class ValideringsError extends GrunnError {
                 for (const nøkkel in melding.constraints) {
                     if (Object.prototype.hasOwnProperty.call(melding.constraints, nøkkel)) {
                         const begrensningsMelding: string = (melding.constraints as any)[nøkkel]
-                        melding.push(begrensningsMelding)
+                        meldinger.push(begrensningsMelding)
                     }
                 }
             } else {

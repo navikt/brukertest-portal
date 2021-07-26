@@ -7,5 +7,6 @@ export const ServerErrorMeldinger = {
     ugyldigData: () => 'Formatet på dataen er ugyldig',
     forbudt: () => 'Du er forbudt fra å få tilgang til denne ressursen',
     feilInnholdstype: (gyldigType: string) => `Feil innholdstype. Gyldig innholdstype er: ${gyldigType}`,
-    mangler: () => (entitet: string) => `${entitet} mangler fra forespørsselen`
+    mangler: () => (entitet: string) => `${entitet} mangler fra forespørsselen`,
+    duplikat: (entitet: string) => `${entitet} finnes allerede`
 }
