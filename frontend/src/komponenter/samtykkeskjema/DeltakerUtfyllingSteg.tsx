@@ -1,7 +1,5 @@
 import React, { ReactElement } from 'react'
 import { Checkbox, CheckboxGruppe, Input } from 'nav-frontend-skjema'
-import Tekstomrade, { BoldRule } from 'nav-frontend-tekstomrade'
-import { CheckboksPanelGruppe } from 'nav-frontend-skjema'
 import { Element } from 'nav-frontend-typografi'
 
 export default function DeltakerUtfyllingSteg(): ReactElement {
