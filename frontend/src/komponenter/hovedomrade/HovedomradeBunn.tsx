@@ -1,19 +1,19 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { Tilbakeknapp, Nesteknapp } from 'nav-frontend-ikonknapper'
 import { HovedomradeProps } from './Hovedomrade'
-import { StegContext } from '../../visninger/samtykkeskjema/Samtykkeskjema'
+import { StegContext } from '../../kjerne/state/StegContext'
 
 export default function HovedomradeBunn(props: HovedomradeProps): React.ReactElement {
     //const [hoppTilForrigeSteg, hoppTilNesteSteg] = useContext(SamtykkeContext)
 
-    const [state, dispatch] = useContext(StegContext)
+    const [steg, settSteg] = useContext(StegContext)
 
     const hoppTilNesteSteg = () => {
-        dispatch({ type: 'increment'})
+        settSteg(steg + 1)
     }
 
     const hoppTilForrigeSteg = () => {
-        dispatch({ type: 'decrement'})
+        settSteg(steg - 1)
     }
 
     const Knapper = () => (

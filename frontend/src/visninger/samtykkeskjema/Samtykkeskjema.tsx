@@ -1,10 +1,11 @@
-import React, { createContext, Dispatch, ReactElement, ReactNode, SetStateAction, useContext, useReducer, useState } from 'react'
-import Hovedomrade from '../../komponenter/hovedomrade/Hovedomrade'
 import Stegindikator from 'nav-frontend-stegindikator'
+import React, { useContext } from 'react'
+import { StegContext } from '../../kjerne/state/StegContext'
+import Hovedomrade from '../../komponenter/hovedomrade/Hovedomrade'
 
 export default function Samtykkeskjema(): React.ReactElement {
-    const [state, dispatch] = useContext(StegContext)
-    
+    const [steg] = useContext(StegContext)
+
     return (
         
         <div className="samtykkeskjema">
@@ -20,7 +21,7 @@ export default function Samtykkeskjema(): React.ReactElement {
                         { label: 'Deretter må du gjøre dette 4', index: 5 },
                         { label: 'Konklusjonen', index: 6 },
                     ]}
-                    aktivtSteg={state.steg}
+                    aktivtSteg={steg}
                 />
             </div>
         </div>
@@ -28,42 +29,3 @@ export default function Samtykkeskjema(): React.ReactElement {
     )
 }
 
-export const stegReducer = (state: any, action: any) => {
-    switch(action.type) {
-        case 'increment': {
-            return {
-                ...state,
-                steg: state.steg + 1
-            }
-        }
-        case 'decrement': {
-            return {
-                ...state,
-                steg: state.steg - 1
-            }
-        }
-        default: 
-            return state
-    }
-}
-
-export const initalStegState = {
-    steg: 0
-}
-
-export const StegContext: any = createContext({
-    state: initalStegState,
-    dispatch: () => null
-})
-
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const StegProvider = ({ children }: any) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [state, reducer] = useReducer(stegReducer, initalStegState)
-
-    return (
-        <StegContext.Provider value={[state, reducer]}>
-            {children}
-        </StegContext.Provider>
-    )
-}
