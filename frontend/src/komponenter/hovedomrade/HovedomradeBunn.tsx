@@ -1,8 +1,9 @@
-import React, { useContext } from 'react'
+import React, { ReactElement, useContext } from 'react'
 import { Tilbakeknapp, Nesteknapp } from 'nav-frontend-ikonknapper'
 import { HovedomradeProps } from './Hovedomrade'
 import { StegContext } from '../../kjerne/state/StegContext'
 import { useAppState } from '../../kjerne/state/AppStateContext'
+import JegSamtykkerKnapp from '../../containere/knapper/JegSamtykkerKnapp'
 
 export default function HovedomradeBunn(props: HovedomradeProps): React.ReactElement {
     const { erLoggetInn } = useAppState()
@@ -17,10 +18,25 @@ export default function HovedomradeBunn(props: HovedomradeProps): React.ReactEle
         settSteg(steg - 1)
     }
 
+    let tilbakeKnapp: ReactElement = <Tilbakeknapp onClick={hoppTilForrigeSteg} />
+    let nesteKnapp: ReactElement = <Nesteknapp onClick={hoppTilNesteSteg} />
+    let jegSamtykkerKnapp: ReactElement = <></>
+
+    if (steg === 0) {
+        tilbakeKnapp = <></>
+        nesteKnapp = <Nesteknapp onClick={hoppTilNesteSteg} className="nesteknappHøyre"/>
+    }
+
+    if (steg === 6) {
+        nesteKnapp = <></>
+        jegSamtykkerKnapp = <JegSamtykkerKnapp />
+    }
+
     const Knapper = () => (
         <div className="hovedomradeBunn">
-            <Tilbakeknapp onClick={hoppTilForrigeSteg} />
-            <Nesteknapp onClick={hoppTilNesteSteg} />
+            {tilbakeKnapp}
+            {nesteKnapp}
+            {jegSamtykkerKnapp}
         </div>
     )
 
