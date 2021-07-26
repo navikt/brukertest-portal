@@ -3,7 +3,7 @@ import { ErrorKode } from './ErrorKoder'
 import { IErrorResponse } from './IErrorResponse'
 import { ServerErrorMeldinger } from './meldinger/ServerErrorMeldinger'
 
-export class BaseError extends Error {
+export class GrunnError extends Error {
     private httpStatus: number = StatusCodes.INTERNAL_SERVER_ERROR
     private kode: ErrorKode = 'UVENTET'
 
