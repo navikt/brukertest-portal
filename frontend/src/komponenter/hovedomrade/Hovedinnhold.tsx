@@ -88,7 +88,7 @@ export default function Hovedinnhold(): React.ReactElement {
                 return <DeltakerUtfyllingSteg />
 
             default:
-                return <div></div>
+                return <h3>Denne skulle visst ikke dukke opp, men det gjorde den :/</h3>
         }
     }
 
