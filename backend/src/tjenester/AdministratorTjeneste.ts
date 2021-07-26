@@ -1,12 +1,9 @@
 import { validerEntitet } from '@/hjelpere/validerEntitet'
-import { IkkeFunnetError } from '@/lib/errors/database/IkkeFunnetError'
 import { Administrator } from '@/modeller/Administrator/AdministratorEntitet'
 import { IAdministrator } from '@/modeller/Administrator/IAdministrator'
 import { classToClass } from 'class-transformer'
 import { Connection, Repository } from 'typeorm'
-import { DuplikatError } from '../lib/errors/database/DuplikatError'
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
-import { FeilIEntitetError } from '@/lib/errors/validering/FeilIEntitetError'
 
 export class AdministratorTjeneste {
     private database: Connection

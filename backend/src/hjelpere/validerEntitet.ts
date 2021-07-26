@@ -1,5 +1,5 @@
 import { validate, ValidatorOptions } from 'class-validator'
-import { FeilIEntitetError } from '../lib/errors/validering/FeilIEntitetError'
+import { ValideringsError } from '../lib/errors/validering/ValideringsError'
 
 export const validerEntitet = async (entitet: object, valideringsAlternativer?: ValidatorOptions) => {
     const validering = await validate(entitet, valideringsAlternativer)
@@ -7,6 +7,6 @@ export const validerEntitet = async (entitet: object, valideringsAlternativer?: 
 
     if (!erGyldig) {
         const navn = validering[0].target?.constructor.name
-        throw new FeilIEntitetError(`Validering feilet for ${navn}`)
+        throw new ValideringsError({ melding: `Validering feilet for ${navn}`, validering: validering })
     }
 }
