@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { ReactElement, useContext } from 'react'
 import { Tilbakeknapp, Nesteknapp } from 'nav-frontend-ikonknapper'
 import { HovedomradeProps } from './Hovedomrade'
 import { StegContext } from '../../kjerne/state/StegContext'
@@ -17,10 +17,18 @@ export default function HovedomradeBunn(props: HovedomradeProps): React.ReactEle
         settSteg(steg - 1)
     }
 
+    let tilbakeKnapp: ReactElement = <Tilbakeknapp onClick={hoppTilForrigeSteg} />
+    let nesteKnapp: ReactElement = <Nesteknapp onClick={hoppTilNesteSteg} />
+
+    if (steg === 0) {
+        tilbakeKnapp = <></>
+        nesteKnapp = <Nesteknapp onClick={hoppTilNesteSteg} className="nesteknappHøyre"/>
+    }
+
     const Knapper = () => (
         <div className="hovedomradeBunn">
-            <Tilbakeknapp onClick={hoppTilForrigeSteg} />
-            <Nesteknapp onClick={hoppTilNesteSteg} />
+            {tilbakeKnapp}
+            {nesteKnapp}
         </div>
     )
 
