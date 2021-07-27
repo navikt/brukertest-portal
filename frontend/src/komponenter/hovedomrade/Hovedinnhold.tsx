@@ -25,7 +25,7 @@ export default function Hovedinnhold(): React.ReactElement {
                         andreAvsnitt={
                             'Undersøkelsen skal brukes til... Den gjennomføres... og varer til...'
                         }
-                        ekstraAvsnitt={
+                        tredjeAvsnitt={
                             'Undersøkelsen vil bli publisert i en rapport. Rapporten skal deles med ansatte i NAV og med våre samarbeidspartnere utenfor NAV.'
                         }
                     />
@@ -86,6 +86,19 @@ export default function Hovedinnhold(): React.ReactElement {
 
             case 6:
                 return <DeltakerUtfyllingSteg />
+            case 7:
+                return (
+                    <InformasjonsSteg
+                        førsteTittel={'Vil du se skjemaet på nytt?'}
+                        førsteAvsnitt={
+                            'Gå inn på din profil ved å klikke på navnet ditt øverst i høyre hjørne. Da vil du få en oversikt over de skjemaene du har gitt ditt samtykke til. '
+                        }
+                        andreTittel={'Vil du endre eller trekke ditt samtykke?'}
+                        andreAvsnitt={'Gå inn på din profil og....'}
+                        tredjeTittel={'Vil du delta på flere intervju eller brukertester?'}
+                        tredjeAvsnitt={'Gå inn på www.nav.no/innbyggerpanelet.'}
+                    />
+                )
 
             default:
                 return <h3>Denne skulle visst ikke dukke opp, men det gjorde den :/</h3>

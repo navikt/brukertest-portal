@@ -12,7 +12,7 @@ export default function LoggUtKnappToppBar(): React.ReactElement {
 
     return (
         <Link to="/" style={{ textDecoration: 'none' }}>
-            <Flatknapp className="loggUtKnapp" onClick={oppdaterLoggInnState}>
+            <Flatknapp className="logg-ut-knapp-topp" onClick={oppdaterLoggInnState}>
                 Logg ut
             </Flatknapp>
         </Link>

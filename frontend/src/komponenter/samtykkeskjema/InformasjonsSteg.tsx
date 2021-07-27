@@ -6,7 +6,8 @@ export interface IInformasjonsStegInnhold {
     andreTittel?: string
     førsteAvsnitt: string
     andreAvsnitt: string
-    ekstraAvsnitt?: string
+    tredjeTittel?: string
+    tredjeAvsnitt?: string
 }
 
 export default function InformasjonsSteg(
@@ -18,7 +19,8 @@ export default function InformasjonsSteg(
             <Normaltekst>{informasjonsInnhold.førsteAvsnitt}</Normaltekst>
             <Undertittel>{informasjonsInnhold.andreTittel}</Undertittel>
             <Normaltekst>{informasjonsInnhold.andreAvsnitt}</Normaltekst>
-            <Normaltekst>{informasjonsInnhold.ekstraAvsnitt}</Normaltekst>
+            <Undertittel>{informasjonsInnhold.tredjeTittel}</Undertittel>
+            <Normaltekst>{informasjonsInnhold.tredjeAvsnitt}</Normaltekst>
         </div>
     )
 }
