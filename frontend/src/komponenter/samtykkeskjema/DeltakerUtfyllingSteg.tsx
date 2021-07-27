@@ -12,7 +12,7 @@ export default function DeltakerUtfyllingSteg(): ReactElement {
             <div className="epost-input">
                 <Input label="E-postadresse" />
             </div>
-            <Element className="checkbox-overskrift" tag="p">
+            <Element className="checkbox-overskrift">
                 Hva sier jeg ja til?
                 <Normaltekst className="ekstra-tekst">
                     &nbsp;&nbsp;(kryss av boksene for det du føler deg komfortabel med)
