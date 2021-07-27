@@ -5,6 +5,12 @@ import { DårligForespørselError } from '../../lib/errors/http/DårligForespør
 import { ServerErrorMeldinger } from '@/lib/errors/meldinger/ServerErrorMeldinger'
 import { StatusCodes } from 'http-status-codes'
 
+/**
+ * Ansvaret for å behandle alle error som kommer til HTTP endepunktene.
+ * Utifra errorene blir en response med status og grunn sendt til rekvirenten.
+ * Hvis man får en "QueryFailedError" fra databasen, vil en "DårligForespørselError"
+ * bli generert og status og grunn blir sendt til rekvirenten.
+ */
 export const errorBehandler = (error: Error, request: Request, response: Response, next: NextFunction) => {
     if (error instanceof GrunnError) {
         return response.status(error.getHttpStatus()).json(error.toResponse())

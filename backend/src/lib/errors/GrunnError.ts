@@ -3,6 +3,11 @@ import { ErrorKode } from './ErrorKoder'
 import { IErrorResponse } from './IErrorResponse'
 import { ServerErrorMeldinger } from './meldinger/ServerErrorMeldinger'
 
+/**
+ * Toppnivå error for å beskrive applikasjonens forskjellige error.
+ * Hvert grunn-error har en status melding, HTTP status og error kode.
+ * Inneholder også en metode som konverterer et grunn-error til JSON.
+ */
 export class GrunnError extends Error {
     private httpStatus: number = StatusCodes.INTERNAL_SERVER_ERROR
     private kode: ErrorKode = 'UVENTET'
