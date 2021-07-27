@@ -15,7 +15,7 @@ export default function DeltakerUtfyllingSteg(): ReactElement {
             <Element className="checkbox-overskrift" tag="p">
                 Hva sier jeg ja til?
                 <Normaltekst className="ekstra-tekst">
-                    &nbsp;&nbsp;(kryss av boksene for det du følger deg komfortabel med)
+                    &nbsp;&nbsp;(kryss av boksene for det du føler deg komfortabel med)
                 </Normaltekst>
             </Element>
             <CheckboxGruppe className="checkboxGruppe">
