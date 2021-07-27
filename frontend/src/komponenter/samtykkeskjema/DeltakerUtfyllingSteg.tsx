@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { Checkbox, CheckboxGruppe, Input } from 'nav-frontend-skjema'
-import { Element } from 'nav-frontend-typografi'
+import { Element, Normaltekst } from 'nav-frontend-typografi'
 
 export default function DeltakerUtfyllingSteg(): ReactElement {
     return (
@@ -13,8 +13,10 @@ export default function DeltakerUtfyllingSteg(): ReactElement {
                 <Input label="E-postadresse" />
             </div>
             <Element className="checkbox-overskrift" tag="p">
-                {/* TODO: Gjøre det slik at kun første del av teksten er bold */}
-                Hva sier jeg ja til? (kryss av boksene for det du følger deg komfortabel med)
+                Hva sier jeg ja til?
+                <Normaltekst className="ekstra-tekst">
+                    &nbsp;&nbsp;(kryss av boksene for det du følger deg komfortabel med)
+                </Normaltekst>
             </Element>
             <CheckboxGruppe className="checkboxGruppe">
                 <Checkbox

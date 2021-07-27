@@ -5,7 +5,7 @@ import React, { ReactElement } from 'react'
 //TODO Finne et mer passende navn for komponentet
 export default function JegForstårSteg(): ReactElement {
     return (
-        <div className="jeg-forstaar-steg-container">
+        <div className="forstaatt-sjekk-steg-container">
             <Undertittel>Jeg forstår:</Undertittel>
             <CheckboxGruppe>
                 <Checkbox

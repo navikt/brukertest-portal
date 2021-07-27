@@ -5,7 +5,7 @@ import { useAppState } from '../../kjerne/state/AppStateContext'
 import { useContext } from 'react'
 import { StegContext } from '../../kjerne/state/StegContext'
 import InformasjonsSteg from '../samtykkeskjema/InformasjonsSteg'
-import JegForstårSteg from '../samtykkeskjema/JegForstårSteg'
+import JegForstårSteg from '../samtykkeskjema/ForståttSjekkSteg'
 import DeltakerUtfyllingSteg from '../samtykkeskjema/DeltakerUtfyllingSteg'
 
 export default function Hovedinnhold(): React.ReactElement {
