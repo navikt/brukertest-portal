@@ -6,7 +6,7 @@ import {
     ValidatorConstraintInterface
 } from 'class-validator'
 import parsePhoneNumberFromString from 'libphonenumber-js'
-import { ValideringErrorMelding } from '../../../lib/errors/meldinger/ValideringErrorMeldinger'
+import { ValideringErrorMelding } from '@/lib/errors/meldinger/ValideringErrorMeldinger'
 
 @ValidatorConstraint({ async: true })
 export class ErTelefonNummerBegrensning implements ValidatorConstraintInterface {
