@@ -11,7 +11,7 @@ export default function LoggInnHovedknapp(): React.ReactElement {
 
     const oppdaterLoggInnState = () => {
         appDispatcher.settLoggInnState(AuthLevel.administrator)
-        //Setter steg tilbake til 0 for å kunne logge ut og inn for å resette steg
+        //Setter steg tilbake til 0 for reset ved logg ut->inn
         settSteg(0)
     }
 
