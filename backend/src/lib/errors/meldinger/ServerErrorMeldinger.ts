@@ -4,6 +4,7 @@ export const ServerErrorMeldinger = {
     uatorisert: () => 'Du er uatorisert, vennligst log in',
     ingenAutorasjonshode: () => 'Autorasjonshode ikke lagt ved',
     ugyldigTokenFormat: () => 'Formatet på tokenen er ugyldig',
+    ugyldigToken: () => 'Tokenen er ugyldig',
     ugyldigData: () => 'Formatet på dataen er ugyldig',
     forbudt: () => 'Du er forbudt fra å få tilgang til denne ressursen',
     feilInnholdstype: (gyldigType: string) => `Feil innholdstype. Gyldig innholdstype er: ${gyldigType}`,
