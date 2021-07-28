@@ -8,13 +8,13 @@ export default function SamtykkeStegindikator(): React.ReactElement {
         return (
             <Stegindikator
                 steg={[
-                    { label: 'Informasjon om ', index: 0 },
-                    { label: 'Og så dette steget', index: 1 },
-                    { label: 'Deretter må du gjøre dette 1', index: 2 },
-                    { label: 'Deretter må du gjøre dette 2', index: 3 },
-                    { label: 'Deretter må du gjøre dette 3', index: 4 },
-                    { label: 'Deretter må du gjøre dette 4', index: 5 },
-                    { label: 'Konklusjonen', index: 6 },
+                    { label: 'Hva skal undersøkelsen brukes til?', index: 0 },
+                    { label: 'Hvem er vi og hvilke metoder bruker vi?', index: 1 },
+                    { label: 'Om personopplysninger', index: 2 },
+                    { label: 'Om taushetsplikt og anonymisering', index: 3 },
+                    { label: 'Om dine rettigheter', index: 4 },
+                    { label: 'Jeg forstår - erklæring', index: 5 },
+                    { label: 'Utfyllingssteg', index: 6 },
                 ]}
                 aktivtSteg={steg}
             />

@@ -1,3 +1,4 @@
+import { HandsHeart } from '@navikt/ds-icons'
 import React from 'react'
 import {
     HovedområdeTittel,
@@ -9,7 +10,11 @@ import Hovedomrade from '../../komponenter/hovedomrade/Hovedomrade'
 export default function Samtykkeskjema(): React.ReactElement {
     return (
         <div className="samtykkeskjema">
-            <Hovedomrade tittel={HovedområdeTittel()} hovedInnhold={SamtykkeskjemaSteg()} />
+            <Hovedomrade
+                tittel={HovedområdeTittel()}
+                hovedInnhold={SamtykkeskjemaSteg()}
+                toppIkon={<HandsHeart />}
+            />
             <div className="steg">
                 <SamtykkeStegindikator />
             </div>
