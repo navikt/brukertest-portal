@@ -8,6 +8,7 @@ metadata:
 spec:
   image: {{ image }}
   team: teamsamtykkedigitalisering
+  port: 8080
   replicas:
     min: 2
     max: 2
@@ -19,9 +20,9 @@ spec:
     requests:
       cpu: 200m
       memory: 256Mi
-#   liveness:
-#     path: /isAlive
-#     initialDelay: 5
+  liveness:
+    path: /isAlive
+    initialDelay: 5
 #   readiness:
 #     path: /isReady
 #     initialDelay: 5
