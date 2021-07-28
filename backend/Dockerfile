@@ -3,6 +3,7 @@ FROM node:15.8.0
 WORKDIR /app
 
 ENV NODE_ENV=development
+ENV HTTP_PORT=8080
 
 COPY package.json .
 COPY yarn.lock .
