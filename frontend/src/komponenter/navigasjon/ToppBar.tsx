@@ -21,5 +21,5 @@ export default function ToppBar(): React.ReactElement {
         }
     }
 
-    return <div className="toppBar">{renderItems()}</div>
+    return <div className="topp-bar">{renderItems()}</div>
 }

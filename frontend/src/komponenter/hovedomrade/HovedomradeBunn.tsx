@@ -25,8 +25,8 @@ export default function HovedomradeBunn(props: HovedomradeProps): React.ReactEle
     let loggUtKnapp: ReactElement = <></>
 
     if (steg === 0) {
-        tilbakeKnapp = <></>
-        nesteKnapp = <Nesteknapp onClick={hoppTilNesteSteg} className="nesteknappHøyre" />
+        tilbakeKnapp = <div></div>
+        nesteKnapp = <Nesteknapp onClick={hoppTilNesteSteg} />
     }
 
     if (steg === 6) {
@@ -40,7 +40,7 @@ export default function HovedomradeBunn(props: HovedomradeProps): React.ReactEle
     }
 
     const Knapper = () => (
-        <div className="hovedomradeBunn">
+        <div className="hovedomrade-bunn">
             {tilbakeKnapp}
             {nesteKnapp}
             {jegSamtykkerKnapp}

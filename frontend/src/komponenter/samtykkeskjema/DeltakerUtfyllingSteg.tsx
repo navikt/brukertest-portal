@@ -18,7 +18,7 @@ export default function DeltakerUtfyllingSteg(): ReactElement {
                     &nbsp;&nbsp;(kryss av boksene for det du føler deg komfortabel med)
                 </Normaltekst>
             </Element>
-            <CheckboxGruppe className="checkboxGruppe">
+            <CheckboxGruppe className="checkbox-gruppe">
                 <Checkbox
                     label={'Ja, jeg ønsker å delta i brukertesten'}
                     value={'intervju'}

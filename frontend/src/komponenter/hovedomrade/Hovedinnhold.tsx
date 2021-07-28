@@ -109,7 +109,7 @@ export default function Hovedinnhold(): React.ReactElement {
         <div className="hovedinnhold">{SamtykkeskjemaSteg()}</div>
     ) : (
         <div className="hovedinnhold">
-            <Systemtittel className="loggInnInfo">
+            <Systemtittel className="logg-inn-info">
                 {'Logg inn for å registrere ditt samtykke'}
             </Systemtittel>
             <LoginPrimer />

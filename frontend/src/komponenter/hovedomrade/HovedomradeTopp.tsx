@@ -5,8 +5,8 @@ import { HovedomradeProps } from './Hovedomrade'
 
 export default function HovedomradeTopp(props: HovedomradeProps): React.ReactElement {
     return (
-        <div className="hovedomradeTopp">
-            <HandsHeart className="toppIkon" />
+        <div className="hovedomrade-topp">
+            <HandsHeart className="topp-ikon" />
             <Innholdstittel className="infotekst">{props.tittel}</Innholdstittel>
             <div className="divider"></div>
         </div>
