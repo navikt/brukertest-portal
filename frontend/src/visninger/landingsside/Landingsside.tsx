@@ -6,12 +6,12 @@ import Hovedomrade from '../../komponenter/hovedomrade/Hovedomrade'
 
 export default function Landingsside(): React.ReactElement {
     const LandingssideInnhold = () => (
-        <div>
+        <>
             <Systemtittel className="logg-inn-info">
                 {'Logg inn for å registrere ditt samtykke'}
             </Systemtittel>
             <LoggInnHovedknapp />
-        </div>
+        </>
     )
 
     return (

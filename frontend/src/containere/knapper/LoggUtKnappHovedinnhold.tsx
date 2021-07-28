@@ -1,5 +1,6 @@
 import { Flatknapp } from 'nav-frontend-knapper'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useAppStateDispatcher } from '../../kjerne/state/AppStateContext'
 
 export default function LoggUtKnappHovedinnhold(): React.ReactElement {
@@ -8,5 +9,9 @@ export default function LoggUtKnappHovedinnhold(): React.ReactElement {
     function oppdaterLoggInnState() {
         appDispatcher.settLoggUtState()
     }
-    return <Flatknapp onClick={oppdaterLoggInnState}>Logg ut</Flatknapp>
+    return (
+        <Link to="/" style={{ textDecoration: 'none' }}>
+            <Flatknapp onClick={oppdaterLoggInnState}>Logg ut</Flatknapp>
+        </Link>
+    )
 }
