@@ -5,6 +5,7 @@ on:
     branches: [main, feature/godkjenning-ved-endepunkter]
 
 env:
+  IMAGE_TAG: ${{ github.sha }}
   IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:${{ github.sha }}
   IMAGE_LATEST: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:latest
   CLUSTER: dev-gcp
