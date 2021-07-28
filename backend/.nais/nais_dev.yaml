@@ -6,7 +6,7 @@ metadata:
   labels:
     team: teamsamtykkedigitalisering
 spec:
-  image: {{ image }}
+  image: {{ image }}:{{ image_tag }}
   team: teamsamtykkedigitalisering
   port: 8080
   replicas:
@@ -22,10 +22,12 @@ spec:
       memory: 256Mi
   liveness:
     path: /isAlive
+    port: 8080
     initialDelay: 5
-#   readiness:
-#     path: /isReady
-#     initialDelay: 5
+  readiness:
+    path: /isReady
+    port: 8080
+    initialDelay: 5
   ingresses:
     - https://brukertest-portal-api.dev.intern.nav.no
   azure:
