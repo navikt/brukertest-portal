@@ -6,7 +6,7 @@ metadata:
   labels:
     team: teamsamtykkedigitalisering
 spec:
-  image: {{ image }}
+  image: {{ image }}:{{ image_tag }}
   team: teamsamtykkedigitalisering
   port: 8080
   liveness:
