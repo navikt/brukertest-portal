@@ -9,26 +9,23 @@ spec:
   image: {{ image }}
   team: teamsamtykkedigitalisering
   port: 8080
-  replicas:
-    min: 2
-    max: 2
-    cpuThresholdPercentage: 50
-  port: 8080
+  liveness:
+    path: /isalive
+    port: 8080
+    initialDelay: 20
+    timeout: 60
+  readiness:
+    path: /isready
+    port: 8080
+    initialDelay: 20
+    timeout: 60
   resources:
     limits:
-      cpu: 500m
-      memory: 512Mi
-    requests:
       cpu: 200m
       memory: 256Mi
-  liveness:
-    path: /isAlive
-    port: 8080
-    initialDelay: 5
-  readiness:
-    path: /isReady
-    port: 8080
-    initialDelay: 5
+    requests:
+      cpu: 100m
+      memory: 128Mi
   ingresses:
     - https://brukertest-portal-api.intern.nav.no
   azure:
