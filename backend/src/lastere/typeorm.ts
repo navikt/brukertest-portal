@@ -3,8 +3,6 @@ import 'reflect-metadata'
 import dotenv from 'dotenv'
 
 export default async () => {
-    dotenv.config()
-
     const typeormConfig: ConnectionOptions = {
         type: 'postgres',
         host: process.env.NAIS_DATABASE_BRUKERTEST_PORTAL_API_BRUKERTEST_PORTAL_DB_HOST,
