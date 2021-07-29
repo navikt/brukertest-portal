@@ -11,7 +11,7 @@ async function start() {
 
         const server = express()
 
-        const app = await last({ server })
+        await last({ server })
 
         server.listen(process.env.HTTP_PORT, () => {
             console.log(`LYTTER PÅ ${process.env.HTTP_PORT}`)
