@@ -5,7 +5,7 @@ on:
     branches: [main, feature/godkjenning-ved-endepunkter]
 
 env:
-  #IMAGE_TAG: ${{ github.sha }}
+  IMAGE_TAG: ${{ github.sha }}
   IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:${{ github.sha }}
   LATEST: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:latest
   CLUSTER: dev-gcp
@@ -22,14 +22,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           yarn
-          TIME=$(TZ="Europe/Oslo" date +%Y.%m.%d-%H.%M)
-          COMMIT=$(git rev-parse --short=12 HEAD)
-          export VERSION="$IMAGE:$TIME-$COMMIT"
-          docker build -t ${LATEST} -t ${VERSION} -t ${IMAGE} .
+          docker build -t ${LATEST} -t ${IMAGE}:${IMAGE_TAG} .
           docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
           docker push ${LATEST}
           docker push ${VERSION}
-          docker push ${IMAGE}
+          docker push ${IMAGE}:${IMAGE_TAG}
         working-directory: ./backend
   deploy:
     name: Deploy to dev-gcp
