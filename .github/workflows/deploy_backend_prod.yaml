@@ -7,7 +7,7 @@ on:
 env:
   IMAGE_TAG: ${{ github.sha }}
   IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:${{ github.sha }}
-  IMAGE_LATEST: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:latest
+  LATEST: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:latest
   CLUSTER: prod-gcp
   RESOURCE: backend/.nais/nais_prod.yaml
 
@@ -22,10 +22,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           yarn
-          docker build . -t ${IMAGE} -t ${IMAGE_LATEST}
+          TIME=$(TZ="Europe/Oslo" date +%Y.%m.%d-%H.%M)
+          COMMIT=$(git rev-parse --short=12 HEAD)
+          export VERSION="$IMAGE:$TIME-$COMMIT"
+          docker build -t ${LATEST} -t ${VERSION} -t ${IMAGE}:${IMAGE_TAG} .
           docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
+          docker push ${LATEST}
+          docker push ${VERSION}
           docker push ${IMAGE}:${IMAGE_TAG}
-          docker push ${IMAGE_LATEST}:${IMAGE_TAG}
         working-directory: ./backend
   deploy:
     name: Deploy to prod-gcp
