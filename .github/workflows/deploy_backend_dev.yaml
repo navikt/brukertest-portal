@@ -2,7 +2,7 @@ name: Deploy backend to dev-gcp
 
 on:
   push:
-    branches: [main, feature/godkjenning-ved-endepunkter]
+    branches: [main]
 
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:${{ github.sha }}
