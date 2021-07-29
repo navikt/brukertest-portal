@@ -16,7 +16,7 @@ RUN yarn
 
 RUN yarn build
 
-COPY dist dist/
+COPY dist .
 
 RUN yarn install --production
 
