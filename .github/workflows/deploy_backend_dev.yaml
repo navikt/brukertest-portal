@@ -22,10 +22,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           yarn
-          docker build -t ${LATEST} -t ${IMAGE}:${IMAGE_TAG} .
+          docker build . -t ${LATEST} -t ${IMAGE}:${IMAGE_TAG}
           docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
           docker push ${LATEST}
-          docker push ${VERSION}
           docker push ${IMAGE}:${IMAGE_TAG}
         working-directory: ./backend
   deploy:
