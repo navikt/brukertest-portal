@@ -5,10 +5,14 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
+COPY package.json .
+COPY yarn.lock .
+
+RUN yarn
+
 RUN yarn build
 
-COPY /app/dist dist/
-COPY /app/package.json .
+COPY dist dist/
 
 RUN yarn install --production
 
