@@ -2,14 +2,13 @@ FROM node:15.8.0
 
 ENV HTTP_PORT=8080
 ENV NODE_ENV=production
-RUN yarn build
-
-FROM runtime as production
-ENV NODE_ENV=production
 
 WORKDIR /app
-COPY --from=build /app/dist dist/
-COPY --from=build /app/package.json .
+
+RUN yarn build
+
+COPY /app/dist dist/
+COPY /app/package.json .
 
 RUN yarn install --production
 
