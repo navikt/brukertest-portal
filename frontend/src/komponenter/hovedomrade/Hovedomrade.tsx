@@ -4,7 +4,7 @@ import Hovedinnhold from './Hovedinnhold'
 import HovedomradeBunn from './HovedomradeBunn'
 
 export interface HovedomradeProps {
-    tittel?: string
+    tittel?: string | React.ReactElement
     toppIkon?: React.ReactElement
     visFremgangsknapper?: boolean
     hovedInnhold?: React.ReactElement

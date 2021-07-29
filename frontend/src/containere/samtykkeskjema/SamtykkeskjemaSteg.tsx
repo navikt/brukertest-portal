@@ -13,14 +13,14 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
                 <InformasjonsSteg
                     førsteTittel={'Invitasjon til deltakelse'}
                     førsteAvsnitt={
-                        'Du inviteres til å delta i en undersøkelse om... Du er valgt ut fordi...'
+                        'Du inviteres til å delta i en undersøkelse om tjenester og praksis vedrørende arbeidsledighet. Du er valgt ut fordi du er arbeidssøkende og vil derfor kunne bidra med nyttig informasjon for forbedrelsen av våre tjenester.'
                     }
                     andreTittel={'Hva skal undersøkelsen brukes til?'}
                     andreAvsnitt={
-                        'Undersøkelsen skal brukes til... Den gjennomføres... og varer til...'
+                        'Undersøkelsen skal brukes til å forbedre NAVs digitale tjenester. Den gjennomføres Onsdag 11. August kl.14:00  og varer til kl. 15:00 samme dag'
                     }
                     tredjeAvsnitt={
-                        'Undersøkelsen vil bli publisert i en rapport. Rapporten skal deles med ansatte i NAV og med våre samarbeidspartnere utenfor NAV.'
+                        'Undersøkelsen vil bli publisert i en rapport. Rapporten skal kun deles med ansatte i NAV og med våre samarbeidspartnere utenfor NAV.'
                     }
                 />
             )
@@ -29,7 +29,7 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
                 <InformasjonsSteg
                     førsteTittel={'Hvem er vi og hvem er ansvarlig for undersøkelsen?'}
                     førsteAvsnitt={
-                        'Vi er ansatt i Designseksjonen i NAV IT i Arbeids- og velferdsdirektoratet (NAV). I designesksjonen arbeider vi med å forbedre NAVs tjenester. Ansvarlig for undersøkelsen er... Har du spørsmål om undersøkelsen kan du kontakte... på telefon XX XX XX XX og e-post: XX@nav.no'
+                        'Vi er ansatt i Designseksjonen i NAV IT i Arbeids- og velferdsdirektoratet (NAV). I designesksjonen arbeider vi med å forbedre NAVs tjenester. Ansvarlig for undersøkelsen er Håkon Larsen. Har du spørsmål om undersøkelsen kan du kontakte Håkon på telefon 41234567 og e-post: Håkon@nav.no'
                     }
                     andreTittel={'Hvilke metoder bruker vi?'}
                     andreAvsnitt={
@@ -42,7 +42,7 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
                 <InformasjonsSteg
                     førsteTittel={'Hvilke personopplysninger samler vi inn?'}
                     førsteAvsnitt={
-                        'Vi vil spørre deg om... Du velger selv om du vil fortelle om sensitive opplysninger som helseforhold eller hvor du jobber. Opplysningene vi samler inn skal kun brukes til det undersøkelsen handler om, og det du samtykker til.'
+                        'Vi vil stille deg spørsmål angående din foreløpige livssituasjon. Du velger selv om du vil fortelle om sensitive opplysninger som helseforhold eller hvor du jobber. Opplysningene vi samler inn skal kun brukes til det undersøkelsen handler om, og det du samtykker til.'
                     }
                     andreTittel={'Oppbevaring av personopplysningene'}
                     andreAvsnitt={
@@ -68,7 +68,7 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
                 <InformasjonsSteg
                     førsteTittel={'Dine rettigheter'}
                     førsteAvsnitt={
-                        'Det er frivillig å delta. Du kan når som helst avslutte intervjuet, uten å måtte oppgi en grunn. Ønsker du å trekke samtykket ditt, så sørger vi for at alt materiale om deg slettes. Du har også rett til å se, rette eller slette dine opplysninger både under og etter at intervjuet er ferdig. Kontakt... på e-post, så hjelper vi deg.'
+                        'Det er frivillig å delta. Du kan når som helst avslutte intervjuet, uten å måtte oppgi en grunn. Ønsker du å trekke samtykket ditt, så sørger vi for at alt materiale om deg slettes. Du har også rett til å se, rette eller slette dine opplysninger både under og etter at intervjuet er ferdig. Kontakt Håkon på e-post (Håkon@Nav.no), så hjelper vi deg.'
                     }
                     andreAvsnitt={
                         'Mottar du tjenester fra NAV, vil ikke deltakelse i denne undersøkelsen påvirke dine rettigheter i NAV. Vi har ikke tilgang til dine saker. Andre i NAV får heller ikke vite hvem som deltar i undersøkelsen, og opplysningene du gir kan ikke kobles til dine saker.'
@@ -88,7 +88,9 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
                         'Gå inn på din profil ved å klikke på navnet ditt øverst i høyre hjørne. Da vil du få en oversikt over de skjemaene du har gitt ditt samtykke til. '
                     }
                     andreTittel={'Vil du endre eller trekke ditt samtykke?'}
-                    andreAvsnitt={'Gå inn på din profil og....'}
+                    andreAvsnitt={
+                        'Gå inn på din profil og gå så inn på "mine samtykker". Herifra vil du ha muligheten til å endre eller trekke ditt samtykke.'
+                    }
                     tredjeTittel={'Vil du delta på flere intervju eller brukertester?'}
                     tredjeAvsnitt={'Gå inn på www.nav.no/innbyggerpanelet.'}
                 />
