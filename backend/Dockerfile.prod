@@ -16,8 +16,6 @@ RUN yarn
 
 RUN yarn build
 
-COPY ./dist .
-
 RUN yarn install --production
 
 EXPOSE 8080
