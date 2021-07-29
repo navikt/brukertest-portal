@@ -1,5 +1,4 @@
 import express from 'express'
-import miljøvariabler from './config/miljøvariabler'
 import { last } from './lastere/laster'
 import dotenv from 'dotenv'
 
