@@ -6,12 +6,16 @@
 @import './komponenter/hovedomrade/hovedinnhold.less';
 @import './komponenter/hovedomrade/hovedomrade.less';
 @import './komponenter/hovedomrade/hovedomradeTopp.less';
+@import './komponenter/hovedomrade/hovedomradeBunn.less';
 @import './komponenter/navigasjon/footer.less';
 @import './komponenter/navigasjon/toppBar.less';
+@import './komponenter/samtykkeskjema/informasjonsSteg.less';
+@import './komponenter/samtykkeskjema/forståttSjekkSteg.less';
+@import './komponenter/samtykkeskjema/deltakerUtfyllingSteg.less';
 
 //CONTAINERE
 @import './containere/brukerKnappToppBar.less';
-@import './containere/loggInnHovedknapp.less';
+@import './containere/hovedknapp.less';
 @import './containere/loggUtKnappToppBar.less';
 
 //VISNINGER
@@ -20,11 +24,11 @@
 
 body > #root > div {
     height: 100vh;
+    background: @navGraBakgrunn;
 }
 
 .app {
     .typo-normal-mixin();
-
     color: @navMorkGra;
     font-family: @font-family;
     line-height: @line-height-base;

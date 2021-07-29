@@ -1,5 +1,11 @@
-import React, { useState, createContext, SetStateAction, Dispatch, useEffect } from 'react'
-import { useContext } from 'react'
+import React, {
+    useState,
+    createContext,
+    SetStateAction,
+    Dispatch,
+    useEffect,
+    useContext,
+} from 'react'
 
 export const AppStateContext = createContext<(boolean | Dispatch<SetStateAction<boolean>>)[]>([])
 
@@ -39,7 +45,7 @@ export interface IAppStateDispatcher {
 function settOppInitiellState() {
     const state = { ...appState }
 
-    state.erLoggetInn = true
+    state.erLoggetInn = false
     state.authLevel = AuthLevel.deltaker
 
     return state

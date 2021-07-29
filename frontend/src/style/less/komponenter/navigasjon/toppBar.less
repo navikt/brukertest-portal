@@ -1,16 +1,18 @@
-@import (reference) '~nav-frontend-core/less/_variabler';
-
-.toppBar {
+// Hele topp-baren
+.topp-bar {
     background: @navOransjeLighten60;
     display: flex;
     position: fixed;
+    top: 0;
     justify-content: space-between;
     align-items: center;
     height: 88px;
     width: 100%;
     padding: 0 2rem;
+    z-index: 1;
 }
 
+//Sidens tittel
 .sidetittel {
     position: absolute;
     left: 50%;

@@ -1,9 +1,9 @@
-# Containers
+# Containere
 
-This folder should contain all LOGICAL/STATE components
+Denne mappen inneholder alle LOGIKK/STATE -komponenter
 
--   Can have app state
--   Can perform remote actions
--   Can be a page component
--   Can have presentation
--   Can include view/presentation components
+-   Kan ha app state
+-   Kan utføre remote actions
+-   Kan være en side-komponent
+-   Kan ha en presentasjon
+-   Kan inkludere visnings/presentations -komponenter
