@@ -6,7 +6,7 @@ on:
 
 env:
   #IMAGE_TAG: ${{ github.sha }}
-  #IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:${{ github.sha }}
+  IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:${{ github.sha }}
   LATEST: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:latest
   CLUSTER: dev-gcp
   RESOURCE: backend/.nais/nais_dev.yaml
@@ -22,9 +22,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           yarn
-          docker build . -t ${LATEST}
+          docker build . -t ${LATEST} -t ${IMAGE}
           docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
           docker push ${LATEST}
+          docker push ${IMAGE}
         working-directory: ./backend
   deploy:
     name: Deploy to dev-gcp

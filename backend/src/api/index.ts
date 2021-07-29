@@ -13,6 +13,11 @@ offentligeRuter.use('/administrator', administratorRuter)
 
 const ruter = Router().use('/offentlig', offentligeRuter)
 
-export default Router().use('/isAlive', (req, res) => {
-    res.send('Alive').status(200)
-}).use('/api', ruter).use(errorBehandler)
+export default Router()
+    .use('/isAlive', (req, res) => {
+        res.send('Alive').status(200)
+    })
+    .use('isReady', (req, res) => {
+        res.send('Ready').status(200)
+    })
+    .use('/api', ruter).use(errorBehandler)
