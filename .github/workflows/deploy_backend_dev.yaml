@@ -39,4 +39,4 @@ jobs:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
           RESOURCE: backend/.nais/nais_dev.yaml
-          VAR: image=${{ env.IMAGE }}
+          VAR: image=${{ env.IMAGE_LATEST }}
