@@ -12,6 +12,8 @@ RUN yarn
 
 COPY . .
 
+RUN yarn
+
 RUN yarn build
 
 COPY dist dist/
