@@ -17,7 +17,7 @@ export default Router()
     .use('/isAlive', (req, res) => {
         res.send('Alive').status(200)
     })
-    .use('isReady', (req, res) => {
+    .use('/isReady', (req, res) => {
         res.send('Ready').status(200)
     })
     .use('/api', ruter).use(errorBehandler)

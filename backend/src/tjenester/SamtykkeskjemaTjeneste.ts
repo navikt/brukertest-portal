@@ -8,7 +8,7 @@ import { IHarEier } from '../interfaces/IHarEier'
 import { ISamtykkeskjema } from '../modeller/Samtykkeskjema/ISamtykkeskjema'
 import { Samtykkeskjema } from '../modeller/Samtykkeskjema/SamtykkeskjemaEntitet'
 import { AdministratorTjeneste } from './AdministratorTjeneste'
-import { DårligForespørselError } from '@/lib/errors/http/DårligForespørselError'
+import { DårligForespørselError } from '@/lib/errors/http/DaarligForespoerselError'
 import { IkkeFunnetError } from '@/lib/errors/http/IkkeFunnetError'
 import { ServerErrorMeldinger } from '@/lib/errors/meldinger/ServerErrorMeldinger'
 

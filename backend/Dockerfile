@@ -1,5 +1,7 @@
 FROM node:15.8.0
 
+# FROM runtime as source
+
 WORKDIR /app
 
 ENV NODE_ENV=development
@@ -16,7 +18,7 @@ EXPOSE 8080
 
 CMD ["yarn", "dev"]
 
-# FROM source as build
+# FROM runtime as build
 
 # ENV NODE_ENV=production
 # RUN yarn build

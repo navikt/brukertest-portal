@@ -5,7 +5,6 @@ on:
     branches: [main, feature/godkjenning-ved-endepunkter]
 
 env:
-  #IMAGE_TAG: ${{ github.sha }}
   IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:${{ github.sha }}
   LATEST: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:latest
   CLUSTER: dev-gcp
@@ -22,7 +21,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           yarn
-          docker build . -t ${LATEST} -t ${IMAGE}
+          docker build . -t ${LATEST} -t ${IMAGE} -f Dockerfile.prod
           docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
           docker push ${LATEST}
           docker push ${IMAGE}
