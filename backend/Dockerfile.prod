@@ -10,10 +10,14 @@ COPY yarn.lock .
 
 RUN yarn
 
+COPY . .
+
 RUN yarn build
 
 COPY dist dist/
 
 RUN yarn install --production
+
+EXPOSE 8080
 
 CMD ["yarn", "prod"]
