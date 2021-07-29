@@ -36,4 +36,3 @@ spec:
       - type: "POSTGRES_12"
         databases:
           - name: "brukertest-portal-db"
-            envVarPrefix: DB
