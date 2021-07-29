@@ -12,12 +12,12 @@ export default function DeltakerUtfyllingSteg(): ReactElement {
             <div className="epost-input">
                 <Input label="E-postadresse" />
             </div>
-            <Element className="checkbox-overskrift">
-                Hva sier jeg ja til?
+            <div className="checkbox-overskrift">
+                <Element>Hva sier jeg ja til?</Element>
                 <Normaltekst className="ekstra-tekst">
                     &nbsp;&nbsp;(kryss av boksene for det du føler deg komfortabel med)
                 </Normaltekst>
-            </Element>
+            </div>
             <CheckboxGruppe className="checkbox-gruppe">
                 <Checkbox
                     label={'Ja, jeg ønsker å delta i brukertesten'}
