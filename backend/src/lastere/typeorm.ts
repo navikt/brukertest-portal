@@ -1,17 +1,25 @@
+import config from '@/config'
 import { ConnectionOptions, createConnection } from 'typeorm'
 import 'reflect-metadata'
-import dotenv from 'dotenv'
 
 export default async () => {
     const typeormConfig: ConnectionOptions = {
         type: 'postgres',
-        host: process.env.NAIS_DATABASE_BRUKERTEST_PORTAL_API_BRUKERTEST_PORTAL_DB_HOST,
-        port: Number.parseInt(process.env.NAIS_DATABASE_BRUKERTEST_PORTAL_API_BRUKERTEST_PORTAL_DB_PORT!),
-        database: process.env.NAIS_DATABASE_BRUKERTEST_PORTAL_API_BRUKERTEST_PORTAL_DB_DATABASE,
-        username: process.env.NAIS_DATABASE_BRUKERTEST_PORTAL_API_BRUKERTEST_PORTAL_DB_USERNAME,
-        password: process.env.NAIS_DATABASE_BRUKERTEST_PORTAL_API_BRUKERTEST_PORTAL_DB_PASSWORD,
+        host: config.database.host,
+        port: Number.parseInt(config.database.port!),
+        database: config.database.db,
+        username: config.database.user,
+        password: config.database.password,
         synchronize: true,
         logging: false,
+        entities: [`${config.src}/modeller/**/*.{ts,js}`],
+        migrations: [`${config.src}/modeller/migration/**/*.{ts,js}`],
+        subscribers: [`${config.src}/modeller/subscriber/**/*.{ts,js}`],
+        cli: {
+            entitiesDir: `${config.src}/modeller`,
+            migrationsDir: `${config.src}/modeller/migration`,
+            subscribersDir: `${config.src}/modeller/subscriber`
+        }
     }
     return await createConnection(typeormConfig)
 }
