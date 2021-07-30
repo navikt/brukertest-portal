@@ -2,15 +2,16 @@ import dotenv from 'dotenv'
 
 const miljø = process.env.NODE_ENV
 
-let src 
-if (miljø === "development") {
+let src
+if (miljø === 'development') {
     src = 'src'
-} else if (miljø === "production") {
+} else if (miljø === 'production') {
     src = 'dist'
 }
 
 dotenv.config()
 
+// Legger inn de forskjellige miljøvariablene
 let host
 let port
 let db
@@ -39,5 +40,5 @@ export default {
         password: password
     },
     miljø,
-    src,
+    src
 }
