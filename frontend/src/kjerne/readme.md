@@ -1,3 +1,3 @@
-# Core
+# Kjerne
 
-Contains all business logic which is shared across the application.
+Inneholder all logikk som er delt over applikasjonen.

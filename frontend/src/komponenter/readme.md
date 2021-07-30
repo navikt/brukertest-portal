@@ -1,17 +1,8 @@
-# Components
+# Komponenter
 
-This folder should contain all VIEW/PRESENTATIONAL components which are used
-through out the application
+Denne mappen bør innholde alle VISNINGS/PRESENTASJONS -komponenter som er brukt gjennomgående i applikasjonen
 
--   Can have props
--   Can have local state
--   Can NOT have app state
--   Can NOT perform remote actions# Components
-
-This folder should contain all VIEW/PRESENTATIONAL components which are used
-through out the application
-
--   Can have props
--   Can have local state
--   Can NOT have app state
--   Can NOT perform remote actions
+-   Kan ha props
+-   Kan ha local state
+-   Kan IKKE ha app state
+-   Kan IKKE utføre remote actions

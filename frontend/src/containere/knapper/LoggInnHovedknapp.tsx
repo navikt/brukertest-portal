@@ -1,20 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Hovedknapp } from 'nav-frontend-knapper'
 import { Link } from 'react-router-dom'
 import { AuthLevel, useAppStateDispatcher } from '../../kjerne/state/AppStateContext'
+import { StegContext } from '../../kjerne/state/StegContext'
 
 export default function LoggInnHovedknapp(): React.ReactElement {
+    const [, settSteg] = useContext(StegContext)
+
     const appDispatcher = useAppStateDispatcher()
 
-    const updateLogin = () => {
+    const oppdaterLoggInnState = () => {
         appDispatcher.settLoggInnState(AuthLevel.administrator)
+        //Setter steg tilbake til 0 for reset ved logg ut->inn
+        settSteg(0)
     }
 
     return (
         <Link to="/samtykkeskjema" style={{ textDecoration: 'none' }}>
-            <Hovedknapp className="hovedknapp" onClick={updateLogin}>
-                Logg inn
-            </Hovedknapp>
+            <Hovedknapp onClick={oppdaterLoggInnState}>Logg inn</Hovedknapp>
         </Link>
     )
 }

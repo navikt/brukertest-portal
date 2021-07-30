@@ -1,23 +1,23 @@
-@import (reference) '~nav-frontend-core/less/_variabler';
-
-.hovedomradeTopp {
+//Toppen av hovedområdet (skilt med divider)
+.hovedomrade-topp {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
-
-.toppIkon {
+//Ikon på toppen av hovedområdet
+.topp-ikon > * {
     height: 2.25rem;
     width: 2.25rem;
     position: relative;
     top: -1rem;
 }
-
-.infotekst {
-    margin: 1rem 2.5rem 0.9375rem 2.5rem !important;
+// Innholdstittelen av hovedområdet
+.typo-innholdstittel.infotekst {
+    margin: 1rem 2.5rem 0.9375rem 2.5rem;
     white-space: nowrap;
 }
 
+//Divider mellom hovedområde topp og hovedinnhold
 .divider {
     background: @navOransjeLighten60;
     height: 4px;
