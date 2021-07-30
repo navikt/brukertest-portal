@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import { GrunnError } from '../../lib/errors/GrunnError'
 import { QueryFailedError } from 'typeorm'
-import { DårligForespørselError } from '../../lib/errors/http/DårligForespørselError'
+import { DårligForespørselError } from '../../lib/errors/http/DaarligForespoerselError'
 import { ServerErrorMeldinger } from '@/lib/errors/meldinger/ServerErrorMeldinger'
 import { StatusCodes } from 'http-status-codes'
 

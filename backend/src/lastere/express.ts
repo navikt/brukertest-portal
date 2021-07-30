@@ -3,7 +3,7 @@ import cors from 'cors'
 import helmet from 'helmet'
 import ruter from './../api'
 
-export default ({ server }: { server: Application }) => {
+export default async ({ server }: { server: Application }) => {
     server.use(helmet())
 
     server.use(cors())

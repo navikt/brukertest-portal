@@ -1,4 +1,4 @@
-import { validerEntitet } from '@/hjelpere/validerEntitet'
+import { validerEntitet } from '../hjelpere/validerEntitet'
 import { IkkeFunnetError } from '@/lib/errors/http/IkkeFunnetError'
 import { ServerErrorMeldinger } from '@/lib/errors/meldinger/ServerErrorMeldinger'
 import { Administrator } from '@/modeller/Administrator/AdministratorEntitet'

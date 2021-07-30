@@ -6,7 +6,6 @@ on:
 
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:${{ github.sha }}
-  IMAGE_LATEST: docker.pkg.github.com/${{ github.repository }}/brukertest-portal-backend:latest
   CLUSTER: prod-gcp
   RESOURCE: backend/.nais/nais_prod.yaml
 
@@ -21,10 +20,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           yarn
-          docker build . -t ${IMAGE} -t ${IMAGE_LATEST}
+          docker build . -t ${IMAGE} -f Dockerfile.prod
           docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
           docker push ${IMAGE}
-          docker push ${IMAGE_LATEST}
         working-directory: ./backend
   deploy:
     name: Deploy to prod-gcp
@@ -33,9 +31,10 @@ jobs:
     steps:
       - name: Checkout branch
         uses: actions/checkout@v1
-      - name: Deploy to DEV
+      - name: Deploy to PROD
         uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: prod-gcp
           RESOURCE: backend/.nais/nais_prod.yaml
+          VAR: image=${{ env.IMAGE }}
