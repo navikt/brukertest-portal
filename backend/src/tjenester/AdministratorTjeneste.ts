@@ -1,12 +1,11 @@
 import { validerEntitet } from '@/hjelpere/validerEntitet'
-import { IkkeFunnetError } from '@/lib/errors/database/IkkeFunnetError'
+import { IkkeFunnetError } from '@/lib/errors/http/IkkeFunnetError'
+import { ServerErrorMeldinger } from '@/lib/errors/meldinger/ServerErrorMeldinger'
 import { Administrator } from '@/modeller/Administrator/AdministratorEntitet'
 import { IAdministrator } from '@/modeller/Administrator/IAdministrator'
 import { classToClass } from 'class-transformer'
 import { Connection, Repository } from 'typeorm'
-import { DuplikatError } from '../lib/errors/database/DuplikatError'
-import { parsePhoneNumberFromString } from 'libphonenumber-js'
-import { FeilIEntitetError } from '@/lib/errors/validering/FeilIEntitetError'
+import { DuplikatError } from '@/lib/errors/DuplikatError'
 
 export class AdministratorTjeneste {
     private database: Connection
@@ -43,7 +42,7 @@ export class AdministratorTjeneste {
      */
     private async lagAdministrator(nyAdministrator: IAdministrator): Promise<Administrator | undefined> {
         if (await this.erDuplikat(nyAdministrator)) {
-            throw new DuplikatError('Administratoren er allerede registrert!')
+            throw new DuplikatError({ melding: ServerErrorMeldinger.duplikat('Administrator') })
         }
 
         const administratorEntitet = this.administratorOppbevaringssted.create(nyAdministrator)
@@ -63,7 +62,7 @@ export class AdministratorTjeneste {
         const administrator = await this.administratorOppbevaringssted.findOne(id)
 
         if (!administrator) {
-            throw new IkkeFunnetError('Fant ikke administratoren')
+            throw new IkkeFunnetError({ melding: ServerErrorMeldinger.ikkeFunnet('Administrator') })
         }
 
         return administrator
@@ -84,7 +83,7 @@ export class AdministratorTjeneste {
         eksisterendeAdministrator = await this.administratorOppbevaringssted.findOne(id)
 
         if (!eksisterendeAdministrator) {
-            throw new IkkeFunnetError('Fant ikke administratoren')
+            throw new IkkeFunnetError({ melding: ServerErrorMeldinger.ikkeFunnet('Administrator') })
         }
 
         const oppdatertAdministrator = this.administratorOppbevaringssted.create(administrator)
@@ -106,7 +105,7 @@ export class AdministratorTjeneste {
         administrator = await this.administratorOppbevaringssted.findOne(id)
 
         if (!administrator) {
-            throw new IkkeFunnetError('Fant ikke administratoren')
+            throw new IkkeFunnetError({ melding: ServerErrorMeldinger.ikkeFunnet('Administrator') })
         }
 
         await this.administratorOppbevaringssted.remove(administrator)

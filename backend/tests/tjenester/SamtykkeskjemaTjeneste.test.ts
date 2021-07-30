@@ -1,5 +1,4 @@
-import { IkkeFunnetError } from '@/lib/errors/database/IkkeFunnetError'
-import { FeilIEntitetError } from '@/lib/errors/validering/FeilIEntitetError'
+import { IkkeFunnetError } from '@/lib/errors/http/IkkeFunnetError'
 import { Administrator } from '@/modeller/Administrator/AdministratorEntitet'
 import { ISamtykkeskjema } from '@/modeller/Samtykkeskjema/ISamtykkeskjema'
 import { TypeSamtykkeskjema } from '@/modeller/Samtykkeskjema/TypeSamtykkeskjema'
@@ -9,6 +8,8 @@ import { Samtykkeskjema } from '../../src/modeller/Samtykkeskjema/Samtykkeskjema
 import { hentTestDatabase } from '../hjelpere/database'
 import { renskDatabaseEntitetTabell } from '../Test.utils'
 import { lagDummyAdministrator } from '../hjelpere/dummy/administrator'
+import { ValideringsError } from '@/lib/errors/validering/ValideringsError'
+import { ForbudtError } from '@/lib/errors/http/ForbudtError'
 
 let db: Connection
 let samtykkeskjemaTjeneste: SamtykkeskjemaTjeneste
@@ -80,7 +81,7 @@ it('skal ikke kune lage et samtykkeskjema med feil eier', async () => {
         samtykkeskjemaer: []
     })
 
-    await expect(samtykkeTjeneste.lag(frøDOO)).rejects.toThrow(IkkeFunnetError)
+    await expect(samtykkeTjeneste.lag(frøDOO)).rejects.toThrow(ForbudtError)
 })
 
 // it('skal kaste error når lager duplikat samtykkeskjema', async () => {
@@ -163,5 +164,5 @@ it('skal ikke kunne oppdatere samtykkeskjema til tomme felt', async () => {
             startDato: new Date(),
             sluttDato: new Date()
         })
-    ).rejects.toThrow(FeilIEntitetError)
+    ).rejects.toThrow(ValideringsError)
 })

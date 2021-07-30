@@ -5,5 +5,5 @@ interface ValideringErrorMeldinger extends IErrorMelding {
 }
 
 export const ValideringErrorMelding: ValideringErrorMeldinger = {
-    feilTelefonnummer: () => `Telefonummer er på feil format`
+    feilTelefonnummer: () => 'Telefonnummeret er på feil format'
 }

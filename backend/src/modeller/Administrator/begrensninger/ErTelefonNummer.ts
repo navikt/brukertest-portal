@@ -6,8 +6,13 @@ import {
     ValidatorConstraintInterface
 } from 'class-validator'
 import parsePhoneNumberFromString from 'libphonenumber-js'
-import { ValideringErrorMelding } from '../../../lib/errors/meldinger/ValideringErrorMeldinger'
+import { ValideringErrorMelding } from '@/lib/errors/meldinger/ValideringErrorMeldinger'
 
+/**
+ * Begrensning for å validere om et telefonnummer er på riktig format.
+ * Ved validering vil begrensningen returnere en validerings error melding av
+ * format "feil telefonummer" hvis telefonnummeret ikke er på riktig format.
+ */
 @ValidatorConstraint({ async: true })
 export class ErTelefonNummerBegrensning implements ValidatorConstraintInterface {
     async validate(telefonnummer: string, args: ValidationArguments) {

@@ -4,9 +4,9 @@ import { IAdministrator } from '../../src/modeller/Administrator/IAdministrator'
 import { hentTestDatabase } from '../hjelpere/database'
 import { Administrator } from '@/modeller/Administrator/AdministratorEntitet'
 import { renskDatabaseEntitetTabell } from '../Test.utils'
-import { FeilIEntitetError } from '@/lib/errors/validering/FeilIEntitetError'
-import { IkkeFunnetError } from '@/lib/errors/database/IkkeFunnetError'
-import { DuplikatError } from '@/lib/errors/database/DuplikatError'
+import { IkkeFunnetError } from '@/lib/errors/http/IkkeFunnetError'
+import { DuplikatError } from '@/lib/errors/DuplikatError'
+import { ValideringsError } from '@/lib/errors/validering/ValideringsError'
 
 let db: Connection
 let administratorTjeneste: AdministratorTjeneste
@@ -60,7 +60,7 @@ it('skal ikke kune lage en administrator med feil i feltene', async () => {
             telefon: 'sidhgsoigs',
             epost: 'Er det slikt man skriver epost?'
         })
-    ).rejects.toThrow(FeilIEntitetError)
+    ).rejects.toThrow(ValideringsError)
 })
 
 it('skal ikke kunne lage en duplikat administrator', async () => {
@@ -115,5 +115,5 @@ it('skal ikke kunne oppdatere en eksisterende administrator med feil i feltene',
             telefon: 'sidhgsoigs',
             epost: 'Er det slikt man skriver epost?'
         })
-    ).rejects.toThrow(FeilIEntitetError)
+    ).rejects.toThrow(ValideringsError)
 })
