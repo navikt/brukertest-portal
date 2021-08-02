@@ -1,13 +1,20 @@
 import { CheckboxGruppe, Checkbox } from 'nav-frontend-skjema'
 import { Undertittel } from 'nav-frontend-typografi'
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { Dispatch, ReactElement, SetStateAction, useEffect, useState } from 'react'
 
-export default function JegForstårSteg(): ReactElement {
+export default function ForståttSjekkSteg({
+    jegForstår,
+    settJegForstår,
+    erNesteTrykket,
+}: {
+    jegForstår: boolean
+    settJegForstår: Dispatch<SetStateAction<boolean>>
+    erNesteTrykket: boolean
+}): ReactElement {
     const [sjekket, settSjekket] = useState([false, false, false, false])
-    const [jegForstår, settJegForstår] = useState(false)
-    const [nesteTrykket, settNesteTrykket] = useState(false)
 
-    function handleChange(e: any) {
+    // Setter riktig checkboks til å være huket av
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         const boxPressed: number = Number.parseInt(e.target.id)
 
         if (sjekket[boxPressed]) {
@@ -31,15 +38,9 @@ export default function JegForstårSteg(): ReactElement {
         }
     }
 
-    function handleNesteChange(e: any) {
-        settNesteTrykket(true)
-        if (jegForstår) {
-            alert('DUUU EEEER IGJENNOOOM!')
-        }
-    }
-
+    // Sender feilmelding dersom ikke alle checkboxer er huket av når man forsøker å trykke seg videre
     function feilmeldingSjekk() {
-        if (nesteTrykket && jegForstår === false) {
+        if (erNesteTrykket && jegForstår === false) {
             return 'Alle checkbokser må være huket av før du kan gå videre'
         } else {
             return false
@@ -79,7 +80,6 @@ export default function JegForstårSteg(): ReactElement {
                     onChange={handleChange}
                 />
             </CheckboxGruppe>
-            <button onClick={handleNesteChange}>Klikk meg for test</button>
         </div>
     )
 }

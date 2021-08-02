@@ -1,6 +1,9 @@
-import React, {useState, createContext, Dispatch, SetStateAction } from 'react'
+import React, { useState, createContext, Dispatch, SetStateAction } from 'react'
 
-export const StegContext = createContext<[number , Dispatch<SetStateAction<number>>]>([0, () => null])
+export const StegContext = createContext<[number, Dispatch<SetStateAction<number>>]>([
+    0,
+    () => null,
+])
 
 export function StegProvider({
     children,
@@ -9,9 +12,5 @@ export function StegProvider({
 }): React.ReactElement {
     const [steg, settSteg] = useState<number>(0)
 
-    return(
-        <StegContext.Provider value={[steg, settSteg]}>
-            {children}
-        </StegContext.Provider>
-    )
+    return <StegContext.Provider value={[steg, settSteg]}>{children}</StegContext.Provider>
 }
