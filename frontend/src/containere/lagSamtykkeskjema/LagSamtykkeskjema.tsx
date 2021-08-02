@@ -1,5 +1,7 @@
+import { AddPeople } from '@navikt/ds-icons'
 import { Datepicker } from 'nav-datovelger'
 import Hjelpetekst from 'nav-frontend-hjelpetekst'
+import { Knapp } from 'nav-frontend-knapper'
 import { Input, Radio, TextareaControlled } from 'nav-frontend-skjema'
 import React, { ReactElement, useState } from 'react'
 
@@ -70,6 +72,10 @@ export default function LagSamtykkeskjema(): ReactElement {
                 <Input className="input-item" label="Produktområde"/>
                 <Input className="input-item" label="Seksjon/avdeling"/>
             </div>
+            <Knapp className="legg-til-person-knapp">
+                <AddPeople className="legg-til-person-ikon"/>
+                Legg til person
+            </Knapp>
         </div>
     )
 }
