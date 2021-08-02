@@ -53,6 +53,16 @@ export default function LagSamtykkeskjema(): ReactElement {
                 <Radio label={'Ja'} name="skal-publiseres"/>
                 <Radio label={'Nei'} name="skal-publiseres"/>
             </div>
+            <p className="skal-publiseres-info">
+                Undersøkelsen vil bli publisert i en rapport. Rapporten skal deles med 
+                ansatte i NAV og med våre sammargeidspartnere utenfor NAV.
+            </p>
+            <h4>Hver er vi og hvem er ansvarlig for undersøkelsen?</h4>
+            <p>
+                Vi er ansatt i Designseksjonen i NAV IT i Arbieds- og velferdsdirektoratet
+                (NAV). I designseskjonen arbeider vi med å forbedre NAVs tjenester.
+                Ansvarlig for undersøkelsen er
+            </p>
         </div>
     )
 }
