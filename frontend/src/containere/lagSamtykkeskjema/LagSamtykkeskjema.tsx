@@ -1,6 +1,6 @@
 import { Datepicker } from 'nav-datovelger'
 import Hjelpetekst from 'nav-frontend-hjelpetekst'
-import { TextareaControlled } from 'nav-frontend-skjema'
+import { Radio, TextareaControlled } from 'nav-frontend-skjema'
 import React, { ReactElement, useState } from 'react'
 
 export default function LagSamtykkeskjema(): ReactElement {
@@ -33,18 +33,25 @@ export default function LagSamtykkeskjema(): ReactElement {
                 defaultValue=""
             />
             <div className="dato-container">
-                <p>Den gjennomføres</p>
-                <Datepicker 
-                    locale={'nb'}
-                    value={startDato}
-                    onChange={settStartDato}/>
+                <div className="sub-dato-container">
+                    <p>Den gjennomføres</p>
+                    <Datepicker 
+                        locale={'nb'}
+                        value={startDato}
+                        onChange={settStartDato}/>
+                </div>
+                <div className="sub-dato-container">
+                    <p>og varer til</p>
+                    <Datepicker
+                        locale={'nb'}
+                        value={sluttDato}
+                        onChange={settSluttDato}/>
+                </div>
             </div>
-            <div className="dato-container">
-                <p>og varer til</p>
-                <Datepicker
-                    locale={'nb'}
-                    value={sluttDato}
-                    onChange={settSluttDato}/>
+            <div className="skal-publiseres-container">
+                <h4>Skal undersøkelsen publiseres?</h4>
+                <Radio label={'Ja'} name="skal-publiseres"/>
+                <Radio label={'Nei'} name="skal-publiseres"/>
             </div>
         </div>
     )
