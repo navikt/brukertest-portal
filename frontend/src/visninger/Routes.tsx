@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ToppBar from '../komponenter/navigasjon/ToppBar'
 
 import Landingsside from './landingsside/Landingsside'
-import Samtykkeskjema from './samtykkeskjema/Samtykkeskjema'
+import LagSamtykkeskjemaVisning from './lagSamtykkeskjema/LagSamtykkeskjemaVisning'
 
 export default function Routes(): React.ReactElement {
     return (
@@ -14,7 +14,7 @@ export default function Routes(): React.ReactElement {
                     <Landingsside />
                 </Route>
                 <Route path="/samtykkeskjema" exact>
-                    <Samtykkeskjema />
+                    <LagSamtykkeskjemaVisning />
                 </Route>
             </Switch>
         </Router>
