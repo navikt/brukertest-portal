@@ -1,6 +1,6 @@
 import { Datepicker } from 'nav-datovelger'
 import Hjelpetekst from 'nav-frontend-hjelpetekst'
-import { Radio, TextareaControlled } from 'nav-frontend-skjema'
+import { Input, Radio, TextareaControlled } from 'nav-frontend-skjema'
 import React, { ReactElement, useState } from 'react'
 
 export default function LagSamtykkeskjema(): ReactElement {
@@ -63,6 +63,13 @@ export default function LagSamtykkeskjema(): ReactElement {
                 (NAV). I designseskjonen arbeider vi med å forbedre NAVs tjenester.
                 Ansvarlig for undersøkelsen er
             </p>
+            <div className="input-container">
+                <Input className="input-item" label="Fornavn"/>
+                <Input className="input-item" label="Etternavn"/>
+                <Input className="input-item" label="Team"/>
+                <Input className="input-item" label="Produktområde"/>
+                <Input className="input-item" label="Seksjon/avdeling"/>
+            </div>
         </div>
     )
 }
