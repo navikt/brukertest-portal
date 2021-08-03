@@ -3,26 +3,27 @@ import { StegContext } from '../../kjerne/state/StegContext'
 import DeltakerUtfyllingSteg from '../../komponenter/samtykkeskjema/DeltakerUtfyllingSteg'
 import ForsåttSjekkSteg from '../../komponenter/samtykkeskjema/ForståttSjekkSteg'
 import InformasjonsSteg from '../../komponenter/samtykkeskjema/InformasjonsSteg'
-import JegSamtykkerKnapp from '../../containere/knapper/JegSamtykkerKnapp'
 import LoggUtKnappHovedinnhold from '../../containere/knapper/LoggUtKnappHovedinnhold'
 import { Tilbakeknapp, Nesteknapp } from 'nav-frontend-ikonknapper'
+import { Hovedknapp } from 'nav-frontend-knapper'
 
 export function SamtykkeskjemaSteg(): React.ReactElement {
     const [steg, settSteg] = useContext(StegContext)
 
-    const [jegForstår, settJegForstår] = useState(false)
+    const [skjemaUtfylt, settSkjemaUtfylt] = useState(false)
     const [nesteTrykket, settNesteTrykket] = useState(false)
 
     const hoppTilNesteSteg = () => {
         settSteg(steg + 1)
+        settNesteTrykket(false)
     }
 
     const hoppTilForrigeSteg = () => {
         settSteg(steg - 1)
     }
 
-    function nesteValidering() {
-        if (jegForstår) {
+    function skjemaValidering() {
+        if (skjemaUtfylt) {
             hoppTilNesteSteg()
         } else settNesteTrykket(true)
     }
@@ -129,13 +130,13 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
             return (
                 <>
                     <ForsåttSjekkSteg
-                        jegForstår={jegForstår}
-                        settJegForstår={settJegForstår}
+                        skjemaUtfylt={skjemaUtfylt}
+                        settSkjemaUtfylt={settSkjemaUtfylt}
                         erNesteTrykket={nesteTrykket}
                     />
                     <div className="hovedomraade-bunn">
                         <Tilbakeknapp onClick={hoppTilForrigeSteg} />
-                        <Nesteknapp onClick={nesteValidering} />
+                        <Nesteknapp onClick={skjemaValidering} />
                     </div>
                 </>
             )
@@ -143,10 +144,14 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
         case 6:
             return (
                 <>
-                    <DeltakerUtfyllingSteg />
+                    <DeltakerUtfyllingSteg
+                        skjemaUtfylt={skjemaUtfylt}
+                        settSkjemaUtfylt={settSkjemaUtfylt}
+                        erNesteTrykket={nesteTrykket}
+                    />
                     <div className="hovedomraade-bunn">
                         <Tilbakeknapp onClick={hoppTilForrigeSteg} />
-                        <JegSamtykkerKnapp />
+                        <Hovedknapp onClick={skjemaValidering}>Jeg samtykker</Hovedknapp>
                     </div>
                 </>
             )

@@ -3,17 +3,17 @@ import { Undertittel } from 'nav-frontend-typografi'
 import React, { Dispatch, ReactElement, SetStateAction, useEffect, useState } from 'react'
 
 export default function ForståttSjekkSteg({
-    jegForstår,
-    settJegForstår,
+    skjemaUtfylt,
+    settSkjemaUtfylt,
     erNesteTrykket,
 }: {
-    jegForstår: boolean
-    settJegForstår: Dispatch<SetStateAction<boolean>>
+    skjemaUtfylt: boolean
+    settSkjemaUtfylt: Dispatch<SetStateAction<boolean>>
     erNesteTrykket: boolean
 }): ReactElement {
     const [sjekket, settSjekket] = useState([false, false, false, false])
 
-    // Setter riktig checkboks til å være huket av
+    // Setter riktig checkboks til å være huket av eller ikke
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         const boxPressed: number = Number.parseInt(e.target.id)
 
@@ -32,15 +32,15 @@ export default function ForståttSjekkSteg({
     function harTrykketAlle() {
         const trueSjekk = (verdi: boolean) => verdi
         if (sjekket.every(trueSjekk)) {
-            settJegForstår(true)
+            settSkjemaUtfylt(true)
         } else {
-            settJegForstår(false)
+            settSkjemaUtfylt(false)
         }
     }
 
     // Sender feilmelding dersom ikke alle checkboxer er huket av når man forsøker å trykke seg videre
     function feilmeldingSjekk() {
-        if (erNesteTrykket && jegForstår === false) {
+        if (erNesteTrykket && skjemaUtfylt === false) {
             return 'Alle checkbokser må være huket av før du kan gå videre'
         } else {
             return false
