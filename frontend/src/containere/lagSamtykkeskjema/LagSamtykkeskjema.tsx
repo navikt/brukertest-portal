@@ -6,6 +6,7 @@ import { Radio, TextareaControlled } from 'nav-frontend-skjema'
 import React, { ReactElement, useState } from 'react'
 import AnsvarligPersonInput from '../../komponenter/lagSamtykkeskjema/AnsvarligPersonInput'
 import KontaktPersonInput from '../../komponenter/lagSamtykkeskjema/KontaktPersonInput'
+import LagringsTidSelect from '../../komponenter/lagSamtykkeskjema/LagringsTidSelect'
 
 export default function LagSamtykkeskjema(): ReactElement {
     const [startDato, settStartDato] = useState<string>('')
@@ -115,6 +116,19 @@ export default function LagSamtykkeskjema(): ReactElement {
                 eller hvor du jobber. Opplysningene vi samler inn skal kun brukes til det
                 undersøkelsen handler om, og det du har samtykket til.
             </p>
+            <div className="sub-overskrift">
+                <h3>Oppbevaring av personopplysningene</h3>
+                <Hjelpetekst>
+                    Sett eventuelt kortere frist, om det er mulig.
+                </Hjelpetekst>
+            </div>
+            <span>
+                Alle opplysningene om deg lagres i NAVs systemer. Det er bare ansatte som jobber
+                med undersøkelsen som har tilgang. Vi sletter all personlig data om deg så snart
+                vi ikke har bruk for det, senest 
+            </span>
+            <LagringsTidSelect /> 
+            <span>måneder etter intervjuet.</span>
         </div>
     )
 }
