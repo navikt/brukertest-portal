@@ -129,6 +129,30 @@ export default function LagSamtykkeskjema(): ReactElement {
                 <LagringsTidSelect /> 
             </span>
             <span>måneder etter intervjuet.</span>
+            {/* TODO Legge til slik at man kan redigere denne seksjonen */}
+            <div className="sub-overskrift">
+                <h3>Taushetsplikt</h3>
+                <Hjelpetekst className="taushetsplikt-hjelpetekst-popover">
+                    <p className="taushetsplikt-hjelpetekst">
+                        Om det er en leverandør som behandler personopplysninger på vegne av 
+                        NAV(databehandler) må du opplyse dette.
+                    </p>
+                    <p className="taushetsplikt-hjelpetekst">
+                        Det samme gjelder om opplysningene skal utlever til forskningsintutisjoner
+                        utenfor NAV. Gi i så fall navn på person eller virksomhet.
+                    </p>
+                    <p className="taushetsplikt-hjelpetekst">
+                        Hvis personopplysningene som samles skal overføres til
+                        forskningsintutisjoner utenfor EU/EØS må det i tilleg informeres om
+                        risiko og tiltak forbundet med dette.
+                    </p>
+                </Hjelpetekst>
+            </div>
+            <p>
+                Alle som skal ha tilgang til personopplysningene har taushetsplikt, dvs.
+                plikt til å holde opplysningene hemmelig. I denne undersøkelsen er det tre
+                personer som skal ha tilgang til opplysningene.
+            </p>
         </div>
     )
 }
