@@ -61,7 +61,7 @@ export default function DeltakerUtfyllingSteg({
     // Håndterer feilmeldinger i skjemaet
     function epostFeilmeldingSjekk() {
         if (erNesteTrykket && epostValidering(epost) === false) {
-            return 'Skriv inn riktig epost adresse for å fortsette. Eksempel: navn@epost.no'
+            return 'Skriv inn riktig e-postadresse for å fortsette. Eksempel: navn@epost.no'
         } else {
             return false
         }
