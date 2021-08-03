@@ -3,8 +3,7 @@ import React, { ReactElement } from 'react'
 
 export default function LagringsTidSelect(): ReactElement {
     return (
-        <Select className="lagrings-tid-select">
-            <option value="">Antall måneder</option>
+        <Select className="lagrings-tid-select" defaultValue="12">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>

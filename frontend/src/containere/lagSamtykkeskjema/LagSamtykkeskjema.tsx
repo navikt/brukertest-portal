@@ -126,8 +126,8 @@ export default function LagSamtykkeskjema(): ReactElement {
                 Alle opplysningene om deg lagres i NAVs systemer. Det er bare ansatte som jobber
                 med undersøkelsen som har tilgang. Vi sletter all personlig data om deg så snart
                 vi ikke har bruk for det, senest 
+                <LagringsTidSelect /> 
             </span>
-            <LagringsTidSelect /> 
             <span>måneder etter intervjuet.</span>
         </div>
     )
