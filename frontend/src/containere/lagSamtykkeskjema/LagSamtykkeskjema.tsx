@@ -153,6 +153,22 @@ export default function LagSamtykkeskjema(): ReactElement {
                 plikt til å holde opplysningene hemmelig. I denne undersøkelsen er det tre
                 personer som skal ha tilgang til opplysningene.
             </p>
+            <h3>Anonymisering og formidling av opplysningene</h3>
+            <p>
+                Før opplysningene slettes så anynomiseres de slik at de kan formidles
+                videre til andre. Opplysningene anonymiseres ved at alle inervjuer får en
+                kode som viser kjønn og alder, mens alle opplysninger som kan lede tilbake
+                til deg fjernes.
+            </p>
+            <h3>Dine rettigheter</h3>
+            <p>
+                Det er frivilig å delta. Du kan når som helt avslutte intervjuet, uten å
+                måtte oppgi en grunn. Ønsker du å trekke samtykket ditt, så sørger vi for at
+                alt materiale om deg slettes. Du har også rett til å se, rette eller slette
+                dine opplysninger både under og etter at intervjuet er ferdig. Kontak:
+                {/* TODO Legge inn kontaktperson info som blir fylt ut over*/}
+                på epost så hjelper vi deg.
+            </p>
         </div>
     )
 }
