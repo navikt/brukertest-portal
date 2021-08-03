@@ -88,6 +88,33 @@ export default function LagSamtykkeskjema(): ReactElement {
                 <AddPeople className="legg-til-person-ikon"/>
                 Legg til person
             </Knapp>
+            <h3>Hvilke metoder bruker vi?</h3>
+            <div className="skal-lydopptak-container">
+                <h4>Skal det gjøres lydopptak?</h4>
+                <Radio label={'Ja'} name="skal-lydopptak"/>
+                <Radio label={'Nei'} name="skal-lydopptak"/>
+            </div>
+            <span>I denne undersøkelsen gjør vi intervjuer. </span>
+            <span className="skal-lydopptak-info">
+                Vi ønsker også å ta opp intervjuet med lydopptaker, for lettere å kunne
+                skrive ned det du sier.
+            </span>
+            <div className="sub-overskrift">
+                <h3>Hvilke opplysninger samler vi inn?</h3>
+                <Hjelpetekst>
+                    Pass på å ikke avslører for my av undersøkelsen slik at du skaper bias
+                </Hjelpetekst>
+            </div>
+            <TextareaControlled 
+                label="Vi vil spørre deg om" 
+                maxLength={2000}
+                defaultValue=""
+            />
+            <p>
+                Du velger selv om du vil fortelle om sensitive opplysninger som helseforhold
+                eller hvor du jobber. Opplysningene vi samler inn skal kun brukes til det
+                undersøkelsen handler om, og det du har samtykket til.
+            </p>
         </div>
     )
 }
