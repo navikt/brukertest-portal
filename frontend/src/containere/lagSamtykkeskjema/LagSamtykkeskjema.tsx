@@ -6,6 +6,7 @@ import { Radio, TextareaControlled } from 'nav-frontend-skjema'
 import React, { ReactElement, useState } from 'react'
 import AnsvarligPersonInput from '../../komponenter/lagSamtykkeskjema/AnsvarligPersonInput'
 import KontaktPersonInput from '../../komponenter/lagSamtykkeskjema/KontaktPersonInput'
+import LagJegForstårCheckbokser from '../../komponenter/lagSamtykkeskjema/LagJegForstårCheckbokser'
 import LagringsTidSelect from '../../komponenter/lagSamtykkeskjema/LagringsTidSelect'
 
 export default function LagSamtykkeskjema(): ReactElement {
@@ -169,6 +170,13 @@ export default function LagSamtykkeskjema(): ReactElement {
                 {/* TODO Legge inn kontaktperson info som blir fylt ut over*/}
                 på epost så hjelper vi deg.
             </p>
+            <p>
+                Mottar du tjenester fra NAV, vil ikke deltakelse i denne undersøkelsen
+                påvirke dine rettigheter i NAV. Vi har ikke tilgang i dine saker. Andre i NAV
+                får heller ikke vite hvem som deltar i undersøkelsen, og opplysningene du
+                gir kan ikke kobles til dine saker.
+            </p>
+            <LagJegForstårCheckbokser />
         </div>
     )
 }
