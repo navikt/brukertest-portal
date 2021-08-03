@@ -145,7 +145,6 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
             return (
                 <>
                     <DeltakerUtfyllingSteg
-                        skjemaUtfylt={skjemaUtfylt}
                         settSkjemaUtfylt={settSkjemaUtfylt}
                         erNesteTrykket={nesteTrykket}
                     />

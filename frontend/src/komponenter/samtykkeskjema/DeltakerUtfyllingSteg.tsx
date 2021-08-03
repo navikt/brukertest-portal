@@ -1,13 +1,11 @@
 import React, { Dispatch, ReactElement, SetStateAction, useEffect, useState } from 'react'
-import { Checkbox, CheckboxGruppe, Input, SkjemaGruppe } from 'nav-frontend-skjema'
+import { Checkbox, CheckboxGruppe, Input } from 'nav-frontend-skjema'
 import { Element, Normaltekst } from 'nav-frontend-typografi'
 
 export default function DeltakerUtfyllingSteg({
-    skjemaUtfylt,
     settSkjemaUtfylt,
     erNesteTrykket,
 }: {
-    skjemaUtfylt: boolean
     settSkjemaUtfylt: Dispatch<SetStateAction<boolean>>
     erNesteTrykket: boolean
 }): ReactElement {
