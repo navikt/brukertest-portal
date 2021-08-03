@@ -4,10 +4,16 @@ import Hjelpetekst from 'nav-frontend-hjelpetekst'
 import { Knapp } from 'nav-frontend-knapper'
 import { Input, Radio, TextareaControlled } from 'nav-frontend-skjema'
 import React, { ReactElement, useState } from 'react'
+import AnsvarligPersonInput from '../../komponenter/lagSamtykkeskjema/AnsvarligPersonInput'
 
 export default function LagSamtykkeskjema(): ReactElement {
     const [startDato, settStartDato] = useState<string>('')
     const [sluttDato, settSluttDato] = useState<string>('')
+    const [ansvarligPersonerListe, settAnsarligPersonerListe] = useState<ReactElement[]>([<AnsvarligPersonInput key={0}/>])
+
+    const leggTilNyAnsvarligPerson = () => {
+        settAnsarligPersonerListe(ansvarligPersonerListe.concat(<AnsvarligPersonInput key={ansvarligPersonerListe.length}/>))
+    }
 
     return (
         <div className="lag-samtykkeskjema">
@@ -65,14 +71,8 @@ export default function LagSamtykkeskjema(): ReactElement {
                 (NAV). I designseskjonen arbeider vi med å forbedre NAVs tjenester.
                 Ansvarlig for undersøkelsen er
             </p>
-            <div className="input-container">
-                <Input className="input-item" label="Fornavn"/>
-                <Input className="input-item" label="Etternavn"/>
-                <Input className="input-item" label="Team"/>
-                <Input className="input-item" label="Produktområde"/>
-                <Input className="input-item" label="Seksjon/avdeling"/>
-            </div>
-            <Knapp className="legg-til-person-knapp">
+            {ansvarligPersonerListe}
+            <Knapp className="legg-til-person-knapp" onClick={leggTilNyAnsvarligPerson}>
                 <AddPeople className="legg-til-person-ikon"/>
                 Legg til person
             </Knapp>
