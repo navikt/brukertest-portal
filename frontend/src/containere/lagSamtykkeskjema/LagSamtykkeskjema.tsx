@@ -2,17 +2,23 @@ import { AddPeople } from '@navikt/ds-icons'
 import { Datepicker } from 'nav-datovelger'
 import Hjelpetekst from 'nav-frontend-hjelpetekst'
 import { Knapp } from 'nav-frontend-knapper'
-import { Input, Radio, TextareaControlled } from 'nav-frontend-skjema'
+import { Radio, TextareaControlled } from 'nav-frontend-skjema'
 import React, { ReactElement, useState } from 'react'
 import AnsvarligPersonInput from '../../komponenter/lagSamtykkeskjema/AnsvarligPersonInput'
+import KontaktPersonInput from '../../komponenter/lagSamtykkeskjema/KontaktPersonInput'
 
 export default function LagSamtykkeskjema(): ReactElement {
     const [startDato, settStartDato] = useState<string>('')
     const [sluttDato, settSluttDato] = useState<string>('')
     const [ansvarligPersonerListe, settAnsarligPersonerListe] = useState<ReactElement[]>([<AnsvarligPersonInput key={0}/>])
+    const [kontaktPersonerListe, settKontaktPersonerListe] = useState<ReactElement[]>([<KontaktPersonInput key={0}/>])
 
     const leggTilNyAnsvarligPerson = () => {
         settAnsarligPersonerListe(ansvarligPersonerListe.concat(<AnsvarligPersonInput key={ansvarligPersonerListe.length}/>))
+    }
+
+    const leggTilNyKontaktPerson = () => {
+        settKontaktPersonerListe(kontaktPersonerListe.concat(<KontaktPersonInput key={kontaktPersonerListe.length} />))
     }
 
     return (
@@ -66,13 +72,19 @@ export default function LagSamtykkeskjema(): ReactElement {
                 ansatte i NAV og med våre sammargeidspartnere utenfor NAV.
             </p>
             <h4>Hver er vi og hvem er ansvarlig for undersøkelsen?</h4>
-            <p>
+            <p className="ansvarlig-person-input-tekst">
                 Vi er ansatt i Designseksjonen i NAV IT i Arbieds- og velferdsdirektoratet
                 (NAV). I designseskjonen arbeider vi med å forbedre NAVs tjenester.
                 Ansvarlig for undersøkelsen er
             </p>
             {ansvarligPersonerListe}
             <Knapp className="legg-til-person-knapp" onClick={leggTilNyAnsvarligPerson}>
+                <AddPeople className="legg-til-person-ikon"/>
+                Legg til person
+            </Knapp>
+            <p className="kontakt-person-input-tekst">Har du spørsmål om undersøkelsen kan du kontakte</p>
+            {kontaktPersonerListe}
+            <Knapp className="legg-til-person-knapp" onClick={leggTilNyKontaktPerson}>
                 <AddPeople className="legg-til-person-ikon"/>
                 Legg til person
             </Knapp>
