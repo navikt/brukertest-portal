@@ -6,6 +6,7 @@ import InformasjonsSteg from '../../komponenter/samtykkeskjema/InformasjonsSteg'
 import LoggUtKnappHovedinnhold from '../../containere/knapper/LoggUtKnappHovedinnhold'
 import { Tilbakeknapp, Nesteknapp } from 'nav-frontend-ikonknapper'
 import { Hovedknapp } from 'nav-frontend-knapper'
+import { HandsHeart, Success } from '@navikt/ds-icons'
 
 export function SamtykkeskjemaSteg(): React.ReactElement {
     const [steg, settSteg] = useContext(StegContext)
@@ -187,5 +188,14 @@ export function HovedområdeTittel(): string {
         return 'Ditt samtykke er registrert'
     } else {
         return 'Samtykke til intervju'
+    }
+}
+
+export function HovedområdeIkon(): React.ReactElement {
+    const [steg] = useContext(StegContext)
+    if (steg > 6) {
+        return <Success />
+    } else {
+        return <HandsHeart />
     }
 }
