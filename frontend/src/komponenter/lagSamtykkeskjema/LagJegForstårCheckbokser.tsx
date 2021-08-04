@@ -5,11 +5,16 @@ import React, { ReactElement, useState } from 'react'
 
 export default function LagJegForstårCheckbokser(): ReactElement {
     const [utfyldingsInput, settUtfyldingsInput] = useState<ReactElement>(<></>)
+    const [gjeldendeJegForstårPunkt, settGjeldendeJegForstårPunkt] = useState<string>('')
 
     const påLeggTilKnappTrykk = () => {
         settUtfyldingsInput(
             <div className="jeg-forstaar-input-container">
-                <Input className="jeg-forstaar-input" placeholder="Jeg forstår punkt"/>
+                <Input 
+                    className="jeg-forstaar-input" 
+                    label="Jeg forstår punkt"
+                    onChange={e => settGjeldendeJegForstårPunkt(e.target.value)}
+                />
                 <Knapp className="jeg-forstaar-legg-til-knapp">
                     <Add />
                 </Knapp>
