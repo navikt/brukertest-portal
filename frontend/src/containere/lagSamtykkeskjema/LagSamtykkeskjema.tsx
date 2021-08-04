@@ -16,6 +16,7 @@ export default function LagSamtykkeskjema(): ReactElement {
     const [kontaktPersonerListe, settKontaktPersonerListe] = useState<ReactElement[]>([<KontaktPersonInput key={0}/>])
 
     const [jegForstårPunkter, settJegForstårPunkter] = useState<Array<string>>([])
+    const [sierJaPunkter, settSierJaPunkter] = useState<Array<string>>([])
 
     const leggTilNyAnsvarligPerson = () => {
         settAnsarligPersonerListe(ansvarligPersonerListe.concat(<AnsvarligPersonInput key={ansvarligPersonerListe.length}/>))
@@ -183,6 +184,12 @@ export default function LagSamtykkeskjema(): ReactElement {
                 labelsListe={jegForstårPunkter}
                 labelsListeDispatch={settJegForstårPunkter}
                 inputLabel="Jeg forstår checkbokser"
+            />
+            <h3>Hva sier jeg ja til?</h3>
+            <LagCheckboxerMedLabels 
+                labelsListe={sierJaPunkter}
+                labelsListeDispatch={settSierJaPunkter}
+                inputLabel="Hva sier jeg ja til checkbokser"
             />
         </div>
     )
