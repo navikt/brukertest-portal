@@ -31,7 +31,8 @@ export default function JegForstårInputPunkt(): ReactElement {
                     className="jeg-forstaar-legg-til-knapp"
                     onClick={påLeggTilJegForstårPunkt}    
                 >
-                    <Add />
+                    <Add className="legg-til-jeg-forstaar-ikon"/>
+                    Legg til
                 </Knapp>
             </div>
         </div>
