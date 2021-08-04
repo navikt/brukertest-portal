@@ -22,7 +22,11 @@ export default function SamtykkeskjemaLandingsside(): React.ReactElement {
             >
                 <Knapp>Gå til samtykkeskjema</Knapp>
             </Link>
-            <Link to="/admin" onClick={oppdaterLoggInnState} style={{ textDecoration: 'none' }}>
+            <Link
+                to="/admin/profil"
+                onClick={oppdaterLoggInnState}
+                style={{ textDecoration: 'none' }}
+            >
                 <Flatknapp onClick={oppdaterLoggInnState}>Logg inn som administrator</Flatknapp>
             </Link>
         </div>

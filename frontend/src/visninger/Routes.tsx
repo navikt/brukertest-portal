@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ToppBar from '../komponenter/navigasjon/ToppBar'
+import AdminProfilside from './adminside/AdminProfilside'
 import OpprettelseFullført from './adminside/OpprettelseFullført'
 
 import OpprettSamtykkeskjema from './adminside/OpprettSamtykkeskjema'
@@ -21,6 +22,9 @@ export default function Routes(): React.ReactElement {
                 </Route>
                 <Route path="/samtykkeskjema" exact>
                     <Samtykkeskjema />
+                </Route>
+                <Route path="/admin/profil" exact>
+                    <AdminProfilside />
                 </Route>
                 <Route path="/admin/opprett-samtykkeskjema" exact>
                     <OpprettSamtykkeskjema />
