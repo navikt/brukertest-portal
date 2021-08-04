@@ -12,7 +12,7 @@ export default function Samtykkeskjema(): React.ReactElement {
         <div className="samtykkeskjema">
             <Hovedomrade
                 tittel={HovedområdeTittel()}
-                hovedInnhold={SamtykkeskjemaSteg()}
+                hovedInnhold={<SamtykkeskjemaSteg />}
                 toppIkon={<HandsHeart />}
             />
             <div className="steg">

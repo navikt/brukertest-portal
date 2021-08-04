@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react'
-import { Normaltekst } from 'nav-frontend-typografi'
 
 export interface IInformasjonsStegInnhold {
     førsteTittel: string
@@ -16,11 +15,11 @@ export default function InformasjonsSteg(
     return (
         <div className="informasjon-steg-container">
             <h2 className="typo-undertittel">{informasjonsInnhold.førsteTittel}</h2>
-            <Normaltekst>{informasjonsInnhold.førsteAvsnitt}</Normaltekst>
+            <p className="typo-normal">{informasjonsInnhold.førsteAvsnitt}</p>
             <h2 className="typo-undertittel">{informasjonsInnhold.andreTittel}</h2>
-            <Normaltekst>{informasjonsInnhold.andreAvsnitt}</Normaltekst>
+            <p className="typo-normal">{informasjonsInnhold.andreAvsnitt}</p>
             <h2 className="typo-undertittel">{informasjonsInnhold.tredjeTittel}</h2>
-            <Normaltekst>{informasjonsInnhold.tredjeAvsnitt}</Normaltekst>
+            <p className="typo-normal">{informasjonsInnhold.tredjeAvsnitt}</p>
         </div>
     )
 }
