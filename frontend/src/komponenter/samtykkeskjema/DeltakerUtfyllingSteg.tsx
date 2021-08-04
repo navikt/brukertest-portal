@@ -1,6 +1,7 @@
 import React, { Dispatch, ReactElement, SetStateAction, useEffect, useState } from 'react'
 import { Checkbox, CheckboxGruppe, Input } from 'nav-frontend-skjema'
 import { Element, Normaltekst } from 'nav-frontend-typografi'
+import epostValidering from '../../kjerne/hjelpere/epostValidering'
 
 export default function DeltakerUtfyllingSteg({
     settSkjemaUtfylt,
@@ -38,22 +39,17 @@ export default function DeltakerUtfyllingSteg({
         settEpost(e.target.value)
     }
 
-    // Validerer epost-feltet
-    function epostValidering(epost: string) {
-        const re =
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        return re.test(String(epost).toLowerCase())
-    }
-
     // Validerer hele skjemaet for å kunne trykke seg videre
-    function skjemaValidering() {
+    function skjemaValideringFørSamtykke() {
         if (epostValidering(epost) && checkboxSjekket) {
             settSkjemaUtfylt(true)
-        } else settSkjemaUtfylt(false)
+        } else {
+            settSkjemaUtfylt(false)
+        }
     }
 
     useEffect(() => {
-        skjemaValidering()
+        skjemaValideringFørSamtykke()
     })
 
     // Håndterer feilmeldinger i skjemaet
@@ -129,8 +125,8 @@ export default function DeltakerUtfyllingSteg({
                 />
                 <Checkbox
                     label={'Ja, jeg godtar at det kan bli gjort lydopptak'}
-                    value={'intervju'}
-                    id={'intervju1'}
+                    value={'lydopptak'}
+                    id={'lydopptak1'}
                 />
             </CheckboxGruppe>
         </>

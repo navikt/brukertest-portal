@@ -22,10 +22,12 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
         settSteg(steg - 1)
     }
 
-    function skjemaValidering() {
+    function skjemaValideringFørNesteHopp() {
         if (skjemaUtfylt) {
             hoppTilNesteSteg()
-        } else settNesteTrykket(true)
+        } else {
+            settNesteTrykket(true)
+        }
     }
 
     switch (steg) {
@@ -136,7 +138,7 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
                     />
                     <div className="hovedomraade-bunn">
                         <Tilbakeknapp onClick={hoppTilForrigeSteg} />
-                        <Nesteknapp onClick={skjemaValidering} />
+                        <Nesteknapp onClick={skjemaValideringFørNesteHopp} />
                     </div>
                 </>
             )
@@ -150,7 +152,9 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
                     />
                     <div className="hovedomraade-bunn">
                         <Tilbakeknapp onClick={hoppTilForrigeSteg} />
-                        <Hovedknapp onClick={skjemaValidering}>Jeg samtykker</Hovedknapp>
+                        <Hovedknapp onClick={skjemaValideringFørNesteHopp}>
+                            Jeg samtykker
+                        </Hovedknapp>
                     </div>
                 </>
             )

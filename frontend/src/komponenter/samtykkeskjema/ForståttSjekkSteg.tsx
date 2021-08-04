@@ -14,7 +14,7 @@ export default function ForståttSjekkSteg({
     const [sjekket, settSjekket] = useState([false, false, false, false])
 
     // Setter riktig checkboks til å være huket av eller ikke
-    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    function håndterCheckboxTrykket(e: React.ChangeEvent<HTMLInputElement>) {
         const boxPressed: number = Number.parseInt(e.target.id)
 
         if (sjekket[boxPressed]) {
@@ -29,7 +29,7 @@ export default function ForståttSjekkSteg({
     }
 
     // Sjekker om alle verdier i arrayen "sjekket" er true
-    function harTrykketAlle() {
+    function sjekkHarTrykketAlle() {
         const trueSjekk = (verdi: boolean) => verdi
         if (sjekket.every(trueSjekk)) {
             settSkjemaUtfylt(true)
@@ -48,7 +48,7 @@ export default function ForståttSjekkSteg({
     }
 
     useEffect(() => {
-        harTrykketAlle()
+        sjekkHarTrykketAlle()
     })
 
     return (
@@ -59,25 +59,25 @@ export default function ForståttSjekkSteg({
                     label={'At det er frivillig å delta, og at jeg når som helst kan trekke meg'}
                     value={'trekke'}
                     id={'0'}
-                    onChange={handleChange}
+                    onChange={håndterCheckboxTrykket}
                 />
                 <Checkbox
                     label={'At jeg når som helst kan avstå fra å svare på spørsmål'}
                     value={'avstå'}
                     id={'1'}
-                    onChange={handleChange}
+                    onChange={håndterCheckboxTrykket}
                 />
                 <Checkbox
                     label={'At jeg når som helst kan trekke tilbake det jeg har sagt'}
                     value={'trekke'}
                     id={'2'}
-                    onChange={handleChange}
+                    onChange={håndterCheckboxTrykket}
                 />
                 <Checkbox
                     label={'At jeg når som helst kan be dere slette mine personlige data'}
                     value={'slette'}
                     id={'3'}
-                    onChange={handleChange}
+                    onChange={håndterCheckboxTrykket}
                 />
             </CheckboxGruppe>
         </div>
