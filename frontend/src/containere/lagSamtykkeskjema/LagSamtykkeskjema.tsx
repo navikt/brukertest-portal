@@ -6,7 +6,7 @@ import { Radio, TextareaControlled } from 'nav-frontend-skjema'
 import React, { ReactElement, useState } from 'react'
 import AnsvarligPersonInput from '../../komponenter/lagSamtykkeskjema/AnsvarligPersonInput'
 import KontaktPersonInput from '../../komponenter/lagSamtykkeskjema/KontaktPersonInput'
-import LagJegForstårCheckbokser from '../../komponenter/lagSamtykkeskjema/LagJegForstårCheckbokser'
+import LagCheckboxerMedLabels from '../../komponenter/lagSamtykkeskjema/LagCheckboxerMedLabels'
 import LagringsTidSelect from '../../komponenter/lagSamtykkeskjema/LagringsTidSelect'
 
 export default function LagSamtykkeskjema(): ReactElement {
@@ -14,6 +14,8 @@ export default function LagSamtykkeskjema(): ReactElement {
     const [sluttDato, settSluttDato] = useState<string>('')
     const [ansvarligPersonerListe, settAnsarligPersonerListe] = useState<ReactElement[]>([<AnsvarligPersonInput key={0}/>])
     const [kontaktPersonerListe, settKontaktPersonerListe] = useState<ReactElement[]>([<KontaktPersonInput key={0}/>])
+
+    const [jegForstårPunkter, settJegForstårPunkter] = useState<Array<string>>([])
 
     const leggTilNyAnsvarligPerson = () => {
         settAnsarligPersonerListe(ansvarligPersonerListe.concat(<AnsvarligPersonInput key={ansvarligPersonerListe.length}/>))
@@ -176,7 +178,12 @@ export default function LagSamtykkeskjema(): ReactElement {
                 får heller ikke vite hvem som deltar i undersøkelsen, og opplysningene du
                 gir kan ikke kobles til dine saker.
             </p>
-            <LagJegForstårCheckbokser />
+            <h3>Jeg forstår:</h3>
+            <LagCheckboxerMedLabels 
+                labelsListe={jegForstårPunkter}
+                labelsListeDispatch={settJegForstårPunkter}
+                inputLabel="Jeg forstår checkbokser"
+            />
         </div>
     )
 }
