@@ -1,32 +1,36 @@
 import { Add } from '@navikt/ds-icons'
 import { Knapp } from 'nav-frontend-knapper'
-import { Input } from 'nav-frontend-skjema'
 import React, { ReactElement, useState } from 'react'
+import JegForstårInputPunkt from '../../komponenter/lagSamtykkeskjema/JegForstårInputPunkt'
 
 export default function LagJegForstårCheckbokser(): ReactElement {
-    const [utfyldingsInput, settUtfyldingsInput] = useState<ReactElement>(<></>)
-    const [gjeldendeJegForstårPunkt, settGjeldendeJegForstårPunkt] = useState<string>('')
+    const [jegForstårPunkter, settJegForstårPunkter] = useState<Array<string>>([])
+    const [skalViseInputKomponent, settSkalViseInputKomponent] = useState<boolean>(false)
 
-    const påLeggTilKnappTrykk = () => {
-        settUtfyldingsInput(
-            <div className="jeg-forstaar-input-container">
-                <Input 
-                    className="jeg-forstaar-input" 
-                    label="Jeg forstår punkt"
-                    onChange={e => settGjeldendeJegForstårPunkt(e.target.value)}
-                />
-                <Knapp className="jeg-forstaar-legg-til-knapp">
-                    <Add />
-                </Knapp>
-            </div>
-        )
+    let inputKomponent = <></>
+    if (skalViseInputKomponent === true) {
+        inputKomponent = 
+            <JegForstårInputPunkt 
+                jegForstårPunkter={jegForstårPunkter}
+                settJegForstårPunkter={settJegForstårPunkter}
+            />
     }
+
+    // const påLeggTilPunktTrykk = () => {
+    //     console.log(gjeldendeJegForstårPunkt)
+        
+    //     const kopi = [...jegForstårPunkter]
+    //     kopi.push(gjeldendeJegForstårPunkt)
+    //     settJegForstårPunkter(kopi)
+        
+    //     console.log(jegForstårPunkter)
+    // }
 
     return (
         <div>
             <h3>Jeg forstår:</h3>
-            {utfyldingsInput}
-            <Knapp onClick={påLeggTilKnappTrykk}>
+            {inputKomponent}
+            <Knapp onClick={() => {settSkalViseInputKomponent(true)}}>
                 <Add className="legg-til-knapp-ikon"/>
                 Legg til
             </Knapp>
