@@ -1,26 +1,30 @@
-import { HandsHeart } from '@navikt/ds-icons'
+import { Flatknapp, Knapp } from 'nav-frontend-knapper'
 import { Systemtittel } from 'nav-frontend-typografi'
 import React from 'react'
-import LoggInnHovedknapp from '../../containere/knapper/LoggInnHovedknapp'
-import Hovedomrade from '../../komponenter/hovedomrade/Hovedomrade'
+import { Link } from 'react-router-dom'
+import { AuthLevel, useAppStateDispatcher } from '../../kjerne/state/AppStateContext'
 
-export default function Landingsside(): React.ReactElement {
-    const LandingssideInnhold = () => (
-        <>
-            <Systemtittel className="logg-inn-info">
-                {'Logg inn for å registrere ditt samtykke'}
-            </Systemtittel>
-            <LoggInnHovedknapp />
-        </>
-    )
+export default function SamtykkeskjemaLandingsside(): React.ReactElement {
+    const appDispatcher = useAppStateDispatcher()
+
+    const oppdaterLoggInnState = () => {
+        appDispatcher.settLoggInnState(AuthLevel.administrator)
+    }
 
     return (
         <div className="landingsside">
-            <Hovedomrade
-                tittel={'Velkommen til NAVs innbyggerpanel'}
-                toppIkon={<HandsHeart />}
-                hovedInnhold={<LandingssideInnhold />}
-            />
+            <Systemtittel className="overskrift">
+                {'Bli med på utviklingen av NAV sine tjenester'}
+            </Systemtittel>
+            <Link
+                to="/samtykkeskjema/landingsside"
+                style={{ marginBottom: '2rem', textDecoration: 'none' }}
+            >
+                <Knapp>Gå til samtykkeskjema</Knapp>
+            </Link>
+            <Link to="/admin" onClick={oppdaterLoggInnState} style={{ textDecoration: 'none' }}>
+                <Flatknapp onClick={oppdaterLoggInnState}>Logg inn som administrator</Flatknapp>
+            </Link>
         </div>
     )
 }

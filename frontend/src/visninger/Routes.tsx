@@ -6,6 +6,7 @@ import OpprettelseFullført from './adminside/OpprettelseFullført'
 import OpprettSamtykkeskjema from './adminside/OpprettSamtykkeskjema'
 import Landingsside from './landingsside/Landingsside'
 import Samtykkeskjema from './samtykkeskjema/Samtykkeskjema'
+import SamtykkeskjemaLandingsside from './samtykkeskjema/SamtykkeskjemaLandingsside'
 
 export default function Routes(): React.ReactElement {
     return (
@@ -14,6 +15,9 @@ export default function Routes(): React.ReactElement {
             <Switch>
                 <Route path="/" exact>
                     <Landingsside />
+                </Route>
+                <Route path="/samtykkeskjema/landingsside" exact>
+                    <SamtykkeskjemaLandingsside />
                 </Route>
                 <Route path="/samtykkeskjema" exact>
                     <Samtykkeskjema />
