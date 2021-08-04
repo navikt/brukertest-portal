@@ -6,7 +6,6 @@ import JegForstårPunkt from './JegForstårPunkt'
 
 export default function JegForstårInputPunkt(): ReactElement {
     const [gjeldendeJegForstårPunkt, settGjeldendeJegForstårPunkt] = useState<string>('')
-    const [jegForstårPunkter, settJegForstårPunkter] = useState<Array<string>>([])
     const [jegForstårKomponenter, settJegForstårKomponenter] = useState<Array<ReactElement>>([])
 
     const påJegForstårInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -14,18 +13,9 @@ export default function JegForstårInputPunkt(): ReactElement {
     }
 
     const påLeggTilJegForstårPunkt = () => {
-        const kopi = [...jegForstårPunkter]
-        kopi.push(gjeldendeJegForstårPunkt)
-        settJegForstårPunkter(kopi)
-
-        const liste: ReactElement[] = []
-
-        for (let i = 0; i < jegForstårPunkter.length; i++) {
-            liste.push(<JegForstårPunkt key={i} label={jegForstårPunkter[i]}/>)
-        }
-
-        settJegForstårKomponenter(liste)
+        settJegForstårKomponenter(jegForstårKomponenter.concat(<JegForstårPunkt key={jegForstårKomponenter.length} label={gjeldendeJegForstårPunkt}/>))
     }
+    
 
     return(
         <div>
