@@ -1,7 +1,7 @@
 import { AddPeople } from '@navikt/ds-icons'
 import { Datepicker } from 'nav-datovelger'
 import Hjelpetekst from 'nav-frontend-hjelpetekst'
-import { Knapp } from 'nav-frontend-knapper'
+import { Hovedknapp, Knapp } from 'nav-frontend-knapper'
 import { Radio, TextareaControlled } from 'nav-frontend-skjema'
 import React, { ReactElement, useState } from 'react'
 import AnsvarligPersonInput from '../../komponenter/lagSamtykkeskjema/AnsvarligPersonInput'
@@ -191,6 +191,10 @@ export default function LagSamtykkeskjema(): ReactElement {
                 labelsListeDispatch={settSierJaPunkter}
                 inputLabel="Hva sier jeg ja til checkbokser"
             />
+            <div className="hovedomraade-bunn">
+                <Knapp>Avbryt</Knapp>
+                <Hovedknapp>Lagre</Hovedknapp>
+            </div>
         </div>
     )
 }
