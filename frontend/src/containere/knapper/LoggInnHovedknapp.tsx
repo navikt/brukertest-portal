@@ -11,7 +11,7 @@ export default function LoggInnHovedknapp(): React.ReactElement {
     const appDispatcher = useAppStateDispatcher()
 
     const oppdaterLoggInnState = () => {
-        appDispatcher.settLoggInnState(AuthLevel.administrator)
+        appDispatcher.settLoggInnState(AuthLevel.deltaker)
 
         history.push('/samtykkeskjema')
 
