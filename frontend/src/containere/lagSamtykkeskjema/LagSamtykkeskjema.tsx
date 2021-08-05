@@ -19,7 +19,14 @@ export default function LagSamtykkeskjema(): ReactElement {
     const [jegForstårPunkter, settJegForstårPunkter] = useState<Array<string>>([])
     const [sierJaPunkter, settSierJaPunkter] = useState<Array<string>>([])
 
-    const [ansvarligePersoner, settAnsvarligePersoner] = useState<Array<IAnsvarligPerson>>([])
+    const [ansvarligePersoner, settAnsvarligePersoner] = useState<Array<IAnsvarligPerson>>([{
+        id: 0,
+        fornavn: '',
+        etternavn: '',
+        team: '',
+        produktområde: '',
+        seksjon: ''
+    }])
 
     const leggTilNyKontaktPerson = () => {
         settKontaktPersonerListe(kontaktPersonerListe.concat(<KontaktPersonInput key={kontaktPersonerListe.length} />))

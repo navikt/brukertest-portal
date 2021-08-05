@@ -4,6 +4,7 @@ import React, { Dispatch, ReactElement, SetStateAction, useState } from 'react'
 import AnsvarligPersonInput from './AnsvarligPersonInput'
 
 export interface IAnsvarligPerson {
+    id?: number
     fornavn: string
     etternavn: string
     team: string
@@ -19,15 +20,24 @@ export default function AnsvaligPersonerInputs(
         ansvarligePersoner: Array<IAnsvarligPerson>; 
         ansvarligePersonerDispatch: Dispatch<SetStateAction<Array<IAnsvarligPerson>>>}
 ): ReactElement {
-    const [ansvarligPersonerInputListe, settAnsvarligPersonerInputListe] = useState<ReactElement[]>([<AnsvarligPersonInput key={0}/>])
-    
     const leggTilNyAnsvarligPersonInput = () => {
-        settAnsvarligPersonerInputListe(ansvarligPersonerInputListe.concat(<AnsvarligPersonInput key={ansvarligPersonerInputListe.length}/>))
+        ansvarligePersonerDispatch(ansvarligePersoner.concat({
+            id: ansvarligePersoner.length,
+            fornavn: '',
+            etternavn: '',
+            team: '',
+            produktområde: '',
+            seksjon: ''
+        }))
     }
 
     return (
         <div>
-            {ansvarligPersonerInputListe}
+            {ansvarligePersoner.map((ansvarligPerson, index) => {
+                return (
+                    <AnsvarligPersonInput key={index}/>
+                )
+            })}
             <Knapp 
                 className="legg-til-ansvarlig-person-input-knapp"
                 onClick={leggTilNyAnsvarligPersonInput}
