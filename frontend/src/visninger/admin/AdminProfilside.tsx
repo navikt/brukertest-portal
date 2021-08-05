@@ -3,7 +3,6 @@ import { Systemtittel } from 'nav-frontend-typografi'
 import React from 'react'
 import Hovedomrade from '../../komponenter/hovedomrade/Hovedomrade'
 import { ReactComponent as ProfilIkon } from '../../style/ressurser/Profil-ikon.svg'
-import { LenkepanelBase } from 'nav-frontend-lenkepanel'
 import { useHistory } from 'react-router-dom'
 
 export default function AdminProfilside(): React.ReactElement {

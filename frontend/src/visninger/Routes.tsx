@@ -1,10 +1,11 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ToppBar from '../komponenter/navigasjon/ToppBar'
-import AdminProfilside from './adminside/AdminProfilside'
-import OpprettelseFullført from './adminside/OpprettelseFullført'
+import AdminProfilside from './admin/AdminProfilside'
+import OpprettelseFullført from './admin/OpprettelseFullført'
 
-import OpprettSamtykkeskjema from './adminside/OpprettSamtykkeskjema'
+import OpprettSamtykkeskjema from './admin/OpprettSamtykkeskjema'
+import DeltakerProfilside from './deltaker/DeltakerProfilside'
 import Landingsside from './landingsside/Landingsside'
 import Samtykkeskjema from './samtykkeskjema/Samtykkeskjema'
 import SamtykkeskjemaLandingsside from './samtykkeskjema/SamtykkeskjemaLandingsside'
@@ -16,6 +17,9 @@ export default function Routes(): React.ReactElement {
             <Switch>
                 <Route path="/" exact>
                     <Landingsside />
+                </Route>
+                <Route path="/profil" exact>
+                    <DeltakerProfilside />
                 </Route>
                 <Route path="/samtykkeskjema/landingsside" exact>
                     <SamtykkeskjemaLandingsside />
