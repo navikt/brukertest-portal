@@ -4,8 +4,11 @@ import React from 'react'
 import Hovedomrade from '../../komponenter/hovedomrade/Hovedomrade'
 import { ReactComponent as ProfilIkon } from '../../style/ressurser/Profil-ikon.svg'
 import { LenkepanelBase } from 'nav-frontend-lenkepanel'
+import { useHistory } from 'react-router-dom'
 
 export default function AdminProfilside(): React.ReactElement {
+    const history = useHistory()
+
     // Hvert hovedomrade blir wrappet inni et lenkepanel-komponent for å sikre universelt design
 
     return (
@@ -15,7 +18,7 @@ export default function AdminProfilside(): React.ReactElement {
                 <Systemtittel className="brukernavn">Admin Istrator</Systemtittel>
             </div>
             <div className="meny-items">
-                <LenkepanelBase href="#" border>
+                <LenkepanelBase onClick={() => history.push('/admin/mine-samtykkeskjemaer')}>
                     <Hovedomrade
                         tittel={'Mine samtykkeskjemaer'}
                         toppIkon={<FileContent />}
@@ -27,7 +30,7 @@ export default function AdminProfilside(): React.ReactElement {
                         }
                     />
                 </LenkepanelBase>
-                <LenkepanelBase href="" border>
+                <LenkepanelBase onClick={() => history.push('/admin/opprett-samtykkeskjema')}>
                     <Hovedomrade
                         tittel={'Opprett samtykkeskjema'}
                         toppIkon={<AddCircle />}
@@ -39,7 +42,7 @@ export default function AdminProfilside(): React.ReactElement {
                         }
                     />
                 </LenkepanelBase>
-                <LenkepanelBase href="" border>
+                <LenkepanelBase href="">
                     <Hovedomrade
                         tittel={'Aktiviteter'}
                         toppIkon={<Calender />}
