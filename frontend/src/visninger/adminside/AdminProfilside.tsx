@@ -27,7 +27,7 @@ export default function AdminProfilside(): React.ReactElement {
                         }
                     />
                 </LenkepanelBase>
-                <LenkepanelBase href="#" border>
+                <LenkepanelBase href="" border>
                     <Hovedomrade
                         tittel={'Opprett samtykkeskjema'}
                         toppIkon={<AddCircle />}
@@ -39,7 +39,7 @@ export default function AdminProfilside(): React.ReactElement {
                         }
                     />
                 </LenkepanelBase>
-                <LenkepanelBase href="#" border>
+                <LenkepanelBase href="" border>
                     <Hovedomrade
                         tittel={'Aktiviteter'}
                         toppIkon={<Calender />}
