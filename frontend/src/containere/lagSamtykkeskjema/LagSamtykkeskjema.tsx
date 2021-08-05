@@ -3,7 +3,7 @@ import Hjelpetekst from 'nav-frontend-hjelpetekst'
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper'
 import { Radio, TextareaControlled } from 'nav-frontend-skjema'
 import React, { ReactElement, useState } from 'react'
-import AnsvarligPersonInput from '../../komponenter/lagSamtykkeskjema/AnsvarligPersonInput'
+import AnsvaligPersonerInputs, { IAnsvarligPerson } from '../../komponenter/lagSamtykkeskjema/AnsvarligPersonerInputs'
 import KontaktPersonInput from '../../komponenter/lagSamtykkeskjema/KontaktPersonInput'
 import LagCheckboxerMedLabels from '../../komponenter/lagSamtykkeskjema/LagCheckboxerMedLabels'
 import LagringsTidSelect from '../../komponenter/lagSamtykkeskjema/LagringsTidSelect'
@@ -13,15 +13,13 @@ import VelgStartSluttDato from '../../komponenter/lagSamtykkeskjema/VelgStartSlu
 export default function LagSamtykkeskjema(): ReactElement {
     const [startDato, settStartDato] = useState<string>('')
     const [sluttDato, settSluttDato] = useState<string>('')
-    const [ansvarligPersonerListe, settAnsarligPersonerListe] = useState<ReactElement[]>([<AnsvarligPersonInput key={0}/>])
+    
     const [kontaktPersonerListe, settKontaktPersonerListe] = useState<ReactElement[]>([<KontaktPersonInput key={0}/>])
 
     const [jegForstårPunkter, settJegForstårPunkter] = useState<Array<string>>([])
     const [sierJaPunkter, settSierJaPunkter] = useState<Array<string>>([])
 
-    const leggTilNyAnsvarligPerson = () => {
-        settAnsarligPersonerListe(ansvarligPersonerListe.concat(<AnsvarligPersonInput key={ansvarligPersonerListe.length}/>))
-    }
+    const [ansvarligePersoner, settAnsvarligePersoner] = useState<Array<IAnsvarligPerson>>([])
 
     const leggTilNyKontaktPerson = () => {
         settKontaktPersonerListe(kontaktPersonerListe.concat(<KontaktPersonInput key={kontaktPersonerListe.length} />))
@@ -73,11 +71,10 @@ export default function LagSamtykkeskjema(): ReactElement {
                 (NAV). I designseskjonen arbeider vi med å forbedre NAVs tjenester.
                 Ansvarlig for undersøkelsen er
             </p>
-            {ansvarligPersonerListe}
-            <Knapp className="legg-til-person-knapp" onClick={leggTilNyAnsvarligPerson}>
-                <AddPeople className="legg-til-person-ikon"/>
-                Legg til person
-            </Knapp>
+            <AnsvaligPersonerInputs 
+                ansvarligePersoner={ansvarligePersoner}
+                ansvarligePersonerDispatch={settAnsvarligePersoner}
+            />
             <p className="kontakt-person-input-tekst">Har du spørsmål om undersøkelsen kan du kontakte</p>
             {kontaktPersonerListe}
             <Knapp className="legg-til-person-knapp" onClick={leggTilNyKontaktPerson}>
