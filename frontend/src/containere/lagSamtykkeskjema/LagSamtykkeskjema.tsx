@@ -1,5 +1,4 @@
 import { AddPeople } from '@navikt/ds-icons'
-import { Datepicker } from 'nav-datovelger'
 import Hjelpetekst from 'nav-frontend-hjelpetekst'
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper'
 import { Radio, TextareaControlled } from 'nav-frontend-skjema'
@@ -8,6 +7,7 @@ import AnsvarligPersonInput from '../../komponenter/lagSamtykkeskjema/AnsvarligP
 import KontaktPersonInput from '../../komponenter/lagSamtykkeskjema/KontaktPersonInput'
 import LagCheckboxerMedLabels from '../../komponenter/lagSamtykkeskjema/LagCheckboxerMedLabels'
 import LagringsTidSelect from '../../komponenter/lagSamtykkeskjema/LagringsTidSelect'
+import VelgStartSluttDato from '../../komponenter/lagSamtykkeskjema/VelgStartSluttDato'
 
 export default function LagSamtykkeskjema(): ReactElement {
     const [startDato, settStartDato] = useState<string>('')
@@ -51,22 +51,12 @@ export default function LagSamtykkeskjema(): ReactElement {
                 maxLength={2000}
                 defaultValue=""
             />
-            <div className="dato-container">
-                <div className="sub-dato-container">
-                    <p>Den gjennomføres</p>
-                    <Datepicker 
-                        locale={'nb'}
-                        value={startDato}
-                        onChange={settStartDato}/>
-                </div>
-                <div className="sub-dato-container">
-                    <p>og varer til</p>
-                    <Datepicker
-                        locale={'nb'}
-                        value={sluttDato}
-                        onChange={settSluttDato}/>
-                </div>
-            </div>
+            <VelgStartSluttDato 
+                startDato={startDato}
+                settStartDato={settStartDato}
+                sluttDato={sluttDato}
+                settSluttDato={settSluttDato}
+            />
             <div className="skal-publiseres-container">
                 <h4>Skal undersøkelsen publiseres?</h4>
                 <Radio label={'Ja'} name="skal-publiseres"/>
