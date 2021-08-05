@@ -9,7 +9,7 @@ import { useHistory } from 'react-router-dom'
 export default function AdminProfilside(): React.ReactElement {
     const history = useHistory()
 
-    // Hvert hovedomrade blir wrappet inni et lenkepanel-komponent for å sikre universelt design
+    // Hvert hovedomrade blir wrappet inni buttons for å sikre universelt design
 
     return (
         <div className="admin-profilside">
@@ -18,8 +18,8 @@ export default function AdminProfilside(): React.ReactElement {
                 <Systemtittel className="brukernavn">Admin Istrator</Systemtittel>
             </div>
             <div className="meny-items">
-                <LenkepanelBase
-                    href=""
+                <button
+                    className="meny-item"
                     onClick={() => history.push('/admin/mine-samtykkeskjemaer')}
                 >
                     <Hovedomrade
@@ -32,9 +32,9 @@ export default function AdminProfilside(): React.ReactElement {
                             </p>
                         }
                     />
-                </LenkepanelBase>
-                <LenkepanelBase
-                    href=""
+                </button>
+                <button
+                    className="meny-item"
                     onClick={() => history.push('/admin/opprett-samtykkeskjema')}
                 >
                     <Hovedomrade
@@ -47,8 +47,8 @@ export default function AdminProfilside(): React.ReactElement {
                             </p>
                         }
                     />
-                </LenkepanelBase>
-                <LenkepanelBase href="">
+                </button>
+                <button className="meny-item">
                     <Hovedomrade
                         tittel={'Aktiviteter'}
                         toppIkon={<Calender />}
@@ -59,7 +59,7 @@ export default function AdminProfilside(): React.ReactElement {
                             </p>
                         }
                     />
-                </LenkepanelBase>
+                </button>
             </div>
         </div>
     )

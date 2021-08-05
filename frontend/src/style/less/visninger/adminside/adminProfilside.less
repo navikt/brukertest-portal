@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-// Alle lenke-elementer
+// Alle meny-items
 .meny-items {
     display: flex;
     justify-content: center;
@@ -15,30 +15,26 @@
     margin-top: 6.5%;
 }
 
-// Hvert enkelt lenke-element
-.meny-items > .lenkepanel {
+// Hvert enkelt meny-item
+.meny-items > .meny-item {
     margin: 0 2%;
     max-width: 26%;
     min-height: 20rem;
     border-radius: 0;
     padding: 0;
+    border: none;
 }
 
-// Hvert enkelt lenke-element on hover
-.meny-items > .lenkepanel > .hovedomrade:hover {
+// Hvert enkelt meny-item on hover
+.meny-items > .meny-item > .hovedomrade:hover {
     transform: scale(1.03);
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     cursor: pointer;
 }
 
-// Hovedpanelet inni lenkepanelet
-.meny-items > .lenkepanel > .hovedomrade {
+// Hovedpanelet inni button
+.meny-items > .meny-item > .hovedomrade {
     height: 100%;
-}
-
-// Skjuler indikatoren i lenkepanelet
-.meny-items > .lenkepanel > .lenkepanel__indikator {
-    display: none;
 }
 
 // Profilikonet
