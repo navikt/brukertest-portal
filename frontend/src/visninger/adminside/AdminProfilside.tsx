@@ -18,7 +18,10 @@ export default function AdminProfilside(): React.ReactElement {
                 <Systemtittel className="brukernavn">Admin Istrator</Systemtittel>
             </div>
             <div className="meny-items">
-                <LenkepanelBase onClick={() => history.push('/admin/mine-samtykkeskjemaer')}>
+                <LenkepanelBase
+                    href=""
+                    onClick={() => history.push('/admin/mine-samtykkeskjemaer')}
+                >
                     <Hovedomrade
                         tittel={'Mine samtykkeskjemaer'}
                         toppIkon={<FileContent />}
@@ -30,7 +33,10 @@ export default function AdminProfilside(): React.ReactElement {
                         }
                     />
                 </LenkepanelBase>
-                <LenkepanelBase onClick={() => history.push('/admin/opprett-samtykkeskjema')}>
+                <LenkepanelBase
+                    href=""
+                    onClick={() => history.push('/admin/opprett-samtykkeskjema')}
+                >
                     <Hovedomrade
                         tittel={'Opprett samtykkeskjema'}
                         toppIkon={<AddCircle />}
