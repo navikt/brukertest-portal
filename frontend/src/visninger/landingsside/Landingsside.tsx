@@ -1,14 +1,16 @@
 import { Flatknapp, Knapp } from 'nav-frontend-knapper'
 import { Systemtittel } from 'nav-frontend-typografi'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { AuthLevel, useAppStateDispatcher } from '../../kjerne/state/AppStateContext'
 
 export default function SamtykkeskjemaLandingsside(): React.ReactElement {
     const appDispatcher = useAppStateDispatcher()
+    const history = useHistory()
 
     const oppdaterLoggInnState = () => {
         appDispatcher.settLoggInnState(AuthLevel.administrator)
+        history.push('/admin/profil')
     }
 
     return (
@@ -16,19 +18,14 @@ export default function SamtykkeskjemaLandingsside(): React.ReactElement {
             <Systemtittel className="overskrift">
                 {'Bli med på utviklingen av NAV sine tjenester'}
             </Systemtittel>
-            <Link
-                to="/samtykkeskjema/landingsside"
-                style={{ marginBottom: '2rem', textDecoration: 'none' }}
+            <Knapp
+                style={{ marginBottom: '2rem' }}
+                onClick={() => history.push('/samtykkeskjema/landingsside')}
             >
-                <Knapp>Gå til samtykkeskjema</Knapp>
-            </Link>
-            <Link
-                to="/admin/profil"
-                onClick={oppdaterLoggInnState}
-                style={{ textDecoration: 'none' }}
-            >
-                <Flatknapp onClick={oppdaterLoggInnState}>Logg inn som administrator</Flatknapp>
-            </Link>
+                Gå til samtykkeskjema
+            </Knapp>
+
+            <Flatknapp onClick={oppdaterLoggInnState}>Logg inn som administrator</Flatknapp>
         </div>
     )
 }
