@@ -7,6 +7,7 @@ import AnsvarligPersonInput from '../../komponenter/lagSamtykkeskjema/AnsvarligP
 import KontaktPersonInput from '../../komponenter/lagSamtykkeskjema/KontaktPersonInput'
 import LagCheckboxerMedLabels from '../../komponenter/lagSamtykkeskjema/LagCheckboxerMedLabels'
 import LagringsTidSelect from '../../komponenter/lagSamtykkeskjema/LagringsTidSelect'
+import TittelMedHjelpetekst from '../../komponenter/lagSamtykkeskjema/TittelMedHjelpetekst'
 import VelgStartSluttDato from '../../komponenter/lagSamtykkeskjema/VelgStartSluttDato'
 
 export default function LagSamtykkeskjema(): ReactElement {
@@ -28,10 +29,10 @@ export default function LagSamtykkeskjema(): ReactElement {
 
     return (
         <div className="lag-samtykkeskjema">
-            <div className="sub-overskrift">
-                <h3>Invitasjon til deltagelse</h3>
-                <Hjelpetekst>Pass på å ikke avsløre deltakerens tilknyttning til NAV eller sensitive personopplysninger</Hjelpetekst>
-            </div>
+            <TittelMedHjelpetekst 
+                tittel="Invitasjon til deltagelse"
+                hjelpetekst="Pass på å ikke avsløre deltakerens tilknyttning til NAV eller sensitive personopplysninger"
+            />
             <TextareaControlled 
                 label="Du inviteres til å delta i en undersøkelse om" 
                 maxLength={2000}
@@ -42,10 +43,10 @@ export default function LagSamtykkeskjema(): ReactElement {
                 maxLength={2000}
                 defaultValue=""
             />
-            <div className="sub-overskrift">
-                <h3>Hva skal undersøkelsen brukes til?</h3>
-                <Hjelpetekst>Datoen må være på format: DD.MM.ÅÅÅÅ</Hjelpetekst>
-            </div>
+            <TittelMedHjelpetekst 
+                tittel="Hva skal undersøkelsen brukes til?"
+                hjelpetekst="Datoen må være på format: DD.MM.ÅÅÅÅ"
+            />
             <TextareaControlled 
                 label="Undersøkelsen skal brukes til" 
                 maxLength={2000}
@@ -94,12 +95,10 @@ export default function LagSamtykkeskjema(): ReactElement {
                 Vi ønsker også å ta opp intervjuet med lydopptaker, for lettere å kunne
                 skrive ned det du sier.
             </span>
-            <div className="sub-overskrift">
-                <h3>Hvilke opplysninger samler vi inn?</h3>
-                <Hjelpetekst>
-                    Pass på å ikke avslører for my av undersøkelsen slik at du skaper bias
-                </Hjelpetekst>
-            </div>
+            <TittelMedHjelpetekst 
+                tittel="Hvilke opplysninger samler vi inn?"
+                hjelpetekst="Pass på å ikke avslører for my av undersøkelsen slik at du skaper bias"
+            />
             <TextareaControlled 
                 label="Vi vil spørre deg om" 
                 maxLength={2000}
@@ -110,12 +109,10 @@ export default function LagSamtykkeskjema(): ReactElement {
                 eller hvor du jobber. Opplysningene vi samler inn skal kun brukes til det
                 undersøkelsen handler om, og det du har samtykket til.
             </p>
-            <div className="sub-overskrift">
-                <h3>Oppbevaring av personopplysningene</h3>
-                <Hjelpetekst>
-                    Sett eventuelt kortere frist, om det er mulig.
-                </Hjelpetekst>
-            </div>
+            <TittelMedHjelpetekst 
+                tittel="Oppbevaring av personopplysningene"
+                hjelpetekst="Sett eventuelt kortere frist, om det er mulig."
+            />
             <span>
                 Alle opplysningene om deg lagres i NAVs systemer. Det er bare ansatte som jobber
                 med undersøkelsen som har tilgang. Vi sletter all personlig data om deg så snart
@@ -124,7 +121,7 @@ export default function LagSamtykkeskjema(): ReactElement {
             </span>
             <span>måneder etter intervjuet.</span>
             {/* TODO Legge til slik at man kan redigere denne seksjonen */}
-            <div className="sub-overskrift">
+            <div className="tittel-med-hjelpetekst">
                 <h3>Taushetsplikt</h3>
                 <Hjelpetekst className="taushetsplikt-hjelpetekst-popover">
                     <p className="taushetsplikt-hjelpetekst">
