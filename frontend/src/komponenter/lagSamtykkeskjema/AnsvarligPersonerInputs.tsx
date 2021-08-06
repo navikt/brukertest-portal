@@ -1,10 +1,9 @@
 import { AddPeople } from '@navikt/ds-icons'
 import { Knapp } from 'nav-frontend-knapper'
-import React, { Dispatch, ReactElement, SetStateAction, useState } from 'react'
+import React, { Dispatch, ReactElement, SetStateAction } from 'react'
 import AnsvarligPersonInput from './AnsvarligPersonInput'
 
 export interface IAnsvarligPerson {
-    id?: number
     fornavn: string
     etternavn: string
     team: string
@@ -22,7 +21,6 @@ export default function AnsvaligPersonerInputs(
 ): ReactElement {
     const leggTilNyAnsvarligPersonInput = () => {
         ansvarligePersonerDispatch(ansvarligePersoner.concat({
-            id: ansvarligePersoner.length,
             fornavn: '',
             etternavn: '',
             team: '',
@@ -31,11 +29,27 @@ export default function AnsvaligPersonerInputs(
         }))
     }
 
+    const hentAnsvarligPerson = (id: number, fornavn: string, etternavn: string, team: string, produktområde: string, seksjon: string) => {
+        const kopi = [...ansvarligePersoner]
+        kopi[id] = {
+            fornavn: fornavn,
+            etternavn: etternavn,
+            team: team,
+            produktområde: produktområde,
+            seksjon: seksjon
+        }
+        ansvarligePersonerDispatch(kopi)
+    }
+    
     return (
         <div>
             {ansvarligePersoner.map((ansvarligPerson, index) => {
                 return (
-                    <AnsvarligPersonInput key={index}/>
+                    <AnsvarligPersonInput 
+                        key={index}
+                        hentAnsvarligPerson={hentAnsvarligPerson}
+                        listId={index}
+                    />
                 )
             })}
             <Knapp 

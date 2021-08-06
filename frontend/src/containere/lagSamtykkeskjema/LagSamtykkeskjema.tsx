@@ -20,7 +20,6 @@ export default function LagSamtykkeskjema(): ReactElement {
     const [sierJaPunkter, settSierJaPunkter] = useState<Array<string>>([])
 
     const [ansvarligePersoner, settAnsvarligePersoner] = useState<Array<IAnsvarligPerson>>([{
-        id: 0,
         fornavn: '',
         etternavn: '',
         team: '',
