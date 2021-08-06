@@ -1,6 +1,6 @@
 import Hjelpetekst from 'nav-frontend-hjelpetekst'
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper'
-import { Radio, TextareaControlled } from 'nav-frontend-skjema'
+import { Radio, Textarea } from 'nav-frontend-skjema'
 import React, { ReactElement, useState } from 'react'
 import AnsvaligPersonerInputs, { IAnsvarligPerson } from '../../komponenter/lagSamtykkeskjema/AnsvarligPersonerInputs'
 import KontaktPersonerInputs, { IKontaktPerson } from '../../komponenter/lagSamtykkeskjema/KontaktPersonerInputs'
@@ -10,12 +10,17 @@ import TittelMedHjelpetekst from '../../komponenter/lagSamtykkeskjema/TittelMedH
 import VelgStartSluttDato from '../../komponenter/lagSamtykkeskjema/VelgStartSluttDato'
 
 export default function LagSamtykkeskjema(): ReactElement {
+    const [undersøkelseOm, settUndersøkelseOm] = useState<string>('')
+    const [valgtFordi, settValgtFordi] = useState<string>('')
+    const [skalBrukesTil, settSkalBrukesTil] = useState<string>('')
+    const [spørreOm, settSpørreOm] = useState<string>('')
+
     const [startDato, settStartDato] = useState<string>('')
     const [sluttDato, settSluttDato] = useState<string>('')
     
     const [jegForstårPunkter, settJegForstårPunkter] = useState<Array<string>>([])
     const [sierJaPunkter, settSierJaPunkter] = useState<Array<string>>([])
-
+    
     const [ansvarligePersoner, settAnsvarligePersoner] = useState<Array<IAnsvarligPerson>>([{
         fornavn: '',
         etternavn: '',
@@ -23,7 +28,6 @@ export default function LagSamtykkeskjema(): ReactElement {
         produktområde: '',
         seksjon: ''
     }])
-
     const [kontaktPersoner, settKontaktPersoner] = useState<Array<IKontaktPerson>>([{
         fornavn: '',
         etternavn: '',
@@ -40,24 +44,27 @@ export default function LagSamtykkeskjema(): ReactElement {
                 tittel="Invitasjon til deltagelse"
                 hjelpetekst="Pass på å ikke avsløre deltakerens tilknyttning til NAV eller sensitive personopplysninger"
             />
-            <TextareaControlled 
+            <Textarea
                 label="Du inviteres til å delta i en undersøkelse om" 
                 maxLength={2000}
-                defaultValue=""
+                value={undersøkelseOm}
+                onChange={e => {settUndersøkelseOm(e.target.value)}}
             />
-            <TextareaControlled 
+            <Textarea 
                 label="Du er valgt ut fordi" 
                 maxLength={2000}
-                defaultValue=""
+                value={valgtFordi}
+                onChange={e => {settValgtFordi(e.target.value)}}
             />
             <TittelMedHjelpetekst 
                 tittel="Hva skal undersøkelsen brukes til?"
                 hjelpetekst="Datoen må være på format: DD.MM.ÅÅÅÅ"
             />
-            <TextareaControlled 
+            <Textarea 
                 label="Undersøkelsen skal brukes til" 
                 maxLength={2000}
-                defaultValue=""
+                value={skalBrukesTil}
+                onChange={e => {settSkalBrukesTil(e.target.value)}}
             />
             <VelgStartSluttDato 
                 startDato={startDato}
@@ -104,10 +111,11 @@ export default function LagSamtykkeskjema(): ReactElement {
                 tittel="Hvilke opplysninger samler vi inn?"
                 hjelpetekst="Pass på å ikke avslører for my av undersøkelsen slik at du skaper bias"
             />
-            <TextareaControlled 
+            <Textarea 
                 label="Vi vil spørre deg om" 
                 maxLength={2000}
-                defaultValue=""
+                value={spørreOm}
+                onChange={e => {settSpørreOm(e.target.value)}}
             />
             <p>
                 Du velger selv om du vil fortelle om sensitive opplysninger som helseforhold
