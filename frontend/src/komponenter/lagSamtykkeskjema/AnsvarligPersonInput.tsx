@@ -1,14 +1,27 @@
 import { Input } from 'nav-frontend-skjema'
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useState } from 'react'
 
 
-export default function AnsvarligPersonInput({hentAnsvarligPerson, listId}: {hentAnsvarligPerson: (id: number, fornavn: string, etternavn: string, team: string, produktområde: string, seksjon: string) => void; listId: number}): ReactElement {
+export default function AnsvarligPersonInput(
+    {
+        oppdaterAnsvarligPerson, 
+        listId
+    }: {
+        oppdaterAnsvarligPerson: (
+            id: number, 
+            fornavn: string, 
+            etternavn: string, 
+            team: string, 
+            produktområde: string, 
+            seksjon: string
+        ) => void; 
+        listId: number
+    }): ReactElement {
     const [fornavn, settFornavn] = useState<string>('')
     const [etternavn, settEtternavn] = useState<string>('')
     const [team, settTeam] = useState<string>('')
     const [produktområde, settProduktområde] = useState<string>('')
     const [seksjon, settSeksjon] = useState<string>('')
-    
     
     return(
         <div className="input-container">
@@ -19,7 +32,14 @@ export default function AnsvarligPersonInput({hentAnsvarligPerson, listId}: {hen
                 onChange={
                     e => {
                         settFornavn(e.target.value)
-                        hentAnsvarligPerson(listId, fornavn, etternavn, team, produktområde, seksjon)
+                        oppdaterAnsvarligPerson(
+                            listId, 
+                            fornavn, 
+                            etternavn, 
+                            team, 
+                            produktområde, 
+                            seksjon
+                        )
                     }
                 }
             />
@@ -30,7 +50,14 @@ export default function AnsvarligPersonInput({hentAnsvarligPerson, listId}: {hen
                 onChange={
                     e => {
                         settEtternavn(e.target.value)
-                        hentAnsvarligPerson(listId, fornavn, etternavn, team, produktområde, seksjon)
+                        oppdaterAnsvarligPerson(
+                            listId, 
+                            fornavn, 
+                            etternavn, 
+                            team, 
+                            produktområde, 
+                            seksjon
+                        )
                     }
                 }
             />
@@ -41,7 +68,14 @@ export default function AnsvarligPersonInput({hentAnsvarligPerson, listId}: {hen
                 onChange={
                     e => {
                         settTeam(e.target.value)
-                        hentAnsvarligPerson(listId, fornavn, etternavn, team, produktområde, seksjon)
+                        oppdaterAnsvarligPerson(
+                            listId, 
+                            fornavn, 
+                            etternavn, 
+                            team, 
+                            produktområde, 
+                            seksjon
+                        )
                     }
                 }
             />
@@ -52,7 +86,14 @@ export default function AnsvarligPersonInput({hentAnsvarligPerson, listId}: {hen
                 onChange={
                     e => {
                         settProduktområde(e.target.value)
-                        hentAnsvarligPerson(listId, fornavn, etternavn, team, produktområde, seksjon)
+                        oppdaterAnsvarligPerson(
+                            listId, 
+                            fornavn, 
+                            etternavn, 
+                            team, 
+                            produktområde, 
+                            seksjon
+                        )
                     }
                 }
             />
@@ -63,7 +104,14 @@ export default function AnsvarligPersonInput({hentAnsvarligPerson, listId}: {hen
                 onChange={
                     e => {
                         settSeksjon(e.target.value)
-                        hentAnsvarligPerson(listId, fornavn, etternavn, team, produktområde, seksjon)
+                        oppdaterAnsvarligPerson(
+                            listId, 
+                            fornavn, 
+                            etternavn, 
+                            team, 
+                            produktområde, 
+                            seksjon
+                        )
                     }
                 }
             />

@@ -29,7 +29,14 @@ export default function AnsvaligPersonerInputs(
         }))
     }
 
-    const hentAnsvarligPerson = (id: number, fornavn: string, etternavn: string, team: string, produktområde: string, seksjon: string) => {
+    const oppdaterAnsvarligPerson = (
+        id: number, 
+        fornavn: string, 
+        etternavn: string, 
+        team: string, 
+        produktområde: string, 
+        seksjon: string
+    ) => {
         const kopi = [...ansvarligePersoner]
         kopi[id] = {
             fornavn: fornavn,
@@ -47,7 +54,7 @@ export default function AnsvaligPersonerInputs(
                 return (
                     <AnsvarligPersonInput 
                         key={index}
-                        hentAnsvarligPerson={hentAnsvarligPerson}
+                        oppdaterAnsvarligPerson={oppdaterAnsvarligPerson}
                         listId={index}
                     />
                 )
