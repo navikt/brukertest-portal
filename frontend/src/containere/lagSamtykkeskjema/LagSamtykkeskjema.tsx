@@ -9,6 +9,22 @@ import LagringsTidSelect from '../../komponenter/lagSamtykkeskjema/LagringsTidSe
 import TittelMedHjelpetekst from '../../komponenter/lagSamtykkeskjema/TittelMedHjelpetekst'
 import VelgStartSluttDato from '../../komponenter/lagSamtykkeskjema/VelgStartSluttDato'
 
+export interface ISamtykkeskjema {
+    undersøkelseOm: string
+    valgFordi: string
+    skalBrukesTil: string
+    spørreOm: string
+    startDato: string
+    sluttDato: string
+    skalPubliseres: boolean
+    gjøresLydopptak: boolean
+    lagringstid: number
+    jegForstårPunkter: Array<string>
+    sierJaPunkter: Array<string>
+    ansvarligePersoner: Array<IAnsvarligPerson>
+    kontaktPersoner: Array<IKontaktPerson>
+}
+
 export default function LagSamtykkeskjema(): ReactElement {
     const [undersøkelseOm, settUndersøkelseOm] = useState<string>('')
     const [valgtFordi, settValgtFordi] = useState<string>('')
@@ -62,6 +78,24 @@ export default function LagSamtykkeskjema(): ReactElement {
         }
     }
 
+    const lagSamtykkeskjema = () => {
+        const samtykkeskjema: ISamtykkeskjema = {
+            undersøkelseOm: undersøkelseOm,
+            valgFordi: valgtFordi,
+            skalBrukesTil: skalBrukesTil,
+            spørreOm: spørreOm,
+            startDato: startDato,
+            sluttDato: sluttDato,
+            skalPubliseres: skalPubliseres,
+            gjøresLydopptak: gjøresLydopptak,
+            lagringstid: lagringsTid,
+            jegForstårPunkter: jegForstårPunkter,
+            sierJaPunkter: sierJaPunkter,
+            ansvarligePersoner: ansvarligePersoner,
+            kontaktPersoner: kontaktPersoner
+        }
+        console.log(samtykkeskjema)
+    }
 
     return (
         <div className="lag-samtykkeskjema">
@@ -257,7 +291,7 @@ export default function LagSamtykkeskjema(): ReactElement {
             />
             <div className="hovedomraade-bunn">
                 <Knapp>Avbryt</Knapp>
-                <Hovedknapp>Lagre</Hovedknapp>
+                <Hovedknapp onClick={lagSamtykkeskjema}>Lagre</Hovedknapp>
             </div>
         </div>
     )
