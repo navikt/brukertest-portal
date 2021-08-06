@@ -1,27 +1,35 @@
-//Hele visningen
-.landingsside-opprett {
+// Hele visningen
+.mine-samtykkeskjemaer {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-//Undertittel
-.typo-systemtittel.skjema-info {
-    margin-top: 4%;
-    margin-bottom: 8%;
-    white-space: nowrap;
+// Undertittel
+.typo-systemtittel.listetittel {
+    margin-top: 0;
+    margin-bottom: 3%;
+    width: 100%;
 }
 
-//knapper
-.knapper {
-    height: 11rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-decoration: none;
-}
-
-.landingsside-opprett > .hovedomrade {
+// Hovedomrade
+.mine-samtykkeskjemaer > .hovedomrade {
     min-height: 36rem;
+}
+
+// Alle ekspanderbare paneler
+.ekspanderbart-panel {
+    width: 100%;
+}
+
+// Alle knapper i nederste del av de ekspanderbare panelene
+.skjemaknapper > .knapp.knapp--flat {
+    color: black;
+    max-width: 17.125rem;
+}
+
+// Lenke-komponentet inni de ekspanderbare panelene
+.ekspanderbartPanel__innhold > .lenke-komponent {
+    margin: 1.5rem 0 2.5rem;
 }
