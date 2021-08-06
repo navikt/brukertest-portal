@@ -1,6 +1,6 @@
 import Hjelpetekst from 'nav-frontend-hjelpetekst'
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper'
-import { Radio, Textarea } from 'nav-frontend-skjema'
+import { Radio, RadioGruppe, Textarea } from 'nav-frontend-skjema'
 import React, { ReactElement, useState } from 'react'
 import AnsvaligPersonerInputs, { IAnsvarligPerson } from '../../komponenter/lagSamtykkeskjema/AnsvarligPersonerInputs'
 import KontaktPersonerInputs, { IKontaktPerson } from '../../komponenter/lagSamtykkeskjema/KontaktPersonerInputs'
@@ -18,6 +18,9 @@ export default function LagSamtykkeskjema(): ReactElement {
     const [startDato, settStartDato] = useState<string>('')
     const [sluttDato, settSluttDato] = useState<string>('')
     
+    const [skalPubliseres, settSkalPubliseres] = useState<boolean>(false)
+    const [gjøresLydopptak, settGjøresLydopptak] = useState<boolean>(false)
+
     const [lagringsTid, settLagringsTid] = useState<number>(12)
 
     const [jegForstårPunkter, settJegForstårPunkter] = useState<Array<string>>([])
@@ -39,6 +42,26 @@ export default function LagSamtykkeskjema(): ReactElement {
         telefon: '',
         epost: ''
     }])
+
+
+    const oppdaterSkalPubliseres = (ja: boolean, nei: boolean) => {
+        if (ja === true) {
+            settSkalPubliseres(true)
+        } 
+        if (nei === true) {
+            settSkalPubliseres(false)
+        }
+    }
+
+    const oppdaterGjøresLydopptak = (ja: boolean, nei: boolean) => {
+        if (ja === true) {
+            settGjøresLydopptak(true)
+        }
+        if (nei === true) {
+            settGjøresLydopptak(false)
+        }
+    }
+
 
     return (
         <div className="lag-samtykkeskjema">
@@ -74,12 +97,30 @@ export default function LagSamtykkeskjema(): ReactElement {
                 sluttDato={sluttDato}
                 settSluttDato={settSluttDato}
             />
-            <div className="skal-publiseres-container">
-                <h4>Skal undersøkelsen publiseres?</h4>
-                <Radio label={'Ja'} name="skal-publiseres"/>
-                <Radio label={'Nei'} name="skal-publiseres"/>
-            </div>
-            <p className="skal-publiseres-info">
+            <RadioGruppe 
+                legend={<h3>Skal undersøkelsen publiseres?</h3>} 
+                className="skal-publiseres-container"
+            >
+                <Radio 
+                    label={'Ja'} 
+                    name="skal-publiseres"
+                    onClick={
+                        () => {
+                            oppdaterSkalPubliseres(true, false)
+                        }
+                    }
+                />
+                <Radio 
+                    label={'Nei'} 
+                    name="skal-publiseres"
+                    onClick={
+                        () => {
+                            oppdaterSkalPubliseres(false, true)
+                        }
+                    }
+                />
+            </RadioGruppe>
+            <p>
                 Undersøkelsen vil bli publisert i en rapport. Rapporten skal deles med 
                 ansatte i NAV og med våre sammargeidspartnere utenfor NAV.
             </p>
@@ -99,16 +140,34 @@ export default function LagSamtykkeskjema(): ReactElement {
                 kontaktPersonerDispatch={settKontaktPersoner}
             />
             <h3>Hvilke metoder bruker vi?</h3>
-            <div className="skal-lydopptak-container">
-                <h4>Skal det gjøres lydopptak?</h4>
-                <Radio label={'Ja'} name="skal-lydopptak"/>
-                <Radio label={'Nei'} name="skal-lydopptak"/>
-            </div>
-            <span>I denne undersøkelsen gjør vi intervjuer. </span>
-            <span className="skal-lydopptak-info">
+            <RadioGruppe 
+                legend={<h3>Skal det gjøres lydopptak</h3>}
+                className="skal-lydopptak-container"
+            >
+                <Radio 
+                    label={'Ja'} 
+                    name="skal-lydopptak"
+                    onClick={
+                        () => {
+                            oppdaterGjøresLydopptak(true, false)
+                        }
+                    }
+                />
+                <Radio 
+                    label={'Nei'} 
+                    name="skal-lydopptak"
+                    onClick={
+                        () => {
+                            oppdaterGjøresLydopptak(false, true)
+                        }
+                    }
+                />
+            </RadioGruppe>
+            <p>
+                I denne undersøkelsen gjør vi intervjuer.
                 Vi ønsker også å ta opp intervjuet med lydopptaker, for lettere å kunne
                 skrive ned det du sier.
-            </span>
+            </p>
             <TittelMedHjelpetekst 
                 tittel="Hvilke opplysninger samler vi inn?"
                 hjelpetekst="Pass på å ikke avslører for my av undersøkelsen slik at du skaper bias"
