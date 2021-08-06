@@ -16,7 +16,7 @@ export default function AnsvarligPersonInput(
             seksjon: string
         ) => void; 
         listId: number
-    }): ReactElement {
+}): ReactElement {
     const [fornavn, settFornavn] = useState<string>('')
     const [etternavn, settEtternavn] = useState<string>('')
     const [team, settTeam] = useState<string>('')

@@ -1,10 +1,9 @@
-import { AddPeople } from '@navikt/ds-icons'
 import Hjelpetekst from 'nav-frontend-hjelpetekst'
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper'
 import { Radio, TextareaControlled } from 'nav-frontend-skjema'
 import React, { ReactElement, useState } from 'react'
 import AnsvaligPersonerInputs, { IAnsvarligPerson } from '../../komponenter/lagSamtykkeskjema/AnsvarligPersonerInputs'
-import KontaktPersonInput from '../../komponenter/lagSamtykkeskjema/KontaktPersonInput'
+import KontaktPersonerInputs, { IKontaktPerson } from '../../komponenter/lagSamtykkeskjema/KontaktPersonerInputs'
 import LagCheckboxerMedLabels from '../../komponenter/lagSamtykkeskjema/LagCheckboxerMedLabels'
 import LagringsTidSelect from '../../komponenter/lagSamtykkeskjema/LagringsTidSelect'
 import TittelMedHjelpetekst from '../../komponenter/lagSamtykkeskjema/TittelMedHjelpetekst'
@@ -14,8 +13,6 @@ export default function LagSamtykkeskjema(): ReactElement {
     const [startDato, settStartDato] = useState<string>('')
     const [sluttDato, settSluttDato] = useState<string>('')
     
-    const [kontaktPersonerListe, settKontaktPersonerListe] = useState<ReactElement[]>([<KontaktPersonInput key={0}/>])
-
     const [jegForstårPunkter, settJegForstårPunkter] = useState<Array<string>>([])
     const [sierJaPunkter, settSierJaPunkter] = useState<Array<string>>([])
 
@@ -27,9 +24,15 @@ export default function LagSamtykkeskjema(): ReactElement {
         seksjon: ''
     }])
 
-    const leggTilNyKontaktPerson = () => {
-        settKontaktPersonerListe(kontaktPersonerListe.concat(<KontaktPersonInput key={kontaktPersonerListe.length} />))
-    }
+    const [kontaktPersoner, settKontaktPersoner] = useState<Array<IKontaktPerson>>([{
+        fornavn: '',
+        etternavn: '',
+        team: '',
+        produktområde: '',
+        seksjon: '',
+        telefon: '',
+        epost: ''
+    }])
 
     return (
         <div className="lag-samtykkeskjema">
@@ -82,11 +85,10 @@ export default function LagSamtykkeskjema(): ReactElement {
                 ansvarligePersonerDispatch={settAnsvarligePersoner}
             />
             <p className="kontakt-person-input-tekst">Har du spørsmål om undersøkelsen kan du kontakte</p>
-            {kontaktPersonerListe}
-            <Knapp className="legg-til-person-knapp" onClick={leggTilNyKontaktPerson}>
-                <AddPeople className="legg-til-person-ikon"/>
-                Legg til person
-            </Knapp>
+            <KontaktPersonerInputs 
+                kontaktPersoner={kontaktPersoner}
+                kontaktPersonerDispatch={settKontaktPersoner}
+            />
             <h3>Hvilke metoder bruker vi?</h3>
             <div className="skal-lydopptak-container">
                 <h4>Skal det gjøres lydopptak?</h4>
