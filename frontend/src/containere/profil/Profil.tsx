@@ -8,7 +8,7 @@ export interface profilProps {
     brukernavn: string
     linkVenstreRoutePath: string
     linkMidtenRoutePath: string
-    linkHøyreRoutePath?: string
+    linkHøyreRoutePath: string
     linkVenstreIkon: React.ReactElement
     linkMidtenIkon: React.ReactElement
     linkHøyreIkon: React.ReactElement
@@ -52,7 +52,10 @@ export default function Profil(props: profilProps): React.ReactElement {
                         hovedInnhold={<p className="typo-normal">{props.linkMidtenInnhold}</p>}
                     />
                 </button>
-                <button className="meny-item">
+                <button
+                    className="meny-item"
+                    onClick={() => history.push(props.linkHøyreRoutePath)}
+                >
                     <Hovedomrade
                         tittel={props.linkHøyreTittel}
                         toppIkon={props.linkHøyreIkon}
