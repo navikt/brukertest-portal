@@ -18,6 +18,8 @@ export default function LagSamtykkeskjema(): ReactElement {
     const [startDato, settStartDato] = useState<string>('')
     const [sluttDato, settSluttDato] = useState<string>('')
     
+    const [lagringsTid, settLagringsTid] = useState<number>(12)
+
     const [jegForstårPunkter, settJegForstårPunkter] = useState<Array<string>>([])
     const [sierJaPunkter, settSierJaPunkter] = useState<Array<string>>([])
     
@@ -130,7 +132,10 @@ export default function LagSamtykkeskjema(): ReactElement {
                 Alle opplysningene om deg lagres i NAVs systemer. Det er bare ansatte som jobber
                 med undersøkelsen som har tilgang. Vi sletter all personlig data om deg så snart
                 vi ikke har bruk for det, senest 
-                <LagringsTidSelect /> 
+                <LagringsTidSelect 
+                    lagringsTid={lagringsTid}
+                    lagringsTidDispatch={settLagringsTid}
+                /> 
             </span>
             <span>måneder etter intervjuet.</span>
             {/* TODO Legge til slik at man kan redigere denne seksjonen */}

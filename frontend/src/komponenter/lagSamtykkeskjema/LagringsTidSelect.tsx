@@ -1,9 +1,21 @@
 import { Select } from 'nav-frontend-skjema'
-import React, { ReactElement } from 'react'
+import React, { Dispatch, ReactElement, SetStateAction } from 'react'
 
-export default function LagringsTidSelect(): ReactElement {
+export default function LagringsTidSelect(
+    {
+        lagringsTid,
+        lagringsTidDispatch,
+    }: {
+        lagringsTid: number,
+        lagringsTidDispatch: Dispatch<SetStateAction<number>>
+    }
+): ReactElement {
     return (
-        <Select className="lagrings-tid-select" defaultValue="12">
+        <Select 
+            className="lagrings-tid-select" 
+            value={lagringsTid}
+            onChange={e => {lagringsTidDispatch(parseInt(e.target.value))}}
+        >
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
