@@ -1,20 +1,14 @@
 import { HandsHeart } from '@navikt/ds-icons'
-import { Flatknapp, Knapp } from 'nav-frontend-knapper'
-import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi'
+import { Knapp } from 'nav-frontend-knapper'
+import { Element, Normaltekst } from 'nav-frontend-typografi'
 import React from 'react'
 import { useHistory } from 'react-router-dom'
-import { AuthLevel, useAppStateDispatcher } from '../../kjerne/state/AppStateContext'
 import Hovedomrade from '../../komponenter/hovedomrade/Hovedomrade'
 import { ReactComponent as InfoIllustrasjon } from '../../style/ressurser/LandingssideInfoIllustrasjon.svg'
 
 export default function SamtykkeskjemaLandingsside(): React.ReactElement {
-    const appDispatcher = useAppStateDispatcher()
     const history = useHistory()
 
-    const oppdaterLoggInnState = () => {
-        appDispatcher.settLoggInnState(AuthLevel.administrator)
-        history.push('/admin/profil')
-    }
     const Innhold = () => (
         <>
             <InfoIllustrasjon />
