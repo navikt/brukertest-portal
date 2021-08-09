@@ -7,7 +7,7 @@ import { AuthLevel, useAppState, useAppStateDispatcher } from '../../kjerne/stat
 export default function BrukerKnappToppBar(): React.ReactElement {
     const appDispatcher = useAppStateDispatcher()
     const history = useHistory()
-    const { authLevel } = useAppState()
+    const { authLevel, erLoggetInn } = useAppState()
 
     const oppdaterLoggInnState = () => {
         appDispatcher.settLoggInnState(AuthLevel.administrator)
@@ -15,7 +15,7 @@ export default function BrukerKnappToppBar(): React.ReactElement {
         history.push('/admin/profil')
     }
 
-    if (authLevel === 1) {
+    if (erLoggetInn && authLevel === 1) {
         return (
             <Flatknapp className="bruker-knapp" onClick={() => history.push('/profil')}>
                 <span>Ola Nordmann</span>
@@ -23,7 +23,7 @@ export default function BrukerKnappToppBar(): React.ReactElement {
             </Flatknapp>
         )
     }
-    if (authLevel === 2) {
+    if (erLoggetInn && authLevel === 2) {
         return (
             <Flatknapp className="bruker-knapp" onClick={() => history.push('/admin/profil')}>
                 <span>Admin Istrator</span>
