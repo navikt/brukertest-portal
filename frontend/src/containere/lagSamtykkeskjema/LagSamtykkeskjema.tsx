@@ -1,8 +1,9 @@
 import Hjelpetekst from 'nav-frontend-hjelpetekst'
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper'
-import { Radio, RadioGruppe, Textarea } from 'nav-frontend-skjema'
+import { Textarea } from 'nav-frontend-skjema'
 import React, { ReactElement, useState } from 'react'
 import AnsvaligPersonerInputs, { IAnsvarligPerson } from '../../komponenter/lagSamtykkeskjema/AnsvarligPersonerInputs'
+import JaNeiValg from '../../komponenter/lagSamtykkeskjema/JaNeiValg'
 import KontaktPersonerInputs, { IKontaktPerson } from '../../komponenter/lagSamtykkeskjema/KontaktPersonerInputs'
 import LagCheckboxerMedLabels from '../../komponenter/lagSamtykkeskjema/LagCheckboxerMedLabels'
 import LagringsTidSelect from '../../komponenter/lagSamtykkeskjema/LagringsTidSelect'
@@ -59,25 +60,6 @@ export default function LagSamtykkeskjema(): ReactElement {
         epost: ''
     }])
 
-
-    const oppdaterSkalPubliseres = (skalPubliseres: boolean) => {
-        if (skalPubliseres) {
-            settSkalPubliseres(true)
-        } 
-        if (!skalPubliseres) {
-            settSkalPubliseres(false)
-        }
-    }
-
-    const oppdaterGjøresLydopptak = (ja: boolean, nei: boolean) => {
-        if (ja === true) {
-            settGjøresLydopptak(true)
-        }
-        if (nei === true) {
-            settGjøresLydopptak(false)
-        }
-    }
-
     const lagSamtykkeskjema = () => {
         const samtykkeskjema: ISamtykkeskjema = {
             undersøkelseOm: undersøkelseOm,
@@ -131,29 +113,10 @@ export default function LagSamtykkeskjema(): ReactElement {
                 sluttDato={sluttDato}
                 settSluttDato={settSluttDato}
             />
-            <RadioGruppe 
-                legend={<h3>Skal undersøkelsen publiseres?</h3>} 
-                className="skal-publiseres-container"
-            >
-                <Radio 
-                    label={'Ja'} 
-                    name="skal-publiseres"
-                    onClick={
-                        () => {
-                            oppdaterSkalPubliseres(true)
-                        }
-                    }
-                />
-                <Radio 
-                    label={'Nei'} 
-                    name="skal-publiseres"
-                    onClick={
-                        () => {
-                            oppdaterSkalPubliseres(false)
-                        }
-                    }
-                />
-            </RadioGruppe>
+            <JaNeiValg 
+                valgTittel="Skal undersøkelsen publiseres?" 
+                jaNeiStateDispatch={settSkalPubliseres}
+            />
             <p>
                 Undersøkelsen vil bli publisert i en rapport. Rapporten skal deles med 
                 ansatte i NAV og med våre sammargeidspartnere utenfor NAV.
@@ -174,29 +137,10 @@ export default function LagSamtykkeskjema(): ReactElement {
                 kontaktPersonerDispatch={settKontaktPersoner}
             />
             <h3>Hvilke metoder bruker vi?</h3>
-            <RadioGruppe 
-                legend={<h3>Skal det gjøres lydopptak</h3>}
-                className="skal-lydopptak-container"
-            >
-                <Radio 
-                    label={'Ja'} 
-                    name="skal-lydopptak"
-                    onClick={
-                        () => {
-                            oppdaterGjøresLydopptak(true, false)
-                        }
-                    }
-                />
-                <Radio 
-                    label={'Nei'} 
-                    name="skal-lydopptak"
-                    onClick={
-                        () => {
-                            oppdaterGjøresLydopptak(false, true)
-                        }
-                    }
-                />
-            </RadioGruppe>
+            <JaNeiValg 
+                valgTittel="Skal det gjøres lydopptak?"
+                jaNeiStateDispatch={settGjøresLydopptak}
+            />
             <p>
                 I denne undersøkelsen gjør vi intervjuer.
                 Vi ønsker også å ta opp intervjuet med lydopptaker, for lettere å kunne
