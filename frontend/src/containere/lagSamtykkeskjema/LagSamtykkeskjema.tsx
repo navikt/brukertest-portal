@@ -89,6 +89,7 @@ export default function LagSamtykkeskjema(): ReactElement {
         console.log(samtykkeskjema)
         history.push('/admin/skjema-opprettet')
     }
+    // TODO: Gi muligheten til å redigere skjemaet fritt på eget ansvar.
 
     return (
         <div className="lag-samtykkeskjema">
@@ -144,6 +145,8 @@ export default function LagSamtykkeskjema(): ReactElement {
                 designseskjonen arbeider vi med å forbedre NAVs tjenester. Ansvarlig for
                 undersøkelsen er
             </p>
+            {/* TODO Lagge et større visuelt skille mellom nye personer lagt til */}
+            {/* TODO Gi muligheten til å fjerne personer som er lagt til */}
             <AnsvaligPersonerInputs
                 ansvarligePersoner={ansvarligePersoner}
                 ansvarligePersonerDispatch={settAnsvarligePersoner}
@@ -218,6 +221,7 @@ export default function LagSamtykkeskjema(): ReactElement {
                 Alle som skal ha tilgang til personopplysningene har taushetsplikt, dvs. plikt til å
                 holde opplysningene hemmelig. I denne undersøkelsen er det tre personer som skal ha
                 tilgang til opplysningene.
+                {/* TODO Gi muligheten til å rediger antall personer som skal ha tilgang til opplysningene */}
             </p>
             <h3>Anonymisering og formidling av opplysningene</h3>
             <p>
