@@ -148,7 +148,7 @@ export default function LagSamtykkeskjema(): ReactElement {
             </p>
             <TittelMedHjelpetekst 
                 tittel="Hvilke opplysninger samler vi inn?"
-                hjelpetekst="Pass på å ikke avslører for my av undersøkelsen slik at du skaper bias"
+                hjelpetekst="Pass på å ikke avslører for mye av undersøkelsen slik at du skaper bias"
             />
             <Textarea 
                 label="Vi vil spørre deg om" 
