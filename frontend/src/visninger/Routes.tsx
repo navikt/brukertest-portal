@@ -8,12 +8,11 @@ import OpprettelseFullført from './admin/OpprettelseFullført'
 import OpprettSamtykkeskjema from './admin/OpprettSamtykkeskjema'
 import DeltakerProfilside from './deltaker/DeltakerProfilside'
 import Landingsside from './landingsside/Landingsside'
-<<<<<<< HEAD
+
 import LagSamtykkeskjemaVisning from './lagSamtykkeskjema/LagSamtykkeskjemaVisning'
-=======
+
 import Samtykkeskjema from './samtykkeskjema/Samtykkeskjema'
 import SamtykkeskjemaLandingsside from './samtykkeskjema/SamtykkeskjemaLandingsside'
->>>>>>> ca41e1a (Laget en midlertidig landingsside)
 
 export default function Routes(): React.ReactElement {
     return (
