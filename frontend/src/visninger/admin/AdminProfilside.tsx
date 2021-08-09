@@ -16,6 +16,7 @@ export default function AdminProfilside(): React.ReactElement {
             linkMidtenTittel="Opprett samtykkeskjema"
             linkMidtenInnhold="Her kan du se, redigere eller slette dine opprettede
                 samtykkeskjemaer. Du finner også lenken du kan dele med brukeren."
+            linkHøyreRoutePath="/"
             linkHøyreIkon={<Calender />}
             linkHøyreTittel="Aktiviteter"
             linkHøyreInnhold="Her kan du legge ut intervju, brukertester og spørreundersøkelser en
