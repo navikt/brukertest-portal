@@ -29,6 +29,9 @@ export default function Routes(): React.ReactElement {
                     <SamtykkeskjemaLandingsside />
                 </Route>
                 <Route path="/samtykkeskjema" exact>
+                    <Samtykkeskjema />
+                </Route>
+                <Route path="/admin/lag-samtykkeskjema-visning" exact>
                     <LagSamtykkeskjemaVisning />
                 </Route>
                 <Route path="/admin/profil" exact>
