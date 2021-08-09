@@ -60,11 +60,11 @@ export default function LagSamtykkeskjema(): ReactElement {
     }])
 
 
-    const oppdaterSkalPubliseres = (ja: boolean, nei: boolean) => {
-        if (ja === true) {
+    const oppdaterSkalPubliseres = (skalPubliseres: boolean) => {
+        if (skalPubliseres) {
             settSkalPubliseres(true)
         } 
-        if (nei === true) {
+        if (!skalPubliseres) {
             settSkalPubliseres(false)
         }
     }
@@ -140,7 +140,7 @@ export default function LagSamtykkeskjema(): ReactElement {
                     name="skal-publiseres"
                     onClick={
                         () => {
-                            oppdaterSkalPubliseres(true, false)
+                            oppdaterSkalPubliseres(true)
                         }
                     }
                 />
@@ -149,7 +149,7 @@ export default function LagSamtykkeskjema(): ReactElement {
                     name="skal-publiseres"
                     onClick={
                         () => {
-                            oppdaterSkalPubliseres(false, true)
+                            oppdaterSkalPubliseres(false)
                         }
                     }
                 />
