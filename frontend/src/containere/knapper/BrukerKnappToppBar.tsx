@@ -9,7 +9,9 @@ export default function BrukerKnappToppBar(): React.ReactElement {
             <Link to="/samtykkeskjema" style={{ textDecoration: 'none' }}>
                 <Flatknapp className="bruker-knapp">
                     <span>Ola Nordmann</span>
-                    <People />
+                    <People
+                        style={{ height: '1.5rem', width: '1.375rem', marginLeft: '0.75rem' }}
+                    />
                 </Flatknapp>
             </Link>
         </Router>
