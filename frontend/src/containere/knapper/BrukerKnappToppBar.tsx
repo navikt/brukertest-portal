@@ -19,7 +19,7 @@ export default function BrukerKnappToppBar(): React.ReactElement {
         return (
             <Flatknapp className="bruker-knapp" onClick={() => history.push('/profil')}>
                 <span>Ola Nordmann</span>
-                <People style={{ height: '1.5rem', width: '1.375rem', marginLeft: '0.75rem' }} />
+                <People className="knapp-ikon" />
             </Flatknapp>
         )
     }
@@ -27,7 +27,7 @@ export default function BrukerKnappToppBar(): React.ReactElement {
         return (
             <Flatknapp className="bruker-knapp" onClick={() => history.push('/admin/profil')}>
                 <span>Admin Istrator</span>
-                <People style={{ height: '1.5rem', width: '1.375rem', marginLeft: '0.75rem' }} />
+                <People className="knapp-ikon" />
             </Flatknapp>
         )
     } else {
