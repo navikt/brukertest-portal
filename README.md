@@ -1,4 +1,4 @@
-# Brukertest portal/Innbyggertorget
+# Brukertestportalen/Innbyggerpanelet
 
 ## Introduksjon
 
