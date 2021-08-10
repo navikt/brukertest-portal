@@ -2,16 +2,9 @@
 .hovedinnhold {
     display: flex;
     flex-direction: column;
+    height: 100%;
     align-items: center;
     padding: 2.5rem 2.5rem 0 2.5rem;
-    min-height: 29rem;
-}
-
-//Undertittel
-.typo-systemtittel.logg-inn-info {
-    margin-top: 15%;
-    margin-bottom: 8%;
-    white-space: nowrap;
 }
 
 //Knapper på bunn av hovedområdet
@@ -21,4 +14,16 @@
     justify-content: space-between;
     margin-top: auto;
     padding: 1.4rem 0rem;
+}
+
+//Tittel
+.hovedinnhold > .typo-undertittel {
+    margin-bottom: 0.5rem;
+    align-self: start;
+}
+
+//Undertekst
+.hovedinnhold > .typo-normal {
+    margin-bottom: 1.5rem;
+    line-height: 1.6rem;
 }

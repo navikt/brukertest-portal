@@ -1,17 +1,29 @@
 import React from 'react'
 import { People } from '@navikt/ds-icons'
 import { Flatknapp } from 'nav-frontend-knapper'
-import { BrowserRouter as Router, Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { useAppState } from '../../kjerne/state/AppStateContext'
 
 export default function BrukerKnappToppBar(): React.ReactElement {
-    return (
-        <Router>
-            <Link to="/samtykkeskjema" style={{ textDecoration: 'none' }}>
-                <Flatknapp className="bruker-knapp">
-                    <span>Ola Nordmann</span>
-                    <People />
-                </Flatknapp>
-            </Link>
-        </Router>
-    )
+    const history = useHistory()
+    const { authLevel } = useAppState()
+
+    if (authLevel === 1) {
+        return (
+            <Flatknapp className="bruker-knapp" onClick={() => history.push('/profil')}>
+                <span>Ola Nordmann</span>
+                <People className="knapp-ikon" />
+            </Flatknapp>
+        )
+    }
+    if (authLevel === 2) {
+        return (
+            <Flatknapp className="bruker-knapp" onClick={() => history.push('/admin/profil')}>
+                <span>Admin Istrator</span>
+                <People className="knapp-ikon" />
+            </Flatknapp>
+        )
+    } else {
+        return <div></div>
+    }
 }
