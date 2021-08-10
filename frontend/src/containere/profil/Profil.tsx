@@ -6,18 +6,18 @@ import { useHistory } from 'react-router-dom'
 
 export interface profilProps {
     brukernavn: string
-    linkVenstreRoutePath: string
-    linkMidtenRoutePath: string
-    linkHøyreRoutePath: string
-    linkVenstreIkon: React.ReactElement
-    linkMidtenIkon: React.ReactElement
-    linkHøyreIkon: React.ReactElement
-    linkVenstreTittel: string
-    linkMidtenTittel: string
-    linkHøyreTittel: string
-    linkVenstreInnhold: string
-    linkMidtenInnhold: string
-    linkHøyreInnhold: string
+    knappVenstreRoutePath: string
+    knappMidtenRoutePath: string
+    knappHøyreRoutePath: string
+    knappVenstreIkon: React.ReactElement
+    knappMidtenIkon: React.ReactElement
+    knappHøyreIkon: React.ReactElement
+    knappVenstreTittel: string
+    knappMidtenTittel: string
+    knappHøyreTittel: string
+    knappVenstreInnhold: string
+    knappMidtenInnhold: string
+    knappHøyreInnhold: string
 }
 
 export default function Profil(props: profilProps): React.ReactElement {
@@ -34,32 +34,32 @@ export default function Profil(props: profilProps): React.ReactElement {
             <div className="meny-items">
                 <button
                     className="meny-item"
-                    onClick={() => history.push(props.linkVenstreRoutePath)}
+                    onClick={() => history.push(props.knappVenstreRoutePath)}
                 >
                     <Hovedomrade
-                        tittel={props.linkVenstreTittel}
-                        toppIkon={props.linkVenstreIkon}
-                        hovedInnhold={<p className="typo-normal">{props.linkVenstreInnhold}</p>}
+                        tittel={props.knappVenstreTittel}
+                        toppIkon={props.knappVenstreIkon}
+                        hovedInnhold={<p className="typo-normal">{props.knappVenstreInnhold}</p>}
                     />
                 </button>
                 <button
                     className="meny-item"
-                    onClick={() => history.push(props.linkMidtenRoutePath)}
+                    onClick={() => history.push(props.knappMidtenRoutePath)}
                 >
                     <Hovedomrade
-                        tittel={props.linkMidtenTittel}
-                        toppIkon={props.linkMidtenIkon}
-                        hovedInnhold={<p className="typo-normal">{props.linkMidtenInnhold}</p>}
+                        tittel={props.knappMidtenTittel}
+                        toppIkon={props.knappMidtenIkon}
+                        hovedInnhold={<p className="typo-normal">{props.knappMidtenInnhold}</p>}
                     />
                 </button>
                 <button
                     className="meny-item"
-                    onClick={() => history.push(props.linkHøyreRoutePath)}
+                    onClick={() => history.push(props.knappHøyreRoutePath)}
                 >
                     <Hovedomrade
-                        tittel={props.linkHøyreTittel}
-                        toppIkon={props.linkHøyreIkon}
-                        hovedInnhold={<p className="typo-normal">{props.linkHøyreInnhold}</p>}
+                        tittel={props.knappHøyreTittel}
+                        toppIkon={props.knappHøyreIkon}
+                        hovedInnhold={<p className="typo-normal">{props.knappHøyreInnhold}</p>}
                     />
                 </button>
             </div>

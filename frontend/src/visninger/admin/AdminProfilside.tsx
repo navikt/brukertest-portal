@@ -6,20 +6,20 @@ export default function AdminProfilside(): React.ReactElement {
     return (
         <Profil
             brukernavn="Admin Istrator"
-            linkVenstreRoutePath="/admin/mine-samtykkeskjemaer"
-            linkVenstreIkon={<FileContent />}
-            linkVenstreTittel="Mine samtykkeskjemaer"
-            linkVenstreInnhold="Her kan du se, redigere eller slette dine opprettede
+            knappVenstreRoutePath="/admin/mine-samtykkeskjemaer"
+            knappVenstreIkon={<FileContent />}
+            knappVenstreTittel="Mine samtykkeskjemaer"
+            knappVenstreInnhold="Her kan du se, redigere eller slette dine opprettede
                                 samtykkeskjemaer. Du finner også lenken du kan dele med brukeren."
-            linkMidtenRoutePath="/admin/opprett-samtykkeskjema"
-            linkMidtenIkon={<AddCircle />}
-            linkMidtenTittel="Opprett samtykkeskjema"
-            linkMidtenInnhold="Her kan du se, redigere eller slette dine opprettede
+            knappMidtenRoutePath="/admin/opprett-samtykkeskjema"
+            knappMidtenIkon={<AddCircle />}
+            knappMidtenTittel="Opprett samtykkeskjema"
+            knappMidtenInnhold="Her kan du se, redigere eller slette dine opprettede
                 samtykkeskjemaer. Du finner også lenken du kan dele med brukeren."
-            linkHøyreRoutePath="/"
-            linkHøyreIkon={<Calender />}
-            linkHøyreTittel="Aktiviteter"
-            linkHøyreInnhold="Her kan du legge ut intervju, brukertester og spørreundersøkelser en
+            knappHøyreRoutePath="/"
+            knappHøyreIkon={<Calender />}
+            knappHøyreTittel="Aktiviteter"
+            knappHøyreInnhold="Her kan du legge ut intervju, brukertester og spørreundersøkelser en
                 bruker kan melde sin interesse i å delta på."
         />
     )
