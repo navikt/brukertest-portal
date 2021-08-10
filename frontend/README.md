@@ -64,7 +64,7 @@
 
 ### NAIS
 
-Deployment av frontend'en blir gjort på NAV sin sky-tjeneste kalt NAIS. Deploymenten er konfigurer \
+Deployment av frontend'en blir gjort på NAV sin sky-tjeneste kalt NAIS. Deploymenten er konfigurert \
 slik at NAIS deployer en instanse av frontenden til dev-gcp og en instanse til prod-gcp. Ved \
 deployment blir frontenden bygget og servert fra `server.js` fila.
 
