@@ -2,13 +2,20 @@ import React from 'react'
 import { People } from '@navikt/ds-icons'
 import { Flatknapp } from 'nav-frontend-knapper'
 import { useHistory } from 'react-router-dom'
-import { useAppState } from '../../kjerne/state/AppStateContext'
+import { AuthLevel, useAppState, useAppStateDispatcher } from '../../kjerne/state/AppStateContext'
 
 export default function BrukerKnappToppBar(): React.ReactElement {
+    const appDispatcher = useAppStateDispatcher()
     const history = useHistory()
-    const { authLevel } = useAppState()
+    const { authLevel, erLoggetInn } = useAppState()
 
-    if (authLevel === 1) {
+    const oppdaterLoggInnState = () => {
+        appDispatcher.settLoggInnState(AuthLevel.administrator)
+
+        history.push('/admin/profil')
+    }
+
+    if (erLoggetInn && authLevel === 1) {
         return (
             <Flatknapp className="bruker-knapp" onClick={() => history.push('/profil')}>
                 <span>Ola Nordmann</span>
@@ -16,7 +23,7 @@ export default function BrukerKnappToppBar(): React.ReactElement {
             </Flatknapp>
         )
     }
-    if (authLevel === 2) {
+    if (erLoggetInn && authLevel === 2) {
         return (
             <Flatknapp className="bruker-knapp" onClick={() => history.push('/admin/profil')}>
                 <span>Admin Istrator</span>
@@ -24,6 +31,11 @@ export default function BrukerKnappToppBar(): React.ReactElement {
             </Flatknapp>
         )
     } else {
-        return <div></div>
+        return (
+            <Flatknapp className="bruker-knapp" onClick={oppdaterLoggInnState}>
+                <span>Logg inn</span>
+                <People className="knapp-ikon" />
+            </Flatknapp>
+        )
     }
 }

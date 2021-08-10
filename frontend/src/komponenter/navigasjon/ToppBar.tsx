@@ -17,7 +17,13 @@ export default function ToppBar(): React.ReactElement {
                 </>
             )
         } else {
-            return <Sidetittel className="sidetittel">{'Innbyggerpanelet'}</Sidetittel>
+            return (
+                <>
+                    <div></div>
+                    <Sidetittel className="sidetittel">{'Innbyggerpanelet'}</Sidetittel>{' '}
+                    <BrukerKnappToppBar />
+                </>
+            )
         }
     }
 

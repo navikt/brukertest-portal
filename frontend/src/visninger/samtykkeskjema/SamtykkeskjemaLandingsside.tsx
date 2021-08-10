@@ -15,7 +15,7 @@ export default function SamtykkeskjemaLandingsside(): React.ReactElement {
     )
 
     return (
-        <div className="landingsside">
+        <div className="samtykkeskjema-landingsside">
             <Hovedomrade
                 tittel={'Velkommen til NAVs innbyggerpanel'}
                 toppIkon={<HandsHeart />}

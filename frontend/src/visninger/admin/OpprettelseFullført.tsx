@@ -17,7 +17,7 @@ export default function OpprettelseFullført(): React.ReactElement {
     )
 
     return (
-        <div className="opprettelse-fullført">
+        <div className="opprettelse-fullfoert">
             <Hovedomrade
                 tittel={'Samtykkeskjema opprettet'}
                 toppIkon={<Success />}
