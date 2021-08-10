@@ -9,6 +9,7 @@ export default function KopierLenke(): React.ReactElement {
     // Lager en lenke med en tilfeldig ID på enden
     const lenkeTekst = lenkeBase.concat(lagID(8))
 
+    // TODO: Gjøre om denne til å lage en unik ID (Nå kan samme ID bli generert)
     // Lager en tilfeldig string
     function lagID(lengde: number) {
         let resultat = ''
