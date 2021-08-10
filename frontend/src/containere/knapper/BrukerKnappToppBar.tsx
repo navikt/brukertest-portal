@@ -34,7 +34,7 @@ export default function BrukerKnappToppBar(): React.ReactElement {
         return (
             <Flatknapp className="bruker-knapp" onClick={oppdaterLoggInnState}>
                 <span>Logg inn</span>
-                <People style={{ height: '1.5rem', width: '1.375rem', marginLeft: '0.75rem' }} />
+                <People className="knapp-ikon" />
             </Flatknapp>
         )
     }
