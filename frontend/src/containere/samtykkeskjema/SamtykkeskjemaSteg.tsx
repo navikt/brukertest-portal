@@ -42,10 +42,10 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
                         }
                         andreTittel={'Hva skal undersøkelsen brukes til?'}
                         andreAvsnitt={
-                            'Undersøkelsen skal brukes til å forbedre NAVs digitale tjenester. Den gjennomføres Onsdag 11. August kl.14:00  og varer til kl. 15:00 samme dag'
+                            'Undersøkelsen skal brukes til å forbedre NAVs digitale tjenester. Den gjennomføres Onsdag 11. August kl. 14:00  og varer til kl. 15:00 samme dag'
                         }
                         tredjeAvsnitt={
-                            'Undersøkelsen vil bli publisert i en rapport. Rapporten skal kun deles med ansatte i NAV og med våre samarbeidspartnere utenfor NAV.'
+                            'Undersøkelsen vil bli publisert i en rapport. Rapporten skal deles med ansatte i NAV og med våre samarbeidspartnere.'
                         }
                     />
                     <div className="hovedomraade-bunn">
@@ -58,13 +58,16 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
             return (
                 <>
                     <InformasjonsSteg
-                        førsteTittel={'Hvem er vi og hvem er ansvarlig for undersøkelsen?'}
+                        førsteTittel={'Hvem er ansvarlig for undersøkelsen?'}
                         førsteAvsnitt={
-                            'Vi er ansatt i Designseksjonen i NAV IT i Arbeids- og velferdsdirektoratet (NAV). I designesksjonen arbeider vi med å forbedre NAVs tjenester. Ansvarlig for undersøkelsen er Håkon Larsen. Har du spørsmål om undersøkelsen kan du kontakte Håkon på telefon 41234567 og e-post: Håkon@nav.no'
+                            'Vi er ansatt i Designseksjonen i NAV IT i Arbeids- og velferdsdirektoratet (NAV). I designesksjonen arbeider vi med å forbedre NAVs tjenester. Ansvarlig for undersøkelsen er designer Håkon Larsen.'
                         }
-                        andreTittel={'Hvilke metoder bruker vi?'}
+                        andreTittel={'Innsamling av opplysninger'}
                         andreAvsnitt={
-                            'I denne undersøkelsen gjør vi intervjuer. Vi ønsker også å ta opp intervjuet med lydopptaker, for lettere å kunne skrive ned det du sier.'
+                            'I denne undersøkelsen gjør vi intervjuer. Vi ønsker også å ta opp intervjuet med lydopptaker, for lettere å kunne skrive ned det du sier. '
+                        }
+                        tredjeAvsnitt={
+                            'Vi vil stille spørsmål angående din foreløpige livssituasjon. Du velger selv om du vil fortelle om sensitive opplysninger som helseforhold eller hvor du jobber. Opplysningene vi samler inn skal kun brukes til det undersøkelsen handler om, og det du samtykker til.'
                         }
                     />
                     <div className="hovedomraade-bunn">
@@ -77,13 +80,15 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
             return (
                 <>
                     <InformasjonsSteg
-                        førsteTittel={'Hvilke personopplysninger samler vi inn?'}
+                        førsteTittel={'Behandling av opplysninger'}
                         førsteAvsnitt={
-                            'Vi vil stille deg spørsmål angående din foreløpige livssituasjon. Du velger selv om du vil fortelle om sensitive opplysninger som helseforhold eller hvor du jobber. Opplysningene vi samler inn skal kun brukes til det undersøkelsen handler om, og det du samtykker til.'
+                            'Opplysningene du oppgir lagres i NAVs systemer. Kun 3 ansatte som jobber med undersøkelsen har tilgang til opplysningene du oppgir. Denne informasjonen vil anonymiseres slik at den kan formidles videre.'
                         }
-                        andreTittel={'Oppbevaring av personopplysningene'}
                         andreAvsnitt={
-                            'Alle opplysningene om deg lagres i NAVs systemer. Det er bare ansatte som jobber med undersøkelsen som har tilgang. Vi sletter all personlig data om deg så snart vi ikke har bruk for det, senest 12 måneder etter intervjuet.'
+                            'Vi sletter alle opplysninger som kan lede tilbake til deg senest 12 måneder etter intervjuet.'
+                        }
+                        tredjeAvsnitt={
+                            'Alle som skal ha tilgang til personopplysningene har taushetsplikt til å holde opplysningene hemmelig.'
                         }
                     />
                     <div className="hovedomraade-bunn">
@@ -96,13 +101,16 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
             return (
                 <>
                     <InformasjonsSteg
-                        førsteTittel={'Taushetsplikt'}
+                        førsteTittel={'Dine rettigheter'}
                         førsteAvsnitt={
-                            'Alle som skal ha tilgang til personopplysningene har taushetsplikt, dvs. plikt til å holde opplysningene hemmelig. I denne undersøkelsen er det tre personer som skal ha tilgang til opplysningene. '
+                            'Det er frivillig å delta. Du kan når som helst avslutte intervjuet, uten å måtte oppgi en grunn. Du kan når som helst se, redigere eller slette dine opplysninger gjennom din profil på Innbygerpanelet. Der kan du også redigere eller trekke tilbake samtykket.'
                         }
-                        andreTittel={'Anonymisering og formidling av opplysningene'}
                         andreAvsnitt={
-                            'Før opplysningene slettes så anonymiseres de slik at de kan formidles videre til andre. Opplysningene anonymiseres ved at alle intervjuer får en kode som viser kjønn og alder, mens alle opplysninger som kan lede tilbake til deg fjernes.'
+                            'Mottar du tjenester fra NAV, vil ikke deltakelse i denne undersøkelsen påvirke dine rettigheter i NAV. Vi har ikke tilgang til dine saker. Andre i NAV får heller ikke vite hvem som deltar i undersøkelsen, og opplysningene du gir kan ikke kobles til dine saker.'
+                        }
+                        tredjeTittel={'Kontaktperson'}
+                        tredjeAvsnitt={
+                            'Har du spørsmål om undersøkelsen kan du kontakte testansvarlig, Håkon Larsen, på telefon 987654321 og e-post: håkon@nav.no'
                         }
                     />
                     <div className="hovedomraade-bunn">
@@ -112,24 +120,6 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
                 </>
             )
         case 4:
-            return (
-                <>
-                    <InformasjonsSteg
-                        førsteTittel={'Dine rettigheter'}
-                        førsteAvsnitt={
-                            'Det er frivillig å delta. Du kan når som helst avslutte intervjuet, uten å måtte oppgi en grunn. Ønsker du å trekke samtykket ditt, så sørger vi for at alt materiale om deg slettes. Du har også rett til å se, rette eller slette dine opplysninger både under og etter at intervjuet er ferdig. Kontakt Håkon på e-post (Håkon@Nav.no), så hjelper vi deg.'
-                        }
-                        andreAvsnitt={
-                            'Mottar du tjenester fra NAV, vil ikke deltakelse i denne undersøkelsen påvirke dine rettigheter i NAV. Vi har ikke tilgang til dine saker. Andre i NAV får heller ikke vite hvem som deltar i undersøkelsen, og opplysningene du gir kan ikke kobles til dine saker.'
-                        }
-                    />
-                    <div className="hovedomraade-bunn">
-                        <Tilbakeknapp onClick={hoppTilForrigeSteg} />
-                        <Nesteknapp onClick={hoppTilNesteSteg} />
-                    </div>
-                </>
-            )
-        case 5:
             return (
                 <>
                     <ForsåttSjekkSteg
@@ -144,7 +134,7 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
                 </>
             )
 
-        case 6:
+        case 5:
             return (
                 <>
                     <DeltakerUtfyllingSteg
@@ -159,7 +149,7 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
                     </div>
                 </>
             )
-        case 7:
+        case 6:
             return (
                 <>
                     <InformasjonsSteg
@@ -188,7 +178,7 @@ export function SamtykkeskjemaSteg(): React.ReactElement {
 
 export function HovedområdeTittel(): string {
     const [steg] = useContext(StegContext)
-    if (steg > 6) {
+    if (steg > 5) {
         return 'Ditt samtykke er registrert'
     } else {
         return 'Samtykke til intervju'
@@ -197,7 +187,7 @@ export function HovedområdeTittel(): string {
 
 export function HovedområdeIkon(): React.ReactElement {
     const [steg] = useContext(StegContext)
-    if (steg > 6) {
+    if (steg > 5) {
         return <Success />
     } else {
         return <HandsHeart />
